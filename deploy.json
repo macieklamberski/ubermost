@@ -1,0 +1,33 @@
+{
+  "ftp": {
+    "staging": {
+      "options": {
+        "host": "",
+        "port": 21,
+        "username": "",
+        "password": "",
+        "dest": ""
+      },
+      "files": [{
+        "expand": true,
+        "cwd": "dist",
+        "src": ["**"]
+      }]
+    }
+  },
+  "rsync": {
+    "options": {
+      "args": ["--verbose"],
+      "exclude": [],
+      "recursive": true
+    },
+    "production": {
+      "options": {
+        "src": "dist/*",
+        "dest": "/var/www/contentdiscontent.com",
+        "host": "lamberski@lamberski.com",
+        "port": 25000
+      }
+    }
+  }
+}

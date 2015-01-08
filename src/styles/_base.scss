@@ -1,0 +1,41 @@
+
+/* Base
+/*----------------------------------------------------------------------------*/
+
+html {
+  border-top: 3px solid $color-accent;
+  padding: 0 5%;
+  text-size-adjust: none;
+}
+
+body {
+  position: relative;
+  max-width: $width-wrapper;
+  margin: $rythm-tick * 3 auto;
+  color: $color-base;
+  font-family: $font-sans-serif;
+  font-size: 18px;
+  line-height: $rythm-tick;
+  text-size-adjust: 100%;
+
+  @include breakpoint(phablet) {
+    margin: $rythm-tick * 2 auto;
+  }
+}
+
+hr {
+  display: none;
+}
+
+// Links
+
+a {
+  color: $color-minor;
+  transition: color 250ms;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    color: $color-accent;
+  }
+}

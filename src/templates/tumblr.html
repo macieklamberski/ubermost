@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {block:Description}<meta name="description" content="{MetaDescription}">{/block:Description}
+    <title>{Title}{block:SearchPage}, {lang:Search results for SearchQuery}{/block:SearchPage}</title>
+    <link href="//fonts.googleapis.com/css?family=PT+Serif:400,400italic" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Karla:400,400italic" rel="stylesheet">
+    <link href="//static.contentdiscontent.com/styles/main.css" rel="stylesheet">
+    <link href="{PortraitURL-128}" rel="apple-touch-icon">
+    <link href="{RSS}" rel="alternate" type="application/rss+xml">
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <header class="top">
+      <div class="about">
+        <p><h1><a href="{BlogURL}">Content/Discontent</a></h1> is a place where I save the wise quotations from books and articles that I read. By <a href="http://lamberski.com">Maciej Lamberski</a>.</p>
+      </div>
+    </header>
+
+    {block:Posts}
+      {block:Quote}
+        <blockquote class="quote">
+          <div>{Quote}</div>
+          <footer>
+            {block:Source}&mdash; <cite>{Source}</cite>{/block:Source}
+            {block:IndexPage}<a href="{Permalink}" class="permalink">#</a>{/block:IndexPage}
+          </footer>
+        </blockquote>
+      {/block:Quote}
+    {/block:Posts}
+
+    {block:Pagination}
+      <footer class="pagination">
+        <nav>
+          {block:PreviousPage}<a rel="prev" href="{PreviousPage}">&larr;</a>{/block:PreviousPage}
+          {block:NextPage}<a rel="next" href="{NextPage}">&rarr;</a>{/block:NextPage}
+        </nav>
+      </footer>
+    {/block:Pagination}
+
+    <script src="//static.contentdiscontent.com/scripts/analytics.js" async></script>
+  </body>
+</html>

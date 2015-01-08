@@ -1,0 +1,112 @@
+
+/* Common
+/*----------------------------------------------------------------------------*/
+
+.hidden {
+  position: fixed;
+  left: -999em;
+}
+
+/* Top
+/*----------------------------------------------------------------------------*/
+
+.top {
+  color: $color-minor;
+
+  h1 {
+    display: inline-block;
+
+    a {
+      color: $color-base;
+
+      &:hover {
+        color: $color-accent;
+      }
+    }
+  }
+}
+
+/* Quote/Pagination
+/*----------------------------------------------------------------------------*/
+
+.quote,
+.pagination {
+  margin-top: $rythm-tick * 2;
+  border-top: 1px solid transparent;
+  padding-top: ($rythm-tick * 2) - 1px;
+
+  @include breakpoint(phablet) {
+    border-top-color: #eee;
+  }
+}
+
+.quote {
+  position: relative;
+  font-family: $font-serif;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  div {
+    > * {
+      margin-top: $rythm-tick;
+    }
+
+    > :first-child {
+      margin-top: 0;
+    }
+  }
+
+  li {
+    padding-left: 7px;
+    margin-left: -7px;
+  }
+
+  ul li {
+    list-style-type: disc;
+  }
+
+  ol li {
+    list-style-type: decimal;
+  }
+
+  strong {
+    font-weight: bold;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  del {
+    text-decoration: line-through;
+  }
+
+  footer {
+    margin-top: $rythm-tick;
+    font-family: $font-sans-serif;
+    color: $color-minor;
+    text-transform: uppercase;
+    font-size: 15px;
+
+    .permalink {
+      float: right;
+    }
+  }
+}
+
+.pagination {
+  text-align: center;
+
+  a {
+    margin: -$rythm-tick 0;
+    padding: $rythm-tick;
+    color: $color-minor;
+
+    &:hover,
+    &:focus {
+      color: $color-accent;
+    }
+  }
+}
