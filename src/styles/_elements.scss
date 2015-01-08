@@ -102,6 +102,10 @@
     color: $color-minor;
     text-transform: uppercase;
     font-size: 15px;
+
+    cite a:after {
+      content: ' \2192';
+    }
   }
 
   .permalink {
