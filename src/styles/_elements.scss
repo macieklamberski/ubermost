@@ -7,11 +7,21 @@
   left: -999em;
 }
 
+%container {
+  max-width: $width-wrapper;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
 /* Top
 /*----------------------------------------------------------------------------*/
 
 .top {
+  @extend %container;
   color: $color-minor;
+  padding-bottom: ($rythm-tick * 2);
 
   h1 {
     display: inline-block;
@@ -31,9 +41,9 @@
 
 .quote,
 .pagination {
-  margin-top: $rythm-tick * 2;
   border-top: 1px solid transparent;
   padding-top: ($rythm-tick * 2) - 1px;
+  padding-bottom: ($rythm-tick * 2);
 
   @include breakpoint(phablet) {
     border-top-color: #eee;
@@ -49,6 +59,8 @@
   }
 
   div {
+    @extend %container;
+
     > * {
       margin-top: $rythm-tick;
     }
@@ -84,19 +96,35 @@
   }
 
   footer {
+    @extend %container;
     margin-top: $rythm-tick;
     font-family: $font-sans-serif;
     color: $color-minor;
     text-transform: uppercase;
     font-size: 15px;
+  }
 
+  .permalink {
+    margin: -$rythm-tick;
+    padding: $rythm-tick;
+    float: right;
+    opacity: 0;
+    transition: opacity 500ms, color 250ms;
+  }
+
+  &:hover .permalink {
+    opacity: 1;
+  }
+
+  @include breakpoint(tablet) {
     .permalink {
-      float: right;
+      opacity: 1;
     }
   }
 }
 
 .pagination {
+  @extend %container;
   text-align: center;
 
   a {

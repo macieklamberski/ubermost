@@ -4,14 +4,12 @@
 
 html {
   border-top: 3px solid $color-accent;
-  padding: 0 5%;
   text-size-adjust: none;
 }
 
 body {
   position: relative;
-  max-width: $width-wrapper;
-  margin: $rythm-tick * 3 auto;
+  margin: $rythm-tick * 3 0;
   color: $color-base;
   font-family: $font-sans-serif;
   font-size: 18px;
