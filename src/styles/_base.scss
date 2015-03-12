@@ -9,7 +9,6 @@ html {
 
 body {
   position: relative;
-  margin: $rythm-tick * 3 0;
   color: $color-base;
   font-family: $font-sans-serif;
   font-size: 18px;
@@ -17,7 +16,7 @@ body {
   text-size-adjust: 100%;
 
   @include breakpoint(phablet) {
-    margin: $rythm-tick * 2 auto;
+    font-size: 16px;
   }
 }
 

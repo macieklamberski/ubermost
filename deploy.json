@@ -24,7 +24,7 @@
     "production": {
       "options": {
         "src": "dist/*",
-        "dest": "/var/www/contentdiscontent.com",
+        "dest": "/var/www/ubermost.com",
         "host": "lamberski@lamberski.com",
         "port": 25000
       }

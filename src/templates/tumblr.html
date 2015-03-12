@@ -5,43 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {block:Description}<meta name="description" content="{MetaDescription}">{/block:Description}
     <title>{Title}{block:SearchPage}, {lang:Search results for SearchQuery}{/block:SearchPage}</title>
-    <link href="//fonts.googleapis.com/css?family=PT+Serif:400,400italic" rel="stylesheet">
-    <link href="//fonts.googleapis.com/css?family=Karla:400,400italic" rel="stylesheet">
-    <link href="//static.contentdiscontent.com/styles/main.css" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//assets.ubermost.com/styles/main.css" rel="stylesheet">
     <link href="{PortraitURL-128}" rel="apple-touch-icon">
     <link href="{RSS}" rel="alternate" type="application/rss+xml">
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    <script src="//static.tumblr.com/q0etgkr/EIBmz7s0p/infinitescrolling.js"></script>
   </head>
   <body>
-    <header class="top">
-      <div class="about">
-        <p><h1><a href="{BlogURL}">Content/Discontent</a></h1> is a place where I gather educational and inspirational quotations from books, articles and other pieces of writing. Collected by <a href="http://lamberski.com">Maciej Lamberski</a>.</p>
-      </div>
-    </header>
+    <div class="container">
+      <header class="top">
+        <p><h1><a href="{BlogURL}">Ubermost</a></h1> is a non-daily dose of insightful snippets from books and other pieces of writing. On entrepreneurship, motivation, communication and self-awareness.Also posting on <a href="http://facebook.com/ubermost" class="fa fa-facebook"></a>, <a href="http://instagram.com/ubermost" class="fa fa-instagram"></a> and <a href="http://twitter.com/ubermost" class="fa fa-twitter"></a>.</p>
+      </header>
 
-    {block:Posts}
-      {block:Quote}
-        <blockquote class="quote">
-          <div>{Quote}</div>
-          <footer>
-            {block:Source}&mdash; <cite>{Source}</cite>{/block:Source}
-            {block:IndexPage}<a href="{Permalink}" class="permalink">#</a>{/block:IndexPage}
-          </footer>
-        </blockquote>
-      {/block:Quote}
-    {/block:Posts}
+      {block:Posts}
+        {block:Quote}
+          <blockquote class="quote">
+            <div>{Quote}</div>
+            <footer>
+              {block:Source}&mdash; <cite>{Source}</cite>{/block:Source}
+              {block:IndexPage}<a href="{Permalink}" class="permalink">#</a>{/block:IndexPage}
+            </footer>
+          </blockquote>
+        {/block:Quote}
+        {block:Posts}{PostNotes}{/block:Posts}
+      {/block:Posts}
 
-    {block:Pagination}
-      <footer class="pagination">
-        <nav>
+      {block:Pagination}
+        <nav class="pagination">
           {block:PreviousPage}<a rel="prev" href="{PreviousPage}">&larr;</a>{/block:PreviousPage}
           {block:NextPage}<a rel="next" href="{NextPage}">&rarr;</a>{/block:NextPage}
         </nav>
-      </footer>
-    {/block:Pagination}
+      {/block:Pagination}
 
-    <script src="//static.contentdiscontent.com/scripts/analytics.js" async></script>
+      <footer class="footer">
+        <p>
+          Collected by <a href="http://lamberski.com">Maciek Lamberski</a>.
+          <!-- Want this theme? <a href="#">Get it for free</a>. -->
+        </p>
+      </footer>
+    </div>
+
+    <script src="//assets.ubermost.com/scripts/analytics.js" async></script>
   </body>
 </html>

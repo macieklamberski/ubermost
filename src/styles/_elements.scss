@@ -15,59 +15,25 @@
   padding-right: 5%;
 }
 
-/* Top
-/*----------------------------------------------------------------------------*/
-
-.top {
-  @extend %container;
-  color: $color-minor;
-  padding-bottom: ($rythm-tick * 2);
-
-  h1 {
-    display: inline-block;
-
-    a {
-      color: $color-base;
-
-      &:hover {
-        color: $color-accent;
-      }
-    }
-  }
-}
-
-/* Quote/Pagination
-/*----------------------------------------------------------------------------*/
-
-.quote,
-.pagination {
+%block {
   border-top: 1px solid transparent;
   padding-top: ($rythm-tick * 2) - 1px;
-  padding-bottom: ($rythm-tick * 2);
+  padding-bottom: $rythm-tick * 2;
+  border-top-color: #eee;
 
   @include breakpoint(phablet) {
-    border-top-color: #eee;
+    padding-top: $rythm-tick - 1px;
+    padding-bottom: $rythm-tick;
   }
 }
 
-.quote {
-  position: relative;
-  font-family: $font-serif;
-
-  &:first-child {
-    margin-top: 0;
+%text {
+  > * {
+    margin-top: $rythm-tick;
   }
 
-  div {
-    @extend %container;
-
-    > * {
-      margin-top: $rythm-tick;
-    }
-
-    > :first-child {
-      margin-top: 0;
-    }
+  > :first-child {
+    margin-top: 0;
   }
 
   li {
@@ -93,6 +59,72 @@
 
   del {
     text-decoration: line-through;
+  }
+}
+
+%minor {
+  color: $color-minor;
+  font-size: 15px;
+
+  a {
+    color: $color-base;
+
+    &:hover {
+      color: $color-accent;
+    }
+  }
+
+  @include breakpoint(phablet) {
+    font-size: 13px;
+  }
+}
+
+/* Top
+/*----------------------------------------------------------------------------*/
+
+.top {
+  @extend %container;
+  color: $color-minor;
+  padding-top: $rythm-tick * 2;
+  padding-bottom: $rythm-tick * 2;
+
+  h1 {
+    display: inline-block;
+
+    a {
+      color: $color-base;
+
+      &:hover {
+        color: $color-accent;
+      }
+    }
+  }
+
+  .about {
+
+  }
+
+  .elsewhere {
+    margin-top: $rythm-tick;
+  }
+
+  @include breakpoint(phablet) {
+    padding-top: $rythm-tick;
+    padding-bottom: $rythm-tick;
+  }
+}
+
+/* Quote
+/*----------------------------------------------------------------------------*/
+
+.quote {
+  @extend %block;
+  position: relative;
+  font-family: $font-serif;
+
+  div {
+    @extend %container;
+    @extend %text;
   }
 
   footer {
@@ -127,8 +159,11 @@
   }
 }
 
+/* Pagination
+/*----------------------------------------------------------------------------*/
+
 .pagination {
-  @extend %container;
+  @extend %block;
   text-align: center;
 
   a {
@@ -140,5 +175,47 @@
     &:focus {
       color: $color-accent;
     }
+  }
+}
+
+/* Notes
+/*----------------------------------------------------------------------------*/
+
+.notes {
+  @extend %block;
+  @extend %minor;
+
+  img {
+    display: none;
+  }
+
+  li {
+    @extend %container;
+  }
+
+  .more_notes_link_container {
+    margin-top: $rythm-tick;
+
+    a {
+      color: $color-minor;
+
+      &:hover {
+        color: $color-accent;
+      }
+    }
+  }
+}
+
+/* Footer
+/*----------------------------------------------------------------------------*/
+
+.footer {
+  @extend %block;
+  padding-top: $rythm-tick;
+  padding-bottom: $rythm-tick;
+
+  p {
+    @extend %container;
+    opacity: .75;
   }
 }

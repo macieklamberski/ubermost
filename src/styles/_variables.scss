@@ -4,13 +4,13 @@ $breakpoint-tablet: 1024px;
 $breakpoint-phablet: 768px;
 $breakpoint-phone: 480px;
 
-$rythm-tick: 27px;
+$rythm-tick: 30px;
 
-$color-accent: #e59e37;
+$color-accent: #ffcd44;
 $color-base: #313130;
 $color-minor: #888887;
 
-$font-serif: 'PT Serif', Georgia, serif;
-$font-sans-serif: 'Karla', Arial, sans-serif;
+$font-serif: Lora, Georgia, serif;
+$font-sans-serif: 'Source Sans Pro', Arial, sans-serif;
 
 $width-wrapper: $rythm-tick * 20;
