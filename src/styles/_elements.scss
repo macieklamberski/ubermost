@@ -16,13 +16,22 @@
 }
 
 %block {
-  border-top: 1px solid transparent;
-  padding-top: ($rythm-tick * 2) - 1px;
+  position: relative;
+  padding-top: ($rythm-tick * 2);
   padding-bottom: $rythm-tick * 2;
-  border-top-color: #eee;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 1px;
+    background-color: #eee;
+  }
 
   @include breakpoint(phablet) {
-    padding-top: $rythm-tick - 1px;
+    padding-top: $rythm-tick;
     padding-bottom: $rythm-tick;
   }
 }
@@ -64,7 +73,7 @@
 
 %minor {
   color: $color-minor;
-  font-size: 15px;
+  font-size: 0.83rem;
 
   a {
     color: $color-base;
@@ -75,7 +84,7 @@
   }
 
   @include breakpoint(phablet) {
-    font-size: 13px;
+    font-size: 0.72rem;
   }
 }
 
@@ -98,6 +107,12 @@
         color: $color-accent;
       }
     }
+  }
+
+  .fa {
+    display: inline-block;
+    margin: -.5em -.25em;
+    padding: .5em;
   }
 
   .about {
@@ -133,11 +148,7 @@
     font-family: $font-sans-serif;
     color: $color-minor;
     text-transform: uppercase;
-    font-size: 15px;
-
-    cite a:after {
-      content: ' \2192';
-    }
+    font-size: .83rem;
   }
 
   .permalink {
@@ -154,6 +165,8 @@
 
   @include breakpoint(tablet) {
     .permalink {
+      margin: -$rythm-tick / 2;
+      padding: $rythm-tick / 2;
       opacity: 1;
     }
   }
@@ -211,11 +224,10 @@
 
 .footer {
   @extend %block;
-  padding-top: $rythm-tick;
-  padding-bottom: $rythm-tick;
+  @extend %minor;
+  text-align: center;
 
   p {
     @extend %container;
-    opacity: .75;
   }
 }

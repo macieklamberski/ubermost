@@ -5,19 +5,18 @@
 html {
   border-top: 3px solid $color-accent;
   text-size-adjust: none;
+  font-size: 18px;
+
+  @include breakpoint(phablet) {
+    font-size: 17px;
+  }
 }
 
 body {
   position: relative;
   color: $color-base;
   font-family: $font-sans-serif;
-  font-size: 18px;
   line-height: $rythm-tick;
-  text-size-adjust: 100%;
-
-  @include breakpoint(phablet) {
-    font-size: 16px;
-  }
 }
 
 hr {
