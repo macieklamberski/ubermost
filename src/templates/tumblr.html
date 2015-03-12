@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {block:Description}<meta name="description" content="{MetaDescription}">{/block:Description}
     <title>{Title}{block:SearchPage}, {lang:Search results for SearchQuery}{/block:SearchPage}</title>
-    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Lora:400,400italic" rel="stylesheet">
     <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="//assets.ubermost.com/styles/main.css" rel="stylesheet">
@@ -19,7 +19,7 @@
   <body>
     <div class="container">
       <header class="top">
-        <p><h1><a href="{BlogURL}">Ubermost</a></h1> is a non-daily dose of insightful snippets from books and other pieces of writing. On entrepreneurship, motivation, communication and self-awareness.Also posting on <a href="http://facebook.com/ubermost" class="fa fa-facebook"></a>, <a href="http://instagram.com/ubermost" class="fa fa-instagram"></a> and <a href="http://twitter.com/ubermost" class="fa fa-twitter"></a>.</p>
+        <p><h1><a href="{BlogURL}">Ubermost</a></h1> is a non-daily dose of insightful snippets from books and other pieces of writing. On entrepreneurship, motivation, communication and self-awareness. Collected by <a href="http://lamberski.com">Maciek Lamberski</a>. Also posting on <a href="http://facebook.com/ubermost" class="fa fa-facebook"></a> <a href="http://instagram.com/ubermost" class="fa fa-instagram"></a> <a href="http://twitter.com/ubermost" class="fa fa-twitter"></a>.</p>
       </header>
 
       {block:Posts}
@@ -28,7 +28,7 @@
             <div>{Quote}</div>
             <footer>
               {block:Source}&mdash; <cite>{Source}</cite>{/block:Source}
-              {block:IndexPage}<a href="{Permalink}" class="permalink">#</a>{/block:IndexPage}
+              {block:IndexPage}<a href="{Permalink}" class="permalink"><i class="fa fa-link"></i></a>{/block:IndexPage}
             </footer>
           </blockquote>
         {/block:Quote}
@@ -41,13 +41,6 @@
           {block:NextPage}<a rel="next" href="{NextPage}">&rarr;</a>{/block:NextPage}
         </nav>
       {/block:Pagination}
-
-      <footer class="footer">
-        <p>
-          Collected by <a href="http://lamberski.com">Maciek Lamberski</a>.
-          <!-- Want this theme? <a href="#">Get it for free</a>. -->
-        </p>
-      </footer>
     </div>
 
     <script src="//assets.ubermost.com/scripts/analytics.js" async></script>
