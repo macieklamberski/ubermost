@@ -17,31 +17,31 @@
     <script src="//static.tumblr.com/q0etgkr/EIBmz7s0p/infinitescrolling.js"></script>
   </head>
   <body>
-    <div class="container">
-      <header class="top">
-        <p><h1><a href="{BlogURL}">Ubermost</a></h1> is a non-daily dose of insightful snippets from books and other pieces of writing. On entrepreneurship, motivation, communication and self-awareness. Collected by <a href="http://lamberski.com">Maciek Lamberski</a>. Also posting on <a href="http://facebook.com/ubermost" title="Ubermost on Facebook" class="fa fa-facebook"></a> <a href="http://instagram.com/ubermost" title="Ubermost on Instagram" class="fa fa-instagram"></a> <a href="http://twitter.com/ubermost" title="Ubermost on Twitter" class="fa fa-twitter"></a>.</p>
-      </header>
+    <header class="top">
+      <p><h1><a href="{BlogURL}">Ubermost</a></h1> is a non-daily dose of insightful snippets from books and other pieces of writing. On entrepreneurship, motivation, communication and self-awareness. Collected by <a href="http://lamberski.com">Maciek Lamberski</a>. Also posting on <a href="http://facebook.com/ubermost" title="Ubermost on Facebook" class="fa fa-facebook"></a> <a href="http://instagram.com/ubermost" title="Ubermost on Instagram" class="fa fa-instagram"></a> <a href="http://twitter.com/ubermost" title="Ubermost on Twitter" class="fa fa-twitter"></a>.</p>
+    </header>
 
-      {block:Posts}
-        {block:Quote}
-          <blockquote class="quote">
-            <div>{Quote}</div>
-            <footer>
-              {block:Source}&mdash; <cite>{Source}</cite>{/block:Source}
-              {block:IndexPage}<a href="{Permalink}" class="permalink" title="Permalink"><i class="fa fa-link"></i></a>{/block:IndexPage}
-            </footer>
-          </blockquote>
-        {/block:Quote}
-        {block:Posts}{PostNotes}{/block:Posts}
-      {/block:Posts}
+    <hr>
 
-      {block:Pagination}
-        <nav class="pagination">
-          {block:PreviousPage}<a rel="prev" href="{PreviousPage}">&larr;</a>{/block:PreviousPage}
-          {block:NextPage}<a rel="next" href="{NextPage}">&rarr;</a>{/block:NextPage}
-        </nav>
-      {/block:Pagination}
-    </div>
+    {block:Posts}
+      {block:Quote}
+        <blockquote class="quote">
+          <div>{Quote}</div>
+          <footer>
+            {block:Source}&mdash; <cite>{Source}</cite>{/block:Source}
+            {block:IndexPage}<a href="{Permalink}" class="permalink" title="Permalink"><i class="fa fa-link"></i></a>{/block:IndexPage}
+          </footer>
+        </blockquote>
+      {/block:Quote}
+      {block:Posts}{PostNotes}{/block:Posts}
+    {/block:Posts}
+
+    {block:Pagination}
+      <nav class="pagination">
+        {block:PreviousPage}<a rel="prev" href="{PreviousPage}">&larr;</a>{/block:PreviousPage}
+        {block:NextPage}<a rel="next" href="{NextPage}">&rarr;</a>{/block:NextPage}
+      </nav>
+    {/block:Pagination}
 
     <script src="//assets.ubermost.com/scripts/analytics.js" async></script>
   </body>

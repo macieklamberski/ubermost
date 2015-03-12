@@ -1,11 +1,6 @@
 
-/* Common
+/* Elements
 /*----------------------------------------------------------------------------*/
-
-.hidden {
-  position: fixed;
-  left: -999em;
-}
 
 %container {
   max-width: $width-wrapper;
@@ -97,6 +92,12 @@
   padding-top: $rythm-tick * 2;
   padding-bottom: $rythm-tick * 2;
 
+  a {
+    display: inline-block;
+    margin: -.5em -.25em;
+    padding: .5em;
+  }
+
   h1 {
     display: inline-block;
 
@@ -107,20 +108,6 @@
         color: $color-accent;
       }
     }
-  }
-
-  .fa {
-    display: inline-block;
-    margin: -.5em -.25em;
-    padding: .5em;
-  }
-
-  .about {
-
-  }
-
-  .elsewhere {
-    margin-top: $rythm-tick;
   }
 
   @include breakpoint(phablet) {
@@ -216,18 +203,5 @@
         color: $color-accent;
       }
     }
-  }
-}
-
-/* Footer
-/*----------------------------------------------------------------------------*/
-
-.footer {
-  @extend %block;
-  @extend %minor;
-  text-align: center;
-
-  p {
-    @extend %container;
   }
 }
