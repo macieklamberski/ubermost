@@ -55,10 +55,6 @@
     list-style-type: decimal;
   }
 
-  img {
-    max-width: 100%;
-  }
-
   strong {
     font-weight: bold;
   }
@@ -99,11 +95,14 @@
   padding-bottom: $rythm-tick * 2;
 
   .logo {
-    position: absolute;
-    right: 100%;
-    margin-right: $rythm-tick;
-    max-width: $rythm-tick * 3;
-    max-height: $rythm-tick * 3;
+    display: block;
+    height: $rythm-tick;
+    max-width: 100%;
+    margin-bottom: $rythm-tick;
+
+    img {
+      max-height: 100%;
+    }
   }
 
   h1 {
