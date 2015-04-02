@@ -95,25 +95,17 @@
   padding-bottom: $rythm-tick * 2;
 
   .logo {
-    display: block;
-    height: $rythm-tick;
-    max-width: 100%;
     margin-bottom: $rythm-tick;
+
+    a {
+      display: inline-block;
+      height: $rythm-tick;
+      margin: -$rythm-tick;
+      padding: $rythm-tick;
+    }
 
     img {
       max-height: 100%;
-    }
-  }
-
-  h1 {
-    display: inline-block;
-
-    a {
-      color: $color-base;
-
-      &:hover {
-        color: $color-accent;
-      }
     }
   }
 
@@ -126,6 +118,11 @@
   @include breakpoint(phablet) {
     padding-top: $rythm-tick;
     padding-bottom: $rythm-tick;
+
+    a {
+      margin: -$rythm-tick / 2;
+      padding: $rythm-tick / 2;
+    }
   }
 }
 
