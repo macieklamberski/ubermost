@@ -6,8 +6,8 @@
   max-width: $width-wrapper;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 5%;
-  padding-right: 5%;
+  padding-left: $rythm-tick;
+  padding-right: $rythm-tick;
 }
 
 %block {
@@ -99,13 +99,12 @@
 
     a {
       display: inline-block;
-      height: $rythm-tick;
       margin: -$rythm-tick;
       padding: $rythm-tick;
     }
 
     img {
-      max-height: 100%;
+      height: $rythm-tick;
     }
   }
 
