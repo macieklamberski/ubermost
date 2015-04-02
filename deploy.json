@@ -25,7 +25,7 @@
       "options": {
         "src": "dist/*",
         "dest": "/var/www/ubermost.com",
-        "host": "lamberski@lamberski.com",
+        "host": "lamberski@assets.ubermost.com",
         "port": 25000
       }
     }
