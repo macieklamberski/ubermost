@@ -32,11 +32,13 @@
 }
 
 %text {
-  > * {
+  blockquote > *,
+  & > * {
     margin-top: $rythm-tick;
   }
 
-  > :first-child {
+  blockquote > :first-child,
+  & > :first-child {
     margin-top: 0;
   }
 
@@ -51,6 +53,10 @@
 
   ol li {
     list-style-type: decimal;
+  }
+
+  img {
+    max-width: 100%;
   }
 
   strong {
@@ -92,6 +98,14 @@
   padding-top: $rythm-tick * 2;
   padding-bottom: $rythm-tick * 2;
 
+  .logo {
+    position: absolute;
+    right: 100%;
+    margin-right: $rythm-tick;
+    max-width: $rythm-tick * 3;
+    max-height: $rythm-tick * 3;
+  }
+
   h1 {
     display: inline-block;
 
@@ -116,22 +130,28 @@
   }
 }
 
-/* Quote
+/* Post
 /*----------------------------------------------------------------------------*/
 
-.quote {
+.post {
   @extend %block;
-  position: relative;
-  font-family: $font-serif;
 
-  div {
+  .image {
     @extend %container;
     @extend %text;
+
+    & + .text {
+      margin-top: $rythm-tick;
+    }
+  }
+
+  .text {
+    @extend %container;
+    @extend %text;
+    font-family: $font-serif;
   }
 
   footer {
-    @extend %container;
-    margin-top: $rythm-tick;
     font-family: $font-sans-serif;
     color: $color-minor;
     text-transform: uppercase;
@@ -143,11 +163,17 @@
   }
 
   .permalink {
-    margin: -$rythm-tick;
-    padding: $rythm-tick;
-    float: right;
+    @extend %container;
+    margin-top: -$rythm-tick;
+    text-align: right;
     opacity: 0;
     transition: opacity 500ms, color 250ms;
+
+    a {
+      display: inline-block;
+      margin: -$rythm-tick;
+      padding: $rythm-tick;
+    }
   }
 
   &:hover .permalink {
@@ -156,9 +182,11 @@
 
   @include breakpoint(tablet) {
     .permalink {
-      margin: -$rythm-tick / 2;
-      padding: $rythm-tick / 2;
-      opacity: 1;
+      a {
+        margin: -$rythm-tick / 2;
+        padding: $rythm-tick / 2;
+        opacity: 1;
+      }
     }
   }
 }
