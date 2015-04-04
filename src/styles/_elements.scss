@@ -161,7 +161,6 @@
     @extend %container;
     margin-top: -$rythm-tick;
     text-align: right;
-    opacity: 0;
     transition: opacity 500ms, color 250ms;
 
     a {
@@ -171,16 +170,11 @@
     }
   }
 
-  &:hover .permalink {
-    opacity: 1;
-  }
-
   @include breakpoint(tablet) {
     .permalink {
       a {
         margin: -$rythm-tick / 2;
         padding: $rythm-tick / 2;
-        opacity: 1;
       }
     }
   }
