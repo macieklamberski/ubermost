@@ -3,6 +3,7 @@
 /*----------------------------------------------------------------------------*/
 
 %container {
+  display: block;
   max-width: $width-wrapper;
   margin-left: auto;
   margin-right: auto;
@@ -146,35 +147,41 @@
     font-family: $font-serif;
   }
 
-  footer {
+  .meta {
+    @extend %container;
+    margin-top: $rythm-tick;
+    text-align: right;
+  }
+
+  .date {
     font-family: $font-sans-serif;
     color: $color-minor;
     text-transform: uppercase;
     font-size: .83rem;
+    float: left;
   }
 
-  cite * {
-    display: inline-block;
-  }
-
-  .permalink {
-    @extend %container;
-    margin-top: -$rythm-tick;
-    text-align: right;
-    transition: opacity 500ms, color 250ms;
-
-    a {
+  .links {
+    li {
       display: inline-block;
-      margin: -$rythm-tick;
-      padding: $rythm-tick;
+      margin-left: .5em;
     }
-  }
 
-  @include breakpoint(tablet) {
-    .permalink {
-      a {
-        margin: -$rythm-tick / 2;
-        padding: $rythm-tick / 2;
+    .like_button, .reblog_button {
+      opacity: 0;
+      position: absolute;
+
+      & + i {
+        color: $color-minor;
+        transition: color 250ms;
+      }
+
+      &:hover + i {
+        color: $color-accent;
+      }
+
+      &.liked + i {
+        color: #ff4c53;
       }
     }
   }
