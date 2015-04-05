@@ -9,6 +9,11 @@
   margin-right: auto;
   padding-left: $rythm-tick;
   padding-right: $rythm-tick;
+
+  @include breakpoint(phablet) {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
 }
 
 %block {
