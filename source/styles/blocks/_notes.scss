@@ -1,0 +1,28 @@
+
+/* Notes
+/*----------------------------------------------------------------------------*/
+
+.notes {
+  @extend %block;
+  @extend %minor;
+
+  img {
+    display: none;
+  }
+
+  li {
+    @extend %container;
+  }
+
+  .more_notes_link_container {
+    margin-top: $rythm-tick;
+
+    a {
+      color: $color-minor;
+
+      &:hover {
+        color: $color-accent;
+      }
+    }
+  }
+}

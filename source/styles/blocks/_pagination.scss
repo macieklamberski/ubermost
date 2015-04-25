@@ -1,0 +1,19 @@
+
+/* Pagination
+/*----------------------------------------------------------------------------*/
+
+.pagination {
+  @extend %block;
+  text-align: center;
+
+  a {
+    margin: -$rythm-tick 0;
+    padding: $rythm-tick;
+    color: $color-minor;
+
+    &:hover,
+    &:focus {
+      color: $color-accent;
+    }
+  }
+}

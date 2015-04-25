@@ -1,0 +1,61 @@
+
+/* Post
+/*----------------------------------------------------------------------------*/
+
+.post {
+  @extend %block;
+
+  .image {
+    @extend %container;
+    @extend %text;
+
+    & + .text {
+      margin-top: $rythm-tick;
+    }
+  }
+
+  .text {
+    @extend %container;
+    @extend %text;
+    font-family: $font-serif;
+  }
+
+  .meta {
+    @extend %container;
+    margin-top: $rythm-tick;
+    text-align: right;
+  }
+
+  .date {
+    font-family: $font-sans-serif;
+    color: $color-minor;
+    text-transform: uppercase;
+    font-size: .83rem;
+    float: left;
+  }
+
+  .links {
+    li {
+      display: inline-block;
+      margin-left: .5em;
+    }
+
+    .like_button, .reblog_button {
+      opacity: 0;
+      position: absolute;
+
+      & + i {
+        color: $color-minor;
+        transition: color 250ms;
+      }
+
+      &:hover + i {
+        color: $color-accent;
+      }
+
+      &.liked + i {
+        color: #ff4c53;
+      }
+    }
+  }
+}
