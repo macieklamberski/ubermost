@@ -1,0 +1,12 @@
+.column {
+
+  &--left {
+    float: left;
+    width: $width--left;
+  }
+
+  &--right {
+    float: right;
+    width: $width--right;
+  }
+}

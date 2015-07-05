@@ -1,5 +1,5 @@
 @mixin clearfix() {
-  &:after {
+  &::after {
     content: '';
     display: table;
     clear: both;
@@ -7,29 +7,17 @@
 }
 
 @mixin breakpoint($breakpoint) {
-  @if $breakpoint == laptop {
-
-    @media (max-width: $breakpoint-laptop) {
-      @content;
-    }
-
-  } @else if $breakpoint == tablet {
-
-    @media (max-width: $breakpoint-tablet) {
-      @content;
-    }
-
-  } @else if $breakpoint == phablet {
-
-    @media (max-width: $breakpoint-phablet) {
-      @content;
-    }
-
-  } @else if $breakpoint == phone {
-
-    @media (max-width: $breakpoint-phone) {
-      @content;
-    }
-
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
   }
+}
+
+@mixin modernizr($feature) {
+  html.#{$feature} & {
+    @content;
+  }
+}
+
+@function rem($size--desired) {
+  @return ($size--desired / $size--base) * 1rem;
 }

@@ -13,31 +13,31 @@
   &__text {
     @extend %container;
     @extend %text;
-    font-family: $font-serif;
+    font-family: $font--serif;
   }
 
   &__image + &__text {
-    margin-top: $rythm-tick;
+    margin-top: rem($tick);
   }
 
   &__meta {
     @extend %container;
-    margin-top: $rythm-tick;
+    margin-top: rem($tick);
     text-align: right;
   }
 
   &__date {
-    font-family: $font-sans-serif;
-    color: $color-minor;
+    font-family: $font--sans;
+    color: $color--minor;
     text-transform: uppercase;
-    font-size: .83rem;
+    font-size: rem($size--minor);
     float: left;
   }
 
   &__links {
     li {
       display: inline-block;
-      margin-left: .5em;
+      margin-left: 0.5em;
     }
 
     .like_button, .reblog_button {
@@ -46,12 +46,12 @@
       position: absolute;
 
       & + i {
-        color: $color-minor;
+        color: $color--minor;
         transition: color 250ms;
       }
 
       &:hover + i {
-        color: $color-accent;
+        color: $color--accent;
       }
 
       &.liked + i {
@@ -63,7 +63,7 @@
   @include breakpoint(phone) {
     padding-top: 0;
 
-    &:before {
+    &::before {
       display: none;
     }
 

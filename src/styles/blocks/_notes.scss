@@ -15,13 +15,13 @@
   }
 
   .more_notes_link_container {
-    margin-top: $rythm-tick;
+    margin-top: rem($tick);
 
     a {
-      color: $color-minor;
+      color: $color--minor;
 
       &:hover {
-        color: $color-accent;
+        color: $color--accent;
       }
     }
   }

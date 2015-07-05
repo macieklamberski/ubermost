@@ -7,13 +7,13 @@
   text-align: center;
 
   a {
-    margin: -$rythm-tick 0;
-    padding: $rythm-tick;
-    color: $color-minor;
+    margin: rem(-$tick) 0;
+    padding: rem($tick);
+    color: $color--minor;
 
     &:hover,
     &:focus {
-      color: $color-accent;
+      color: $color--accent;
     }
   }
 }

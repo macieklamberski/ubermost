@@ -1,18 +1,25 @@
 html {
-  border-top: 3px solid $color-accent;
-  text-size-adjust: none;
-  font-size: 18px;
+  font-size: rem($size--base);
+
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: rem(3px);
+    background: $color--accent;
+  }
 
   @include breakpoint(phablet) {
-    font-size: 15px;
+    font-size: rem($size--base) * 0.8;
   }
 }
 
 body {
   position: relative;
-  color: $color-base;
-  font-family: $font-sans-serif;
-  line-height: $rythm-tick;
+  color: $color--base;
+  font-family: $font--sans;
+  line-height: rem($tick);
 }
 
 hr {
@@ -25,12 +32,12 @@ img, iframe {
 }
 
 a {
-  color: $color-minor;
+  color: $color--minor;
   transition: color 250ms;
   text-decoration: none;
 
   &:hover,
   &:focus {
-    color: $color-accent;
+    color: $color--accent;
   }
 }

@@ -4,37 +4,37 @@
 
 .top {
   @extend %container;
-  color: $color-minor;
-  padding-top: $rythm-tick * 2;
-  padding-bottom: $rythm-tick * 2;
+  color: $color--minor;
+  padding-top: rem($tick * 2);
+  padding-bottom: rem($tick * 2);
 
   &__logo {
-    margin-bottom: $rythm-tick;
+    margin-bottom: rem($tick);
 
     a {
       display: inline-block;
-      margin: -$rythm-tick;
-      padding: $rythm-tick;
+      margin: rem(-$tick);
+      padding: rem($tick);
     }
 
     img {
-      height: $rythm-tick;
+      height: $tick;
     }
   }
 
   .fa {
     display: inline-block;
-    margin: -.5em -.25em;
-    padding: .5em;
+    margin: -0.5em -0.25em;
+    padding: 0.5em;
   }
 
   @include breakpoint(phablet) {
-    padding-top: $rythm-tick;
-    padding-bottom: $rythm-tick;
+    padding-top: rem($tick);
+    padding-bottom: rem($tick);
 
     a {
-      margin: -$rythm-tick / 2;
-      padding: $rythm-tick / 2;
+      margin: rem(-$tick / 2);
+      padding: rem($tick / 2);
     }
   }
 }

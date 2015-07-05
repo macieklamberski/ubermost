@@ -1,10 +1,10 @@
 %container {
   display: block;
-  max-width: $width-wrapper;
+  max-width: $width--wrapper;
   margin-left: auto;
   margin-right: auto;
-  padding-left: $rythm-tick;
-  padding-right: $rythm-tick;
+  padding-left: rem($tick);
+  padding-right: rem($tick);
 
   @include breakpoint(phablet) {
     padding-left: 5%;
@@ -14,10 +14,10 @@
 
 %block {
   position: relative;
-  padding-top: ($rythm-tick * 2);
-  padding-bottom: $rythm-tick * 2;
+  padding-top: rem($tick * 2);
+  padding-bottom: rem($tick * 2);
 
-  &:before {
+  &::before {
     content: '';
     position: absolute;
     top: 0;
@@ -28,15 +28,15 @@
   }
 
   @include breakpoint(phablet) {
-    padding-top: $rythm-tick;
-    padding-bottom: $rythm-tick;
+    padding-top: rem($tick);
+    padding-bottom: rem($tick);
   }
 }
 
 %text {
   blockquote > *,
   & > * {
-    margin-top: $rythm-tick;
+    margin-top: rem($tick);
   }
 
   blockquote > :first-child,
@@ -50,10 +50,10 @@
   }
 
   cite a {
-    color: $color-base;
+    color: $color--base;
 
     &:hover {
-      color: $color-accent;
+      color: $color--accent;
     }
 
     &::after {
@@ -88,14 +88,14 @@
 }
 
 %minor {
-  color: $color-minor;
+  color: $color--minor;
   font-size: 0.83rem;
 
   a {
-    color: $color-base;
+    color: $color--base;
 
     &:hover {
-      color: $color-accent;
+      color: $color--accent;
     }
   }
 
