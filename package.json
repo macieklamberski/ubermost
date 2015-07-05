@@ -19,6 +19,7 @@
     "deploy": {
       "production": {
         "adapter": "rsync",
+        "files": ["dist/**/*"],
         "root": "dist",
         "port": 25000,
         "hostname": "lamberski@assets.ubermost.com",
