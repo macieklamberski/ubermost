@@ -42,6 +42,7 @@
 
     .like_button, .reblog_button {
       opacity: 0;
+      cursor: pointer;
       position: absolute;
 
       & + i {
