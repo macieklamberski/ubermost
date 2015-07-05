@@ -44,6 +44,23 @@
     margin-top: 0;
   }
 
+  blockquote {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  cite a {
+    color: $color-base;
+
+    &:hover {
+      color: $color-accent;
+    }
+
+    &::after {
+      content: '→';
+    }
+  }
+
   li {
     padding-left: 7px;
     margin-left: -7px;

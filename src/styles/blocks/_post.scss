@@ -5,28 +5,28 @@
 .post {
   @extend %block;
 
-  .image {
+  &__image {
     @extend %container;
     @extend %text;
-
-    & + .text {
-      margin-top: $rythm-tick;
-    }
   }
 
-  .text {
+  &__text {
     @extend %container;
     @extend %text;
     font-family: $font-serif;
   }
 
-  .meta {
+  &__image + &__text {
+    margin-top: $rythm-tick;
+  }
+
+  &__meta {
     @extend %container;
     margin-top: $rythm-tick;
     text-align: right;
   }
 
-  .date {
+  &__date {
     font-family: $font-sans-serif;
     color: $color-minor;
     text-transform: uppercase;
@@ -34,7 +34,7 @@
     float: left;
   }
 
-  .links {
+  &__links {
     li {
       display: inline-block;
       margin-left: .5em;
@@ -66,7 +66,7 @@
       display: none;
     }
 
-    .image {
+    &__image {
       padding-left: 0;
       padding-right: 0;
     }
