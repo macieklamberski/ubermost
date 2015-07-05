@@ -1,0 +1,36 @@
+html {
+  border-top: 3px solid $color-accent;
+  text-size-adjust: none;
+  font-size: 18px;
+
+  @include breakpoint(phablet) {
+    font-size: 15px;
+  }
+}
+
+body {
+  position: relative;
+  color: $color-base;
+  font-family: $font-sans-serif;
+  line-height: $rythm-tick;
+}
+
+hr {
+  display: none;
+}
+
+img, iframe {
+  max-width: 100%;
+  vertical-align: top;
+}
+
+a {
+  color: $color-minor;
+  transition: color 250ms;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    color: $color-accent;
+  }
+}

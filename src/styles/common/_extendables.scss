@@ -1,0 +1,88 @@
+%container {
+  display: block;
+  max-width: $width-wrapper;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: $rythm-tick;
+  padding-right: $rythm-tick;
+
+  @include breakpoint(phablet) {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+}
+
+%block {
+  position: relative;
+  padding-top: ($rythm-tick * 2);
+  padding-bottom: $rythm-tick * 2;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 1px;
+    background-color: #eee;
+  }
+
+  @include breakpoint(phablet) {
+    padding-top: $rythm-tick;
+    padding-bottom: $rythm-tick;
+  }
+}
+
+%text {
+  blockquote > *,
+  & > * {
+    margin-top: $rythm-tick;
+  }
+
+  blockquote > :first-child,
+  & > :first-child {
+    margin-top: 0;
+  }
+
+  li {
+    padding-left: 7px;
+    margin-left: -7px;
+  }
+
+  ul li {
+    list-style-type: disc;
+  }
+
+  ol li {
+    list-style-type: decimal;
+  }
+
+  strong {
+    font-weight: bold;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  del {
+    text-decoration: line-through;
+  }
+}
+
+%minor {
+  color: $color-minor;
+  font-size: 0.83rem;
+
+  a {
+    color: $color-base;
+
+    &:hover {
+      color: $color-accent;
+    }
+  }
+
+  @include breakpoint(phablet) {
+    font-size: 0.72rem;
+  }
+}
