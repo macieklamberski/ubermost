@@ -1,5 +1,5 @@
 html {
-  font-size: rem($size--base);
+  font-size: $size--base;
 
   &::before {
     position: absolute;
