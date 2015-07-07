@@ -22,6 +22,12 @@
     }
   }
 
+  &__about {
+    a {
+      text-decoration: underline;
+    }
+  }
+
   .fa {
     display: inline-block;
     margin: -0.5em -0.25em;
