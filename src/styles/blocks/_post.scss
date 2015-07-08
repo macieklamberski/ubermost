@@ -5,6 +5,11 @@
 .post {
   @extend %block;
 
+  small {
+    color: #ddd;
+    font-size: 100%;
+  }
+
   &__image {
     @extend %container;
     @extend %text;
