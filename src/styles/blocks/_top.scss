@@ -9,20 +9,20 @@
   padding-bottom: rem($tick * 2);
 
   &__logo {
-    margin-bottom: rem($tick);
+    margin: 0 0 rem($tick) 0;
 
     a {
       display: inline-block;
-      margin: rem(-$tick);
-      padding: rem($tick);
     }
 
     img {
-      height: $tick;
+      height: rem($tick * 2);
     }
   }
 
   &__about {
+    margin: 0;
+
     a {
       text-decoration: underline;
     }

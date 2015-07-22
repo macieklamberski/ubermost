@@ -9,7 +9,7 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="//assets.ubermost.com/styles/main.min.css" rel="stylesheet">
     <link href="{PortraitURL-128}" rel="apple-touch-icon">
-    <link rel="shortcut icon" href="//assets.ubermost.com/styles/images/favicon.jpg">
+    <link rel="shortcut icon" href="//assets.ubermost.com/images/favicon.jpg">
     <link href="http://feeds.feedburner.com/ubermost" rel="alternate" type="application/rss+xml">
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -18,7 +18,7 @@
   <body>
     <header class="top">
       <h1 class="top__logo">
-        <a href="{BlogURL}" class="top__logo"><img src="//assets.ubermost.com/images/logo.svg" alt=""></a>
+        <a href="{BlogURL}"><img src="//assets.ubermost.com/images/logo-alt.svg" alt=""></a>
       </h1>
       <p class="top__about">Daily dose of illustrations with wisdom from books and other pieces of writing. On motivation, entrepreneurship, communication and self-awareness. Collected by <a href="http://lamberski.com">Maciek Lamberski</a>. Also posting on <a href="http://facebook.com/ubermost">Facebook</a> and <a href="http://instagram.com/ubermost">Instagram</a>.</p>
     </header>
@@ -37,15 +37,15 @@
             </div>
           {/block:Caption}
             <div class="post__meta">
-              <p class="post__date"><a href="{Permalink}">Posted on <time datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero}" pubdate>{Month} {DayOfMonth}{DayOfMonthSuffix}, {Year}</time></a>.</p>
+              <p class="post__date"><a href="{Permalink}">Posted on <time datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero}" pubdate>{Month} {DayOfMonth}{DayOfMonthSuffix}, {Year}</time></a></p>
               <ul class="post__links">
-                <li>
-                  {LikeButton size=30}
-                  <i class="fa fa-heart"></i>
-                </li>
                 <li>
                   {ReblogButton size=30}
                   <i class="fa fa-retweet"></i>
+                </li>
+                <li>
+                  {LikeButton size=30}
+                  <i class="fa fa-heart"></i>
                 </li>
               </ul>
             </div>

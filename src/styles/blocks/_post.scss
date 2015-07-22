@@ -36,12 +36,18 @@
     color: $color--minor;
     text-transform: uppercase;
     font-size: rem($size--minor);
+    margin: 0;
     float: left;
   }
 
   &__links {
+    @include clearfix();
+    margin: 0;
+    padding: 0;
+
     li {
-      display: inline-block;
+      float: right;
+      list-style: none;
       margin-left: 0.5em;
     }
 
@@ -49,6 +55,7 @@
       opacity: 0;
       cursor: pointer;
       position: absolute;
+      z-index: 1;
 
       & + i {
         color: $color--minor;
