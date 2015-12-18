@@ -1,0 +1,15 @@
+.main {
+  @extend %container;
+  @extend %container--generator;
+  display: flex;
+
+  &__preview {
+    flex-basis: 61.8%;
+    padding-right: rem($tick);
+  }
+
+  &__options {
+    flex-basis: 38.2%;
+    padding-left: rem($tick);
+  }
+}

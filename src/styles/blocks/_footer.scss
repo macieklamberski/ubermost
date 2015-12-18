@@ -1,0 +1,32 @@
+.footer {
+  @extend %block;
+  margin-top: rem($tick * 2);
+
+  * {
+    font-size: $size--minor;
+    color: $color--faint;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+
+  &__body {
+    @extend %container;
+    @extend %container--generator;
+    display: flex;
+
+    &__about,
+    &__copy {
+      margin: 0;
+    }
+
+    &__about {
+
+    }
+
+    &__copy {
+      margin-left: auto;
+    }
+  }
+}

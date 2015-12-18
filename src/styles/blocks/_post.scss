@@ -1,7 +1,3 @@
-
-/* Post
-/*----------------------------------------------------------------------------*/
-
 .post {
   @extend %block;
 
@@ -32,10 +28,7 @@
   }
 
   &__date {
-    font-family: $font--sans;
-    color: $color--minor;
-    text-transform: uppercase;
-    font-size: rem($size--minor);
+    @extend %heading;
     margin: 0;
     float: left;
   }

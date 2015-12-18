@@ -13,11 +13,13 @@ $size--minor : 15px;
 $color--accent : #ffcd44;
 $color--base   : #313130;
 $color--minor  : #888887;
+$color--faint  : #bbbbb4;
 
 $font--serif : (Lora, Georgia, serif);
 $font--sans  : ('Source Sans Pro', Arial, sans-serif);
 
-$width--wrapper : $tick * 20;
-$width--body    : 900px;
-$width--left    : $width--body / 1.61803398875;
-$width--right   : $width--body - $width--left;
+$width--wrapper   : rem($tick * 20);
+$width--generator : rem($tick * 35);
+$width--left      : ($width--generator / 1.61803398875);
+$width--right     : ($width--generator - $width--left) - rem($tick * 2);
+

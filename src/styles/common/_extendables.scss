@@ -12,6 +12,10 @@
   }
 }
 
+%container--generator {
+  max-width: $width--generator;
+}
+
 %block {
   position: relative;
   padding-top: rem($tick * 2);
@@ -85,6 +89,14 @@
   del {
     text-decoration: line-through;
   }
+}
+
+%heading {
+  font-family: $font--sans;
+  color: $color--minor;
+  font-size: rem($size--minor);
+  text-transform: uppercase;
+  font-weight: 400;
 }
 
 %minor {

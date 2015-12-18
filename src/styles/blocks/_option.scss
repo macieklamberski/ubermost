@@ -1,0 +1,8 @@
+.option {
+  overflow: hidden;
+  margin-bottom: rem($tick * 2);
+
+  &__heading {
+    @extend %heading;
+  }
+}
