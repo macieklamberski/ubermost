@@ -2,14 +2,15 @@
   @extend %container;
   @extend %container--generator;
   display: flex;
+  flex-direction: row-reverse;
 
   &__preview {
     flex-basis: 61.8%;
-    padding-right: rem($tick);
+    padding-left: rem($tick * 2);
   }
 
   &__options {
+    position: relative;
     flex-basis: 38.2%;
-    padding-left: rem($tick);
   }
 }

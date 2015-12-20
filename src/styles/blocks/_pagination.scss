@@ -7,8 +7,7 @@
     padding: rem($tick);
     color: $color--minor;
 
-    &:hover,
-    &:focus {
+    &:hover {
       color: $color--accent;
     }
   }

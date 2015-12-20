@@ -1,8 +1,35 @@
 .option {
-  overflow: hidden;
   margin-bottom: rem($tick * 2);
 
   &__heading {
     @extend %heading;
+  }
+
+  &--download {
+    padding-top: rem($tick * 2);
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      height: rem(1px);
+      background: #eee;
+    }
+
+    &::after {
+      content: 'Ready?';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      line-height: rem($tick);
+      color: $color--faint;
+      font-size: $size--minor;
+      padding: 0 rem(10px);
+      background: #fff;
+      transform: translate(-50%, -50%);
+    }
   }
 }

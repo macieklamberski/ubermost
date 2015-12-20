@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Make your own version of Ubermost lettering! &mdash; Ubermost</title>
+    <title>Ubermost</title>
     <link rel="shortcut icon" href="//assets.ubermost.com/images/favicon.png">
     <link href="styles/main.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
@@ -21,29 +21,133 @@
           <li><a href="http://facebook.com/ubermost">Facebook</a></li>
           <li><a href="http://instagram.com/ubermost">Instagram</a></li>
         </ul>
+        <div class="header__body__info">
+          <p>Create inspiring wallpaper from your favourite lettering! You can download it as a wallpaper for your smartphone and PC, or if you're feeling social&mdash;post it on Facebook, Twitter or Pinterest to share the wisdom with your friends.</p>
+        </div>
       </div>
     </header>
 
     <main class="main">
       <div class="main__preview">
         <div class="preview">
-          <img src="//40.media.tumblr.com/d6fe3193b7215a9d21cbc315a5562316/tumblr_ns5ky5ZAVc1upn40oo1_1280.jpg" alt="">
+          <img src="//40.media.tumblr.com/d6fe3193b7215a9d21cbc315a5562316/tumblr_ns5ky5ZAVc1upn40oo1_1280.jpg" alt="" class="preview__image">
+          <div class="preview__details">
+            <article class="post">
+              <div class="post__text">
+                <blockquote>
+                  <p>Life doesn’t have to be easy — in fact, the hard stuff is how we achieve anything of value. Life doesn’t have to be comfortable — in fact, when we get out of our comfort zone, we grow. [We] doesn’t have to know what [we’re] doing — it’s when we do things we don’t know how to do that we learn new things, new skills, and get better at them.</p>
+                  <footer>
+                    ― <cite>Leo Babauta, “The One Skill”</cite>
+                  </footer>
+                </blockquote>
+              </div>
+            </article>
+          </div>
         </div>
       </div>
 
       <div class="main__options">
         <section class="option">
-          <h2 class="option__heading">Colors</h2>
-          {% set colors = ['#592A2C', '#496822', '#F1F0EC', '#87B9B9', '#413D31', '#CFDDA6', '#000000', '#CAB344', '#163B5F'] %}
-          {% for index, color in colors %}
-            <label class="color" style="background: {{ color }}">
-              <input type="radio" name="color" value="{{ index }}">
-            </label>
-          {% endfor %}
+          <h2 class="option__heading">Color</h2>
+          <ul class="colors">
+            {%
+              set colors = [
+                ['#73719C', '#E6E4F1'],
+                ['#F1F0EC', '#523253'],
+                ['#592A2C', '#EBDEBA'],
+                ['#496822', '#FDFDFB'],
+                ['#87B9B9', '#1F2326'],
+                ['#413D31', '#E5E4E1'],
+                ['#CFDDA6', '#363A48'],
+                ['#000000', '#F1F1F1'],
+                ['#CAB344', '#22170E'],
+                ['#163B5F', '#F9FAFB'],
+              ]
+            %}
+            {% for index, color in colors %}
+              <li>
+                <label class="color" style="color: {{ color[0] }}">
+                  <input type="radio" name="color" value="{{ index }}" {% if loop.first %}checked{% endif %}>
+                  <span><i class="fa fa-check" style="color: {{ color[1] }}"></i></span>
+                </label>
+              </li>
+            {% endfor %}
+          </ul>
         </section>
         <section class="option">
-          <h2 class="option__heading">Size</h2>
-          <select name="quote">
+          <h2 class="option__heading">Screen Size</h2>
+          <div class="sizes">
+            <div class="sizes__selected">
+              <span>1280x800 <em>(detected)</em></span>
+              <i class="fa fa-bars"></i>
+            </div>
+            <ul class="sizes__list">
+              <li>
+                <label>
+                  <input type="radio" name="size" value="1">
+                  <span>
+                    <i class="fa fa-mobile-phone"></i>
+                    iPhone 5
+                  </span>
+                </label>
+              </li>
+              <li>
+                <label>
+                  <input type="radio" name="size" value="1">
+                  <span>
+                    <i class="fa fa-mobile-phone"></i>
+                    iPhone 6
+                  </span>
+                </label>
+              </li>
+              <li>
+                <label>
+                  <input type="radio" name="size" value="1">
+                  <span>
+                    <i class="fa fa-tablet"></i>
+                    iPad
+                  </span>
+                </label>
+              </li>
+              <li>
+                <label>
+                  <input type="radio" name="size" value="1">
+                  <span>
+                    <i class="fa fa-tablet"></i>
+                    iPad 12"
+                  </span>
+                </label>
+              </li>
+              <li>
+                <label>
+                  <input type="radio" name="size" value="1">
+                  <span>
+                    <i class="fa fa-laptop"></i>
+                    Laptop 13"
+                  </span>
+                </label>
+              </li>
+              <li>
+                <label>
+                  <input type="radio" name="size" value="1">
+                  <span>
+                    <i class="fa fa-laptop"></i>
+                    Laptop 15"
+                  </span>
+                </label>
+              </li>
+              <li>
+                <label>
+                  <input type="radio" name="size" value="1">
+                  <span>
+                    <i class="fa fa-laptop"></i>
+                    Desktop
+                  </span>
+                </label>
+              </li>
+            </ul>
+          </div>
+          <!-- <select name="quote">
             <option>Select your screen size</option>
             <option>iPhone 5/5s</option>
             <option>iPhone 6</option>
@@ -52,21 +156,24 @@
             <option>1280x800</option>
             <option>1600x1200</option>
             <option>2880x1400</option>
-          </select>
+          </select> -->
         </section>
-        <section class="download">
-          <a href="#" class="download__button">Download wallpaper</a>
-          <span class="download__or"><span>or share</span></span>
-          <a href="#" class="download__button download__button--share download__button--facebook"><i class="fa fa-facebook"></i></a>
-          <a href="#" class="download__button download__button--share download__button--pinterest"><i class="fa fa-pinterest-p"></i></a>
-          <a href="#" class="download__button download__button--share download__button--twitter"><i class="fa fa-twitter"></i></a>
-        </section>
+        <section class="option option--download">
+          <a href="#" class="download">Download wallpaper</a>
+          <div class="share">
+            <span class="share__label">Or share the wisdom:</span>
+            <a href="#" class="share__link share__link--facebook"><i class="fa fa-facebook"></i></a>
+            <a href="#" class="share__link share__link--pinterest"><i class="fa fa-pinterest-p"></i></a>
+            <a href="#" class="share__link share__link--twitter"><i class="fa fa-twitter"></i></a>
+            <a href="#" class="share__link share__link--tumblr"><i class="fa fa-tumblr"></i></a>
+          </div>
+        </sectio>
       </div>
     </main>
 
     <footer class="footer">
       <div class="footer__body">
-        <p class="footer__body__about">Create your own version of your favourite lettering!</p>
+        <p class="footer__body__about">Create inspiring wallpaper from your favourite lettering!</p>
         <small class="footer__body__copy">Part of the <a href="http://ubermost.com">Ubermost</a> website. Built by <a href="http://lamberski.com">Maciej Lamberski</a>.</small>
       </div>
     </footer>

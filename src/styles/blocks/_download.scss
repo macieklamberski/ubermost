@@ -1,101 +1,17 @@
 .download {
-  margin-top: rem($tick * 2);
-  text-align: justify;
+  display: block;
+  border: rem(3px) solid $color--base;
+  text-transform: uppercase;
+  text-align: center;
+  color: #fff;
+  background: $color--base;
+  height: rem(($tick - 3px) * 2);
+  line-height: rem(($tick - 3px) * 2);
+  transition: background 200ms ease-in-out, color 200ms ease-in-out, border-color 200ms ease-in-out;
 
-  &__button {
-    display: block;
-    width: 100%;
-    border: rem(3px) solid $color--base;
-    text-transform: uppercase;
-    text-align: center;
+  &:hover {
     color: #fff;
-    background: $color--base;
-    height: rem(($tick - 3px) * 2);
-    line-height: rem(($tick - 3px) * 2);
-    transition: background 200ms ease-in-out, color 200ms ease-in-out, border-color 200ms ease-in-out;
-
-    &:hover {
-      color: #fff;
-      border-color: #000;
-      background: #000;
-    }
-
-    &--share {
-      float: left;
-      width: 27.5%;
-      margin-right: 6.35%;
-      font-size: rem(20px);
-      background: #fff;
-
-      &:last-child {
-        margin-right: 0;
-      }
-
-      &:hover {
-        color: #fff;
-      }
-    }
-
-    &--facebook {
-      color: #3B589D;
-
-      &, &:hover {
-        border-color: #3B589D;
-      }
-
-      &:hover {
-        background: #3B589D;
-      }
-    }
-
-    &--twitter {
-      color: #5AABF3;
-
-      &, &:hover {
-        border-color: #5AABF3;
-      }
-
-      &:hover {
-        background: #5AABF3;
-      }
-    }
-
-    &--pinterest {
-      color: #B80F16;
-
-      &, &:hover {
-        border-color: #B80F16;
-      }
-
-      &:hover {
-        background: #B80F16;
-      }
-    }
-  }
-
-  &__or {
-    margin: rem($tick) / 2 0;
-    color: $color--minor;
-    font-size: $size--minor;
-    text-align: center;
-    position: relative;
-    display: block;
-
-    &::before {
-      content: '';
-      height: rem(1px);
-      position: absolute;
-      top: 50%;
-      right: 0;
-      left: 0;
-      background-color: #eee;
-    }
-
-    span {
-      position: relative;
-      z-index: 1;
-      padding: 0 rem(10px);
-      background: #fff;
-    }
+    border-color: #000;
+    background: #000;
   }
 }

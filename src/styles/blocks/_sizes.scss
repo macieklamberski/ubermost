@@ -1,0 +1,54 @@
+.sizes {
+  &__selected {
+    @include clearfix();
+    display: block;
+    background: #f0f0f0;
+    cursor: pointer;
+    transition: background 250ms ease-in-out;
+
+    &:hover {
+      background: #e8e8e8;
+    }
+
+    i, span {
+      padding: 0 rem(20px);
+      line-height: rem($tick * 2);
+    }
+
+    i {
+      float: right;
+      border-left: rem(1px) solid #fff;
+      font-size: rem(18px);
+      width: rem(18px);
+      text-align: center;
+    }
+
+    span {
+      float: left;
+    }
+
+    em {
+      color: $color--faint;
+      font-style: normal;
+      font-size: $size--minor;
+    }
+  }
+
+  &__list {
+    display: none;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    input {
+      display: none;
+    }
+
+    label {
+      cursor: pointer;
+    }
+
+    i {
+    }
+  }
+}

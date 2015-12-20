@@ -5,6 +5,7 @@
     @extend %container;
     @extend %container--generator;
     display: flex;
+    flex-wrap: wrap;
 
     &__logo {
       img {
@@ -25,9 +26,27 @@
       }
 
       a {
+        position: relative;
         display: block;
         margin-top: rem($tick);
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: -1em;
+          right: -1em;
+          bottom: -1em;
+          left: -1em;
+        }
       }
+    }
+
+    &__info {
+      @extend %text;
+      font-family: $font--serif;
+      padding-top: rem($tick * 2);
+      flex-basis: 61.8%;
+      color: $color--minor;
     }
   }
 }

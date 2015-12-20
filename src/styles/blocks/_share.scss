@@ -1,0 +1,36 @@
+.share {
+  color: $color--minor;
+  font-size: 0;
+  line-height: rem($tick * 2);
+
+  &__link {
+    float: left;
+    padding: rem(5px);
+    margin: rem(-5px) 0;
+    font-size: rem(20px);
+    width: rem(20px);
+    vertical-align: middle;
+
+    &--facebook:hover {
+      color: #3B589D;
+    }
+
+    &--twitter:hover {
+      color: #5AABF3;
+    }
+
+    &--pinterest:hover {
+      color: #B80F16;
+    }
+
+    &--tumblr:hover {
+      color: #36465E;
+    }
+  }
+
+  &__label {
+    margin-right: rem(5px);
+    float: left;
+    font-size: $size--minor;
+  }
+}
