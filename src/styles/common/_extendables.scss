@@ -115,3 +115,20 @@
     font-size: 0.72rem;
   }
 }
+
+%overlay {
+  z-index: 1;
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(#fff, 0.98);
+
+  &__close {
+    position: absolute;
+    top: rem($tick * 2);
+    right: rem($tick * 2);
+  }
+}

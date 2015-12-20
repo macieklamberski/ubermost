@@ -1,0 +1,56 @@
+.sizes-overlay {
+  @extend %overlay;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  align-content: flex-start;
+  padding: rem($tick * 2) 15%;
+
+  &__close {
+    position: absolute;
+    top: rem($tick);
+    right: rem($tick);
+    font-size: rem(24px);
+  }
+
+  &__group {
+    flex-basis: 33%;
+    margin-top: rem($tick * 2);
+
+    &__heading {
+      @extend %heading;
+      margin: 0;
+      line-height: rem($tick * 2);
+
+      i {
+        font-size: rem(24px);
+        margin-right: rem(5px);
+        vertical-align: middle;
+      }
+    }
+
+    label {
+      display: block;
+      cursor: pointer;
+      transition: color 250ms ease-in-out;
+
+      &:hover {
+        color: $color--accent;
+      }
+    }
+
+    span {
+      font-family: Inconsolata, monospace, serif;
+    }
+
+    em {
+      font-size: $size--minor;
+      font-style: normal;
+      color: $color--faint;
+    }
+
+    input {
+      display: none;
+    }
+  }
+}
