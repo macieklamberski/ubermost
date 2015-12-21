@@ -117,21 +117,7 @@
 }
 
 %overlay {
-  z-index: 1;
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: rgba(#fff, 0.98);
 }
 
 %overlay-close {
-  position: absolute;
-  top: rem($tick);
-  right: rem($tick);
-  font-size: rem(24px);
-  padding: rem($tick);
-  margin: rem(-$tick);
 }

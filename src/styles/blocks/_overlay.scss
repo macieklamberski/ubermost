@@ -1,0 +1,65 @@
+.overlay {
+  z-index: 1;
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(#fff, 0.98);
+  transition: trans(opacity);
+  transition-delay: 250ms;
+  opacity: 0;
+  visibility: hidden;
+
+  &__body {
+    transition: trans(transform), trans(opacity);
+    transform: scale(0.95);
+    opacity: 0;
+  }
+
+  &--open {
+    transition-delay: 0ms;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &--open &__body {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  &__close {
+    position: absolute;
+    top: rem($tick);
+    right: rem($tick);
+    font-size: rem(24px);
+    width: rem($tick);
+    height: rem($tick);
+    padding: rem($tick);
+    margin: rem(-$tick);
+
+    &::before, &::after {
+      content: '';
+      position: absolute;
+      height: rem(3px);
+      top: 50%;
+      margin-top: rem(-1.5px);
+      left: rem($tick);
+      right: rem($tick);
+      background: currentColor;
+    }
+
+    &::before {
+      transform: rotate(45deg);
+    }
+
+    &::after {
+      transform: rotate(135deg);
+    }
+
+    &:hover {
+
+    }
+  }
+}

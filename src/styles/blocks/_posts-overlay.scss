@@ -1,10 +1,5 @@
 .posts-overlay {
-  @extend %overlay;
   display: none;
-
-  &__close {
-    @extend %overlay-close;
-  }
 
   &__list {
     display: flex;
@@ -20,7 +15,7 @@
 
     a {
       display: block;
-      transition: opacity 250ms ease-in-out;
+      transition: trans(opacity);
       opacity: 1;
 
       &:hover {

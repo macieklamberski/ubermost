@@ -10,14 +10,35 @@
      * Initialize features
      */
     init: function () {
-      App.feature();
+      App.Overlay.init();
+      App.SizesOverlay.init();
     },
 
     /**
-     * Custom feature
+     *
      */
-    feature: function () {
+    Overlay: {
+      // $close: $('.overlay'),
 
+      init: function () {
+        // App.SizesOverlay.$trigger.on('click', function () {
+        //   App.SizesOverlay.$overlay.addClass('overlay--open');
+        // });
+      }
+    },
+
+    /**
+     *
+     */
+    SizesOverlay: {
+      $trigger: $('.sizes__selected'),
+      $overlay: $('.sizes__selected').next(),
+
+      init: function () {
+        App.SizesOverlay.$trigger.on('click', function () {
+          App.SizesOverlay.$overlay.addClass('overlay--open');
+        });
+      }
     }
   };
 

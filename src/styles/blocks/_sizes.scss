@@ -4,7 +4,7 @@
     display: block;
     background: #f0f0f0;
     cursor: pointer;
-    transition: background 250ms ease-in-out;
+    transition: trans(background);
 
     &:hover {
       background: #e8e8e8;

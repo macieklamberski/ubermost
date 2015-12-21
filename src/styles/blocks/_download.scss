@@ -1,17 +1,15 @@
 .download {
   display: block;
-  border: rem(3px) solid $color--base;
   text-transform: uppercase;
   text-align: center;
   color: #fff;
   background: $color--base;
   height: rem(($tick - 3px) * 2);
   line-height: rem(($tick - 3px) * 2);
-  transition: background 200ms ease-in-out, color 200ms ease-in-out, border-color 200ms ease-in-out;
+  transition: trans(background), trans(color);
 
   &:hover {
     color: #fff;
-    border-color: #000;
     background: #000;
   }
 }

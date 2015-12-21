@@ -52,7 +52,7 @@
 
       & + i {
         color: $color--minor;
-        transition: color 250ms;
+        transition: trans(color);
       }
 
       &:hover + i {

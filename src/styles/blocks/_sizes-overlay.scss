@@ -1,15 +1,9 @@
 .sizes-overlay {
-  @extend %overlay;
   display: flex;
-  display: none;
   flex-wrap: wrap;
   align-items: flex-start;
   align-content: flex-start;
   padding: rem($tick * 2) 15%;
-
-  &__close {
-    @extend %overlay-close;
-  }
 
   &__group {
     flex-basis: 33%;
@@ -30,7 +24,7 @@
     label {
       display: block;
       cursor: pointer;
-      transition: color 250ms ease-in-out;
+      transition: trans(color);
 
       &:hover {
         color: $color--accent;

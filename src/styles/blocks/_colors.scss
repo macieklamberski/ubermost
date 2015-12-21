@@ -25,7 +25,7 @@
     line-height: rem($tick * 1.5);
     text-align: center;
     font-size: rem(20px);
-    transition: opacity 250ms ease-in-out, transform 125ms ease-in-out;
+    transition: trans(opacity), trans(transform, 125ms);
   }
 
   input {
@@ -36,7 +36,7 @@
     opacity: 0;
     color: #fff;
     transform: scale(0.6);
-    transition: opacity 125ms ease-in-out, transform 250ms ease-out;
+    transition: trans(opacity, 125ms), trans(transform);
   }
 
   label:hover span,
@@ -46,7 +46,7 @@
   }
 
   input:checked + span {
-    transition: opacity 250ms ease-in-out, transform 200ms cubic-bezier(0.59, 0.58, 0.64, 1.92);
+    transition: trans(opacity), trans(transform, 200ms, cubic-bezier(0.59, 0.58, 0.64, 1.92));
     transform: scale(1.15);
   }
 

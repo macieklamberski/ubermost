@@ -23,3 +23,5 @@ $width--generator : rem($tick * 35);
 $width--left      : ($width--generator / 1.61803398875);
 $width--right     : ($width--generator - $width--left) - rem($tick * 2);
 
+$duration--base : 250ms;
+$duration--ease : 500ms;
