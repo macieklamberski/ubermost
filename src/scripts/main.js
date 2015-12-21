@@ -1,4 +1,6 @@
 //= include ../../bower_components/jquery/dist/jquery.js
+//= include ../../bower_components/velocity/velocity.js
+//= include ../../bower_components/velocity/velocity.ui.js
 
 (function ($) {
 
