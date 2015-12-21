@@ -1,16 +1,14 @@
 .sizes-overlay {
   @extend %overlay;
   display: flex;
+  display: none;
   flex-wrap: wrap;
   align-items: flex-start;
   align-content: flex-start;
   padding: rem($tick * 2) 15%;
 
   &__close {
-    position: absolute;
-    top: rem($tick);
-    right: rem($tick);
-    font-size: rem(24px);
+    @extend %overlay-close;
   }
 
   &__group {

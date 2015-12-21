@@ -1,0 +1,31 @@
+.posts-overlay {
+  @extend %overlay;
+  display: none;
+
+  &__close {
+    @extend %overlay-close;
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    padding: rem($tick * 3);
+    list-style: none;
+
+    li {
+      box-sizing: border-box;
+      flex-basis: 20%;
+      padding: rem(5px);
+    }
+
+    a {
+      display: block;
+      transition: opacity 250ms ease-in-out;
+      opacity: 1;
+
+      &:hover {
+        opacity: 0.5;
+      }
+    }
+  }
+}
