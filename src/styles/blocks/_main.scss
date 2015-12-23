@@ -4,6 +4,10 @@
   display: flex;
   flex-direction: row-reverse;
 
+  &__preview, &__options {
+    min-width: 0;
+  }
+
   &__preview {
     flex-basis: 61.8%;
     padding-left: rem($tick * 2);

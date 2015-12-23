@@ -1,36 +1,33 @@
 .overlay {
   z-index: 1;
   content: '';
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   background: rgba(#fff, 0.98);
-  transition: trans(opacity);
-  transition-delay: 250ms;
+  transition: trans(opacity, $duration--ease), trans(visibility, $duration--ease);
   opacity: 0;
   visibility: hidden;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: rem($tick * 2) 0;
 
   &__body {
-    transition: trans(transform), trans(opacity);
-    transform: scale(0.95);
+    @extend %container;
+    @extend %container--generator;
+    transition: trans(transform), trans(opacity, $duration--ease);
     opacity: 0;
-  }
 
-  &--open {
-    transition-delay: 0ms;
-    opacity: 1;
-    visibility: visible;
-  }
-
-  &--open &__body {
-    transform: scale(1);
-    opacity: 1;
+    &--scale {
+      transform: scale(0.95);
+    }
   }
 
   &__close {
-    position: absolute;
+    position: fixed;
+    z-index: 1;
     top: rem($tick);
     right: rem($tick);
     font-size: rem(24px);
@@ -45,9 +42,39 @@
       height: rem(3px);
       top: 50%;
       margin-top: rem(-1.5px);
+      opacity: 0;
       left: rem($tick);
       right: rem($tick);
       background: currentColor;
+      transition: trans(transform, $duration--ease, ease-out), trans(opacity);
+    }
+
+    &::before {
+      transform: rotate(65deg);
+    }
+
+    &::after {
+      transform: rotate(-25deg);
+    }
+  }
+
+  &--open {
+    transition: trans(opacity), trans(visibility, $duration--ease);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &--open &__body {
+    opacity: 1;
+
+    &--scale {
+      transform: scale(1);
+    }
+  }
+
+  &--open &__close {
+    &::before, &::after {
+      opacity: 1;
     }
 
     &::before {
@@ -55,11 +82,7 @@
     }
 
     &::after {
-      transform: rotate(135deg);
-    }
-
-    &:hover {
-
+      transform: rotate(-45deg);
     }
   }
 }

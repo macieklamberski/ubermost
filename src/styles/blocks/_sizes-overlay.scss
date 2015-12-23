@@ -3,7 +3,7 @@
   flex-wrap: wrap;
   align-items: flex-start;
   align-content: flex-start;
-  padding: rem($tick * 2) 15%;
+  margin-top: rem(-$tick * 2);
 
   &__group {
     flex-basis: 33%;
@@ -36,6 +36,7 @@
     }
 
     em {
+      font-family: $font--sans;
       font-size: $size--minor;
       font-style: normal;
       color: $color--faint;
