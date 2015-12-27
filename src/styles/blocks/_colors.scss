@@ -3,6 +3,7 @@
   margin: rem(-$tick * 0.25);
   padding: 0;
   list-style: none;
+  position: relative;
 
   li {
     float: left;
@@ -15,16 +16,13 @@
   }
 
   span {
-    background: currentColor;
     display: block;
+    background: currentColor;
     border-radius: 50%;
     position: relative;
     height: rem($tick * 1.5);
     width: rem($tick * 1.5);
     opacity: 0.8;
-    line-height: rem($tick * 1.5);
-    text-align: center;
-    font-size: rem(20px);
     transition: trans(opacity), trans(transform, 125ms);
   }
 
@@ -33,10 +31,18 @@
   }
 
   i {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
     opacity: 0;
     color: #fff;
     transform: scale(0.6);
+    line-height: rem($tick * 1.5);
+    text-align: center;
+    font-size: rem(20px);
     transition: trans(opacity, 125ms), trans(transform);
+    backface-visibility: hidden;
   }
 
   label:hover span,
