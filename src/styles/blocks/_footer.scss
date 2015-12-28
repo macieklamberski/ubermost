@@ -9,6 +9,9 @@
 
   a {
     text-decoration: underline;
+    padding: rem(10px);
+    margin: rem(-10px);
+    display: inline-block;
   }
 
   &__body {
