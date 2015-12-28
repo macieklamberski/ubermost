@@ -25,9 +25,11 @@
 
     span {
       float: left;
+      font-family: $font--mono;
     }
 
     em {
+      font-family: $font--sans;
       color: $color--faint;
       font-style: normal;
       font-size: $size--minor;
