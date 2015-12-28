@@ -1,7 +1,10 @@
 .preview {
   position: relative;
   overflow: hidden;
+  width: 100%;
   padding-top: 100%;
+  background: #F0F0F0 no-repeat center;
+  background-size: contain;
 
   &__image {
     position: absolute;
@@ -19,9 +22,6 @@
     opacity: 0;
     background: rgba(#fff, .95);
     transition: trans(opacity, $duration--ease);
-  }
-
-  &:hover &__image {
   }
 
   &:hover &__details {

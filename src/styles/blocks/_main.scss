@@ -6,14 +6,15 @@
 
   &__preview, &__options {
     min-width: 0;
+    position: relative;
   }
 
   &__preview {
     flex-basis: 61.8%;
-    padding-left: rem($tick * 2);
   }
 
   &__options {
     flex-basis: 38.2%;
+    padding-right: rem($tick * 2);
   }
 }

@@ -10,14 +10,16 @@
      */
     init: function () {
       App.Sizes.init();
+      App.Colors.init();
       App.Posts.init();
+      App.Preview.init();
       App.Keyboard.init();
     },
 
     /**
      * Helper functions used across the script.
      */
-    Helpers: {
+    Common: {
       compileTemplate: function (id, data) {
         var template = Handlebars.compile($('#' + id + '-template').html());
         return template(data);
@@ -27,7 +29,7 @@
         App.$BODY.css('overflow', 'hidden');
         $overlay.addClass('overlay--open');
         $overlay.find('.overlay__close').on('click', function (event) {
-          App.Helpers.closeOverlay($overlay);
+          App.Common.closeOverlay($overlay);
           event.preventDefault();
         });
         if (callback !== undefined) {
@@ -50,7 +52,7 @@
      */
     Sizes: {
       $trigger: $('.sizes__selected'),
-      $selectedLabel: $('.sizes__selected span'),
+      $selected: $('.sizes__selected span'),
       $overlay: $('.sizes__selected').next(),
 
       init: function () {
@@ -60,15 +62,38 @@
 
       bindOpenOverlay: function () {
         App.Sizes.$trigger.on('click', function (event) {
-          App.Helpers.openOverlay(App.Sizes.$overlay);
+          App.Common.openOverlay(App.Sizes.$overlay);
           event.preventDefault();
         });
       },
 
       bindSelectSize: function () {
         App.Sizes.$overlay.find('label').on('click', function () {
-          App.Sizes.$selectedLabel.html($(this).find('span').html());
-          App.Helpers.closeOverlay(App.Sizes.$overlay);
+          App.Sizes.$selected.html($(this).find('span').html());
+          App.Common.closeOverlay(App.Sizes.$overlay);
+        });
+      }
+    },
+
+    /**
+     *
+     */
+    Colors: {
+      $inputs: $('.colors input[type="radio"]'),
+
+      init: function () {
+        App.Colors.bindSelectColor();
+      },
+
+      getCurrent: function () {
+        return App.Colors.$inputs.filter(':checked');
+      },
+
+      bindSelectColor: function () {
+        App.Colors.$inputs.on('change', function (event) {
+          var $self = $(this);
+          App.Preview.load(App.Preview.$preview.data('source'));
+          event.preventDefault();
         });
       }
     },
@@ -80,45 +105,89 @@
       $trigger: $('.download'),
       $overlay: $('.posts-overlay').closest('.overlay'),
       $loader: $('.posts-overlay').closest('.overlay').find('.loader'),
-      $postsList: $('.posts-overlay'),
+      $list: $('.posts-overlay'),
 
       init: function () {
         App.Posts.bindOpenOverlay();
+        App.Posts.bindSelectPost();
       },
 
       bindOpenOverlay: function () {
         App.Posts.$trigger.on('click', function (event) {
-          App.Helpers.openOverlay(
+          App.Common.openOverlay(
             App.Posts.$overlay,
-            App.Posts.loadList
+            App.Posts.load
           );
           event.preventDefault();
         });
       },
 
-      loadList: function ($overlay) {
-        if (App.Posts.$postsList.children().length) {
+      bindSelectPost: function () {
+
+      },
+
+      load: function ($overlay) {
+        if (App.Posts.$list.children().length) {
           App.Posts.fadeInElements();
-        } else {
-          $.get(App.Posts.$postsList.data('source'), function (data) {
-            var html = App.Helpers.compileTemplate('posts', data);
-            App.Posts.$postsList.html(html);
-            App.Posts.$postsList.find('img').css('opacity', 0);
-            App.Posts.$postsList.imagesLoaded(function () {
-              App.Posts.$loader.addClass('loader--loaded');
-              App.Posts.fadeInElements();
-            });
-          });
+          return;
         }
+
+        $.get(App.Posts.$list.data('source'), function (data) {
+          var html = App.Common.compileTemplate('posts', data);
+          App.Posts.$list.html(html);
+          App.Posts.$list.find('img').css('opacity', 0);
+          App.Posts.$list.imagesLoaded(function () {
+            App.Posts.$loader.addClass('loader--loaded');
+            App.Posts.fadeInElements();
+          });
+        });
       },
 
       fadeInElements: function () {
-        App.Posts.$postsList.find('img')
+        App.Posts.$list.find('img')
           .css('opacity', 0)
           .velocity('transition.slideLeftIn', {
             duration: 500,
             stagger: 12.5
           });
+      }
+    },
+
+    /**
+     *
+     */
+    Preview: {
+      $preview: $('.preview'),
+      $loader: $('.preview').parent().find('.loader'),
+
+      init: function () {
+        App.Preview.load(App.Preview.$preview.data('source'));
+      },
+
+      load: function ($source) {
+        App.Preview.$loader.removeClass('loader--loaded');
+
+        setTimeout(function () {
+          $.get($source, function (data) {
+            var currentColor = App.Colors.getCurrent().val().toString();
+            data.image = data.previews[currentColor];
+
+            var html = App.Common.compileTemplate('post', data);
+            App.Preview.$preview.html(html);
+            App.Preview.$preview.find('img').css('opacity', 0);
+
+            App.Preview.$preview.imagesLoaded(function () {
+              App.Preview.$loader.addClass('loader--loaded');
+              App.Preview.$preview.find('img')
+                .velocity('fadeIn', {
+                  duration: 250,
+                  complete: function () {
+                    App.Preview.$preview.css('background-image', 'url(' + data.image + ')');
+                  }
+                });
+            });
+          });
+        }, 2000);
       }
     },
 
@@ -131,9 +200,9 @@
       },
 
       bindClosingOverlay: function () {
-        $(document).on('keydown', function(event) {
+        App.$DOCUMENT.on('keydown', function (event) {
           if (event.keyCode == 27) {
-            App.Helpers.closeOverlay($('.overlay--open'));
+            App.Common.closeOverlay($('.overlay--open'));
           }
         });
       }
