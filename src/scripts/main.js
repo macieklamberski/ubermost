@@ -51,9 +51,9 @@
      *
      */
     Sizes: {
-      $trigger: $('.sizes__selected'),
-      $selected: $('.sizes__selected span'),
-      $overlay: $('.sizes__selected').next(),
+      $trigger: $('.dropdown'),
+      $selected: $('.dropdown span'),
+      $overlay: $('#sizes-overlay'),
 
       init: function () {
         App.Sizes.bindOpenOverlay();
@@ -103,9 +103,9 @@
      */
     Posts: {
       $trigger: $('.download'),
-      $overlay: $('.posts-overlay').closest('.overlay'),
-      $loader: $('.posts-overlay').closest('.overlay').find('.loader'),
-      $list: $('.posts-overlay'),
+      $overlay: $('#posts-overlay'),
+      $loading: $('#posts-overlay'),
+      $list: $('.posts'),
 
       init: function () {
         App.Posts.bindOpenOverlay();
@@ -137,7 +137,7 @@
           App.Posts.$list.html(html);
           App.Posts.$list.find('img').css('opacity', 0);
           App.Posts.$list.imagesLoaded(function () {
-            App.Posts.$loader.addClass('loader--loaded');
+            App.Posts.$loading.addClass('loading--done');
             App.Posts.fadeInElements();
           });
         });
@@ -158,36 +158,34 @@
      */
     Preview: {
       $preview: $('.preview'),
-      $loader: $('.preview').parent().find('.loader'),
+      $loading: $('.preview').closest('.loading'),
 
       init: function () {
         App.Preview.load(App.Preview.$preview.data('source'));
       },
 
       load: function ($source) {
-        App.Preview.$loader.removeClass('loader--loaded');
+        App.Preview.$loading.removeClass('loading--done');
 
-        setTimeout(function () {
-          $.get($source, function (data) {
-            var currentColor = App.Colors.getCurrent().val().toString();
-            data.image = data.previews[currentColor];
+        $.get($source, function (data) {
+          var currentColor = App.Colors.getCurrent().val().toString();
+          data.image = data.previews[currentColor];
 
-            var html = App.Common.compileTemplate('post', data);
-            App.Preview.$preview.html(html);
-            App.Preview.$preview.find('img').css('opacity', 0);
+          var html = App.Common.compileTemplate('post', data);
+          App.Preview.$preview.html(html);
+          App.Preview.$preview.find('img').css('opacity', 0);
 
-            App.Preview.$preview.imagesLoaded(function () {
-              App.Preview.$loader.addClass('loader--loaded');
-              App.Preview.$preview.find('img')
-                .velocity('fadeIn', {
-                  duration: 250,
-                  complete: function () {
-                    App.Preview.$preview.css('background-image', 'url(' + data.image + ')');
-                  }
-                });
-            });
+          App.Preview.$preview.imagesLoaded(function () {
+            App.Preview.$loading.addClass('loading--done');
+            App.Preview.$preview.find('img')
+              .velocity('fadeIn', {
+                duration: 350,
+                complete: function () {
+                  App.Preview.$preview.css('background-image', 'url(' + data.image + ')');
+                }
+              });
           });
-        }, 2000);
+        });
       }
     },
 

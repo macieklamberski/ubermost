@@ -1,0 +1,36 @@
+.dropdown {
+  @include clearfix();
+  display: block;
+  background: #f0f0f0;
+  cursor: pointer;
+  transition: trans(background);
+
+  &:hover {
+    background: #e8e8e8;
+  }
+
+  i, span {
+    padding: 0 rem(20px);
+    line-height: rem($tick * 2);
+  }
+
+  i {
+    float: right;
+    border-left: rem(1px) solid #fff;
+    font-size: rem(18px);
+    width: rem(18px);
+    text-align: center;
+  }
+
+  span {
+    float: left;
+    font-family: $font--mono;
+  }
+
+  em {
+    font-family: $font--sans;
+    color: $color--faint;
+    font-style: normal;
+    font-size: $size--minor;
+  }
+}
