@@ -1,17 +1,6 @@
 {
   "ID": 1,
-  "previews": {
-    "1": "http://40.media.tumblr.com/a17da38004bef6f52c3f3bc1df04ec05/tumblr_noyyy2Cato1upn40oo1_1280.jpg",
-    "2": "http://40.media.tumblr.com/5e185684788190ca774471d8b5e37991/tumblr_ns7k8kjQ1Z1upn40oo1_1280.jpg",
-    "3": "http://41.media.tumblr.com/7c3d0b5d950fc828addbee24dd9d6d16/tumblr_ns3u4ujhz91upn40oo1_1280.jpg",
-    "4": "http://36.media.tumblr.com/7a7ad336b099e0d8c3dc4eea1bba0fd8/tumblr_ns254au88C1upn40oo1_1280.jpg",
-    "5": "http://41.media.tumblr.com/9218540bd487e6e9e10252e3f7480ed6/tumblr_nrykph8zS81upn40oo1_1280.jpg",
-    "6": "http://40.media.tumblr.com/b8239cae0f489c27fd8e1621546af62c/tumblr_nruqooFZbz1upn40oo1_1280.jpg",
-    "7": "http://41.media.tumblr.com/0a0520d6ddb09106611b5773a0a7b920/tumblr_nrlqli9R621upn40oo1_1280.jpg",
-    "8": "http://41.media.tumblr.com/0a460ac81e7144191355118918630eda/tumblr_nrlqhpTAWu1upn40oo1_1280.jpg",
-    "9": "http://41.media.tumblr.com/15231b624228f19b2aa58b3063e7e7de/tumblr_nrl53ccoNC1upn40oo1_1280.jpg",
-    "10": "http://41.media.tumblr.com/a0d3cfbf576273221865ff0585bb2c1a/tumblr_nrh4sc7M2z1upn40oo1_1280.jpg"
-  },
+  "image": "http://40.media.tumblr.com/a17da38004bef6f52c3f3bc1df04ec05/tumblr_noyyy2Cato1upn40oo1_1280.jpg",
   "quote": "Life doesn’t have to be easy — in fact, the hard stuff is how we achieve anything of value. Life doesn’t have to be comfortable — in fact, when we get out of our comfort zone, we grow. [We] doesn’t have to know what [we’re] doing — it’s when we do things we don’t know how to do that we learn new things, new skills, and get better at them.",
   "author": "Leo Babauta",
   "source": "The One Skill",

@@ -29,7 +29,7 @@
 
     <main class="main">
       <div class="main__preview loading">
-        <div class="loading__body preview" data-source="media/post.json"></div>
+        <div class="loading__body preview" data-gateway="media/post.json" data-current-post-id="" data-initial-post-id="1"></div>
         <span class="loading__indicator"></span>
       </div>
 
@@ -205,7 +205,7 @@
     <section id="posts-overlay" class="overlay loading">
       <a href="#" class="overlay__close"></a>
       <div class="overlay__body">
-        <ul class="loading__body posts" data-source="media/posts.json"></ul>
+        <ul class="loading__body posts" data-gateway="media/posts.json"></ul>
       </div>
       <span class="loading__indicator"></span>
     </section>
@@ -230,7 +230,7 @@
       {% raw %}
         {{#each posts}}
           <li>
-            <a href="{{ID}}" data-id="{{ID}}">
+            <a href="{{permalink}}" data-id="{{ID}}">
               <img src="{{thumbnail}}" alt="">
             </a>
           </li>

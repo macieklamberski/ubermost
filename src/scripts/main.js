@@ -85,14 +85,17 @@
         App.Colors.bindSelectColor();
       },
 
-      getCurrent: function () {
-        return App.Colors.$inputs.filter(':checked');
+      getCurrentColorId: function () {
+        return App.Colors.$inputs.filter(':checked').val();
       },
 
       bindSelectColor: function () {
         App.Colors.$inputs.on('change', function (event) {
           var $self = $(this);
-          App.Preview.load(App.Preview.$preview.data('source'));
+          App.Preview.load(
+            App.Preview.$preview.data('current-post-id'),
+            App.Colors.getCurrentColorId()
+          );
           event.preventDefault();
         });
       }
@@ -102,6 +105,7 @@
      *
      */
     Posts: {
+      $gateway: $('.posts').data('gateway'),
       $trigger: $('.download'),
       $overlay: $('#posts-overlay'),
       $loading: $('#posts-overlay'),
@@ -123,7 +127,14 @@
       },
 
       bindSelectPost: function () {
-
+        App.Posts.$list.on('click', 'a[data-id]', function (event) {
+          App.Preview.load(
+            $(this).data('id'),
+            App.Colors.getCurrentColorId()
+          );
+          App.Common.closeOverlay(App.Posts.$overlay);
+          event.preventDefault();
+        });
       },
 
       load: function ($overlay) {
@@ -132,7 +143,7 @@
           return;
         }
 
-        $.get(App.Posts.$list.data('source'), function (data) {
+        $.get(App.Posts.$gateway, function (data) {
           var html = App.Common.compileTemplate('posts', data);
           App.Posts.$list.html(html);
           App.Posts.$list.find('img').css('opacity', 0);
@@ -157,19 +168,22 @@
      *
      */
     Preview: {
+      $gateway: $('.preview').data('gateway'),
       $preview: $('.preview'),
       $loading: $('.preview').closest('.loading'),
 
       init: function () {
-        App.Preview.load(App.Preview.$preview.data('source'));
+        App.Preview.load(
+          App.Preview.$preview.data('initial-post-id'),
+          App.Colors.getCurrentColorId()
+        );
       },
 
-      load: function ($source) {
+      load: function (postId, colorId) {
         App.Preview.$loading.removeClass('loading--done');
 
-        $.get($source, function (data) {
-          var currentColor = App.Colors.getCurrent().val().toString();
-          data.image = data.previews[currentColor];
+        $.get(App.Preview.$gateway, {id: postId, color: colorId}, function (data) {
+          App.Preview.$preview.data('current-post-id', postId);
 
           var html = App.Common.compileTemplate('post', data);
           App.Preview.$preview.html(html);
