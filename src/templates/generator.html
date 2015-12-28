@@ -73,7 +73,7 @@
             {% for index, color in colors %}
               <li>
                 <label class="color" style="color: {{ color[0] }}">
-                  <input type="radio" name="color" value="{{ index }}" {% if loop.first %}checked{% endif %}>
+                  <input type="radio" name="color" value="{{ index + 1 }}" {% if loop.first %}checked{% endif %}>
                   <span><i class="fa fa-check" style="color: {{ color[1] }}"></i></span>
                 </label>
               </li>
