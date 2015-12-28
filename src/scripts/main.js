@@ -22,7 +22,6 @@
       if (!$overlay.length) {
         return;
       }
-
       Application.$BODY.css('overflow', 'auto');
       $overlay.removeClass('overlay--open');
     }
@@ -151,24 +150,26 @@
     load: function (postId, colorId) {
       Preview.$loading.removeClass('loading--done');
 
-      $.get(Preview.$gateway, {id: postId, color: colorId}, function (data) {
-        Preview.$preview.data('current-post-id', postId);
+      setTimeout(function () {
+        $.get(Preview.$gateway, {id: postId, color: colorId}, function (data) {
+          Preview.$preview.data('current-post-id', postId);
 
-        var html = Helper.compileTemplate('post', data);
-        Preview.$preview.html(html);
-        Preview.$preview.find('img').css('opacity', 0);
+          var html = Helper.compileTemplate('post', data);
+          Preview.$preview.html(html);
+          Preview.$preview.find('img').css('opacity', 0);
 
-        Preview.$preview.imagesLoaded(function () {
-          Preview.$loading.addClass('loading--done');
-          Preview.$preview.find('img')
-            .velocity('fadeIn', {
-              duration: 350,
-              complete: function () {
-                Preview.$preview.css('background-image', 'url(' + data.image + ')');
-              }
-            });
+          Preview.$preview.imagesLoaded(function () {
+            Preview.$loading.addClass('loading--done');
+            Preview.$preview.find('img')
+              .velocity('fadeIn', {
+                duration: 350,
+                complete: function () {
+                  Preview.$preview.css('background-image', 'url(' + data.image + ')');
+                }
+              });
+          });
         });
-      });
+      }, 1000);
     }
   };
 
