@@ -29,7 +29,7 @@
 
     <main class="main">
       <div class="main__preview loading">
-        <div class="loading__body preview" data-gateway="media/post.json" data-initial-post-id="1"></div>
+        <div class="loading__body preview" data-gateway="media/post.json" data-post-id="1"></div>
         <span class="loading__indicator"></span>
       </div>
 
@@ -230,7 +230,7 @@
       {% raw %}
         {{#each posts}}
           <li>
-            <a href="{{permalink}}" data-id="{{ID}}">
+            <a href="{{permalink}}" data-post-id="{{ID}}">
               <img src="{{thumbnail}}" alt="">
             </a>
           </li>

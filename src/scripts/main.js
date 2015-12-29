@@ -24,6 +24,14 @@
       }
       Application.$BODY.css('overflow', 'auto');
       $overlay.removeClass('overlay--open');
+    },
+
+    startLoading: function ($loading) {
+      $loading.removeClass('loading--done');
+    },
+
+    stopLoading: function ($loading) {
+      $loading.addClass('loading--done');
     }
   };
 
@@ -45,9 +53,10 @@
     },
 
     bindSelectSize: function () {
-      Sizes.$overlay.find('label').on('click', function () {
+      Sizes.$overlay.find('label').on('click', function (event) {
         Sizes.$selected.html($(this).find('span').html());
         Helper.closeOverlay(Sizes.$overlay);
+        event.preventDefault();
       });
     }
   };
@@ -65,9 +74,8 @@
 
     bindSelectColor: function () {
       Colors.$inputs.on('change', function (event) {
-        var $self = $(this);
         Preview.load(
-          Preview.$preview.data('current-post-id'),
+          Preview.getCurrentPostId(),
           Colors.getCurrentColorId()
         );
         event.preventDefault();
@@ -76,11 +84,11 @@
   };
 
   var Posts = {
+    $container: $('.posts'),
     $gateway: $('.posts').data('gateway'),
     $trigger: $('.download'),
     $overlay: $('#posts-overlay'),
     $loading: $('#posts-overlay'),
-    $list: $('.posts'),
 
     init: function () {
       Posts.bindOpenOverlay();
@@ -89,18 +97,15 @@
 
     bindOpenOverlay: function () {
       Posts.$trigger.on('click', function (event) {
-        Helper.openOverlay(
-          Posts.$overlay,
-          Posts.load
-        );
+        Helper.openOverlay(Posts.$overlay, Posts.load);
         event.preventDefault();
       });
     },
 
     bindSelectPost: function () {
-      Posts.$list.on('click', 'a[data-id]', function (event) {
+      Posts.$container.on('click', 'a', function (event) {
         Preview.load(
-          $(this).data('id'),
+          $(this).data('post-id'),
           Colors.getCurrentColorId()
         );
         Helper.closeOverlay(Posts.$overlay);
@@ -109,24 +114,24 @@
     },
 
     load: function ($overlay) {
-      if (Posts.$list.children().length) {
+      if (Posts.$container.children().length) {
         Posts.fadeInElements();
         return;
       }
 
       $.get(Posts.$gateway, function (data) {
         var html = Helper.compileTemplate('posts', data);
-        Posts.$list.html(html);
-        Posts.$list.find('img').css('opacity', 0);
-        Posts.$list.imagesLoaded(function () {
-          Posts.$loading.addClass('loading--done');
+        Posts.$container.html(html);
+        Posts.$container.find('img').css('opacity', 0);
+        Posts.$container.imagesLoaded(function () {
+          Helper.stopLoading(Posts.$loading);
           Posts.fadeInElements();
         });
       });
     },
 
     fadeInElements: function () {
-      Posts.$list.find('img')
+      Posts.$container.find('img')
         .css('opacity', 0)
         .velocity('transition.slideLeftIn', {
           duration: 500,
@@ -136,35 +141,39 @@
   };
 
   var Preview = {
+    $container: $('.preview'),
     $gateway: $('.preview').data('gateway'),
-    $preview: $('.preview'),
     $loading: $('.preview').closest('.loading'),
 
     init: function () {
       Preview.load(
-        Preview.$preview.data('initial-post-id'),
+        Preview.getCurrentPostId(),
         Colors.getCurrentColorId()
       );
     },
 
+    getCurrentPostId: function () {
+      return Preview.$container.data('post-id');
+    },
+
     load: function (postId, colorId) {
-      Preview.$loading.removeClass('loading--done');
+      Helper.startLoading(Preview.$loading);
 
       setTimeout(function () {
         $.get(Preview.$gateway, {id: postId, color: colorId}, function (data) {
-          Preview.$preview.data('current-post-id', postId);
+          Preview.$container.data('post-id', postId);
 
           var html = Helper.compileTemplate('post', data);
-          Preview.$preview.html(html);
-          Preview.$preview.find('img').css('opacity', 0);
+          Preview.$container.html(html);
+          Preview.$container.find('img').css('opacity', 0);
 
-          Preview.$preview.imagesLoaded(function () {
-            Preview.$loading.addClass('loading--done');
-            Preview.$preview.find('img')
+          Preview.$container.imagesLoaded(function () {
+            Helper.stopLoading(Preview.$loading);
+            Preview.$container.find('img')
               .velocity('fadeIn', {
                 duration: 350,
                 complete: function () {
-                  Preview.$preview.css('background-image', 'url(' + data.image + ')');
+                  Preview.$container.css('background-image', 'url(' + data.image + ')');
                 }
               });
           });
@@ -175,10 +184,10 @@
 
   var Keyboard = {
     init: function () {
-      Keyboard.bindClosingOverlay();
+      Keyboard.bindCloseOverlayOnEscape();
     },
 
-    bindClosingOverlay: function () {
+    bindCloseOverlayOnEscape: function () {
       Application.$DOCUMENT.on('keydown', function (event) {
         if (event.keyCode == 27) {
           Helper.closeOverlay($('.overlay--open'));
