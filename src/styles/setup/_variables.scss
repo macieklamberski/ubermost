@@ -24,6 +24,6 @@ $width--generator : rem($tick * 35);
 $width--left      : ($width--generator / 1.61803398875);
 $width--right     : ($width--generator - $width--left) - rem($tick * 2);
 
-$duration--base    : 150ms;
-$duration--ease    : 300ms;
+$duration--base    : 200ms;
+$duration--ease    : 400ms;
 $duration--overlay : 250ms;

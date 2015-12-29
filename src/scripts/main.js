@@ -126,7 +126,7 @@
           Helper.stopLoading(Posts.$loading);
           Posts.fadeInElements();
         });
-      });
+      }, 'json');
     },
 
     fadeInElements: function () {
@@ -170,13 +170,13 @@
             Helper.stopLoading(Preview.$loading);
             Preview.$container.find('img')
               .velocity('fadeIn', {
-                duration: 350,
+                duration: 400,
                 complete: function () {
                   Preview.$container.css('background-image', 'url(' + data.image + ')');
                 }
               });
           });
-        });
+        }, 'json');
       }, 1000);
     }
   };
