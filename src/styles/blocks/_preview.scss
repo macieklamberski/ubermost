@@ -30,17 +30,34 @@
       transform: translate(-50%, -50%);
       text-align: center;
       color: $color--minor;
-    }
 
-    p a {
-      text-decoration: underline;
-      display: inline-block;
-      padding: rem(10px);
-      margin: rem(-10px);
+      &__change, &__or {
+        transition: trans(transform);
+      }
+
+      &__change {
+        transform: translateY(rem(5px));
+      }
+
+      &__or {
+        transform: translateY(rem(-5px));
+
+        a {
+          text-decoration: underline;
+          display: inline-block;
+          padding: rem(10px);
+          margin: rem(-10px);
+        }
+      }
     }
   }
 
   .loading--done &:hover &__details {
     opacity: 1;
+  }
+
+  .loading--done &:hover &__details__body__change,
+  .loading--done &:hover &__details__body__or {
+    transform: translateY(0);
   }
 }

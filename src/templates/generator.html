@@ -215,8 +215,12 @@
         <img src="{{image}}" alt="" class="preview__image">
         <div class="preview__details">
           <div class="preview__details__body">
-            <a href="#" class="button button--change">Change&hellip;</a>
-            <p>or <a href="{{blog_link}}">see it on blog</a></p>
+            <p class="preview__details__body__change">
+              <a href="#" class="button button--change">Change&hellip;</a>
+            </p>
+            <p class="preview__details__body__or">
+              or <a href="{{blog_link}}">see it on blog</a>
+            </p>
           </div>
         </div>
       {% endraw %}
