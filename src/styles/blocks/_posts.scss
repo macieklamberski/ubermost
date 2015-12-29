@@ -14,12 +14,23 @@
   a {
     display: block;
     position: relative;
-    transition: trans(opacity);
     opacity: 1;
     padding-top: 100%;
 
-    &:hover {
-      opacity: 0.5;
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      transition: trans(opacity);
+      opacity: 0;
+      background: rgba(#000, 0.5);
+    }
+
+    &:hover::after {
+      opacity: 1;
     }
   }
 

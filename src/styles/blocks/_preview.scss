@@ -14,18 +14,33 @@
   }
 
   &__details {
-    display: none;
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
     opacity: 0;
-    background: rgba(#fff, .95);
-    transition: trans(opacity, $duration--ease);
+    background: rgba(#000, .75);
+    transition: trans(opacity);
+
+    &__body {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: $color--minor;
+    }
+
+    p a {
+      text-decoration: underline;
+      display: inline-block;
+      padding: rem(10px);
+      margin: rem(-10px);
+    }
   }
 
-  &:hover &__details {
+  .loading--done &:hover &__details {
     opacity: 1;
   }
 }

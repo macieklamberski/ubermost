@@ -86,7 +86,6 @@
   var Posts = {
     $container: $('.posts'),
     $gateway: $('.posts').data('gateway'),
-    $trigger: $('.download'),
     $overlay: $('#posts-overlay'),
     $loading: $('#posts-overlay'),
 
@@ -96,7 +95,7 @@
     },
 
     bindOpenOverlay: function () {
-      Posts.$trigger.on('click', function (event) {
+      Application.$BODY.on('click', '.button--change', function (event) {
         Helper.openOverlay(Posts.$overlay, Posts.load);
         event.preventDefault();
       });

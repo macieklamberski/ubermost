@@ -1,0 +1,29 @@
+.button {
+  display: block;
+  text-transform: uppercase;
+  text-align: center;
+  color: #fff;
+  height: rem(($tick - 3px) * 2);
+  line-height: rem(($tick - 3px) * 2);
+  padding: 0 rem($tick * 2);
+  transition: trans(background), trans(color);
+
+  &--download, &--change {
+    background: $color--base;
+
+    &:hover {
+      color: #fff;
+      background: #000;
+    }
+  }
+
+  &--change {
+    background: #000;
+    font-weight: 600;
+
+    &:hover {
+      color: #000;
+      background: $color--accent;
+    }
+  }
+}

@@ -7,7 +7,7 @@
   bottom: 0;
   left: 0;
   background: rgba(#fff, 0.98);
-  transition: trans(opacity), trans(visibility);
+  transition: trans(opacity, $duration--overlay), trans(visibility, $duration--overlay);
   opacity: 0;
   visibility: hidden;
   overflow: auto;
@@ -17,7 +17,7 @@
   &__body {
     @extend %container;
     @extend %container--generator;
-    transition: trans(transform), trans(opacity);
+    transition: trans(transform, $duration--overlay), trans(opacity, $duration--overlay);
     opacity: 0;
 
     &--scale {
@@ -46,7 +46,7 @@
       left: rem($tick);
       right: rem($tick);
       background: currentColor;
-      transition: trans(transform, ease-out), trans(opacity);
+      transition: trans(transform, $duration--overlay, ease-out), trans(opacity, $duration--overlay);
     }
 
     &::before {
@@ -59,7 +59,7 @@
   }
 
   &--open {
-    transition: trans(opacity), trans(visibility);
+    transition: trans(opacity, $duration--overlay), trans(visibility, $duration--overlay);
     opacity: 1;
     visibility: visible;
   }

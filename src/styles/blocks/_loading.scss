@@ -7,7 +7,7 @@
     height: rem($tick);
     margin: rem(-$tick * 0.5) 0 0 rem(-$tick * 0.5);
     transform: scale(1);
-    transition: trans(transform);
+    transition: trans(transform, $duration--overlay);
 
     &::before, &::after {
       content: '';
@@ -29,7 +29,7 @@
 
   &__body {
     opacity: 0.25;
-    transition: trans(opacity);
+    transition: trans(opacity, $duration--overlay);
   }
 
   &--done &__indicator {

@@ -69,7 +69,7 @@
           </div>
         </section>
         <section class="option option--download">
-          <a href="#" class="download">Download wallpaper</a>
+          <a href="#" class="button button--download">Download wallpaper</a>
           <div class="share">
             <span class="share__label">Or share the wisdom:</span>
             <a href="#" class="share__link share__link--facebook"><i class="fa fa-facebook"></i></a>
@@ -214,14 +214,10 @@
       {% raw %}
         <img src="{{image}}" alt="" class="preview__image">
         <div class="preview__details">
-          <article class="post">
-            <div class="post__text">
-              <blockquote>
-                {{quote}}
-                <footer>&#8213; <cite>{{author}}, {{source}}</cite></footer>
-              </blockquote>
-            </div>
-          </article>
+          <div class="preview__details__body">
+            <a href="#" class="button button--change">Change&hellip;</a>
+            <p>or <a href="#">see it on blog</a></p>
+          </div>
         </div>
       {% endraw %}
     </script>
