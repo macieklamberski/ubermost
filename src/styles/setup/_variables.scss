@@ -10,14 +10,16 @@ $tick : 30px;
 $size--base  : 18px;
 $size--minor : 15px;
 
-$color--accent : #ffcd44;
-$color--base   : #313130;
-$color--minor  : #888887;
-$color--faint  : #bbbbb4;
+$color--accent     : #ffcd44;
+$color--base       : #313130;
+$color--minor      : #888887;
+$color--faint      : #bbbbb4;
+$color--border     : #F0F0F0;
+$color--background : #e6e6e6;
 
-$font--serif : (Lora, Georgia, serif);
+$font--serif : ('Source Serif Pro', Georgia, serif);
 $font--sans  : ('Source Sans Pro', Arial, sans-serif);
-$font--mono  : (Inconsolata, monospace, serif);
+$font--mono  : (Inconsolata, monospace, sans-serif);
 
 $width--wrapper   : rem($tick * 20);
 $width--generator : rem($tick * 35);

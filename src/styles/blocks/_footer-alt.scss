@@ -1,0 +1,111 @@
+.footer-alt {
+  padding: rem($tick * 2) 0;
+  margin-top: rem($tick * 3);
+  background: #F0F0F0;
+
+  * {
+    font-size: $size--minor;
+    color: $color--faint;
+  }
+
+  a {
+    text-decoration: underline;
+    padding: rem(10px);
+    margin: rem(-10px);
+    display: inline-block;
+
+    &:hover {
+      color: $color--base;
+    }
+  }
+
+  &__body {
+    @extend %container;
+    @extend %container--generator;
+    @include clearfix();
+
+    &__newsletter,
+    &__links,
+    &__copy {
+      margin: 0;
+    }
+
+    &__newsletter {
+      position: relative;
+      padding-bottom: rem($tick / 2);
+      margin-bottom: rem($tick / 2);
+
+      &::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        height: rem(1px);
+        background: $color--background;
+      }
+
+      * {
+        color: $color--minor;
+      }
+
+      h3 {
+        @extend %heading;
+        color: $color--base;
+        margin: 0;
+        font-weight: 600;
+      }
+
+      p {
+        margin: 0;
+      }
+
+      fieldset {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        padding: rem($tick / 4) 0;
+        border: 0;
+        display: inline-block;
+      }
+
+      input {
+        border: 0;
+        padding: ($tick / 2);
+        height: rem($tick / 2);
+        width: rem($tick * 8);
+        color: $color--base;
+      }
+
+      button {
+        padding: 0;
+        margin: 0;
+        border: 0;
+        background: transparent;
+        position: absolute;
+        top: rem($tick / 4);
+        right: 0;
+        padding: ($tick / 2);
+        line-height: rem($tick / 2);
+        cursor: pointer;
+
+        i {
+          transition: trans(color);
+        }
+
+        &:hover i {
+          color: $color--base;
+        }
+      }
+    }
+
+    &__links {
+      float: left;
+    }
+
+    &__copy {
+      float: right;
+    }
+  }
+}

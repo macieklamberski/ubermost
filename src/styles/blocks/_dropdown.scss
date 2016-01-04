@@ -6,7 +6,7 @@
   transition: trans(background);
 
   &:hover {
-    background: #e8e8e8;
+    background: $color--background;
   }
 
   i, span {

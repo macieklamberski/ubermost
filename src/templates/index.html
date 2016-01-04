@@ -5,22 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {block:Description}<meta name="description" content="{MetaDescription}">{/block:Description}
     <title>{Title}{block:SearchPage}, {lang:Search results for SearchQuery}{/block:SearchPage}</title>
-    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro|Lora:400,400italic" rel="stylesheet">
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//assets.ubermost.com/images/favicon.png" rel="shortcut icon">
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro|Source+Serif+Pro:400,600" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="//assets.ubermost.com/styles/main.min.css" rel="stylesheet">
-    <link href="{PortraitURL-128}" rel="apple-touch-icon">
-    <link rel="shortcut icon" href="//assets.ubermost.com/images/favicon.png">
     <link href="http://feeds.feedburner.com/ubermost" rel="alternate" type="application/rss+xml">
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <link href="{PortraitURL-128}" rel="apple-touch-icon">
   </head>
   <body>
     <header class="top">
       <h1 class="top__logo">
         <a href="{BlogURL}"><img src="//assets.ubermost.com/images/logo-alt.svg" alt=""></a>
       </h1>
-      <p class="top__about">Daily dose of illustrations with wisdom from books and other pieces of writing. On motivation, entrepreneurship, communication and self-awareness. Collected by <a href="http://lamberski.com">Maciek Lamberski</a>. Also posting on <a href="http://facebook.com/ubermost">Facebook</a> and <a href="http://instagram.com/ubermost">Instagram</a>.</p>
+      <p class="top__about">{Description} Collected by <a href="http://lamberski.com">Maciek Lamberski</a>. Also posting on <a href="http://facebook.com/ubermost">Facebook</a> and <a href="http://instagram.com/ubermost">Instagram</a>.</p>
     </header>
 
     <hr>
@@ -36,19 +33,19 @@
               {Caption}
             </div>
           {/block:Caption}
-            <div class="post__meta">
-              <p class="post__date"><a href="{Permalink}">Posted on <time datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero}" pubdate>{Month} {DayOfMonth}{DayOfMonthSuffix}, {Year}</time></a></p>
-              <ul class="post__links">
-                <li>
-                  {ReblogButton size=30}
-                  <i class="fa fa-retweet"></i>
-                </li>
-                <li>
-                  {LikeButton size=30}
-                  <i class="fa fa-heart"></i>
-                </li>
-              </ul>
-            </div>
+          <ul class="post__links">
+            <li>
+              <a href="{Permalink}"><i class="fa fa-link"></i></a>
+            </li>
+            <li>
+              {ReblogButton size=30}
+              <i class="fa fa-retweet"></i>
+            </li>
+            <li>
+              {LikeButton size=30}
+              <i class="fa fa-heart"></i>
+            </li>
+          </ul>
         {/block:Photo}
       </article>
       {block:Posts}{PostNotes}{/block:Posts}

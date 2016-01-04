@@ -35,7 +35,7 @@ img, iframe {
 
 a {
   color: $color--minor;
-  transition: color 250ms;
+  transition: trans(color);
   text-decoration: none;
 
   &:hover {

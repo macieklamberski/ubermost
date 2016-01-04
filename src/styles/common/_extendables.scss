@@ -28,7 +28,7 @@
     right: 0;
     left: 0;
     height: 1px;
-    background-color: #eee;
+    background-color: $color--border;
   }
 
   @include breakpoint(phablet) {
@@ -41,6 +41,7 @@
   blockquote > *,
   & > * {
     margin-top: rem($tick);
+    margin-bottom: 0;
   }
 
   blockquote > :first-child,
@@ -49,20 +50,9 @@
   }
 
   blockquote {
+    position: relative;
     margin-left: 0;
     margin-right: 0;
-  }
-
-  cite a {
-    color: $color--base;
-
-    &:hover {
-      color: $color--accent;
-    }
-
-    &::after {
-      content: '→';
-    }
   }
 
   li {

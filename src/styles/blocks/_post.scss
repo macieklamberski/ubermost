@@ -2,8 +2,37 @@
   @extend %block;
 
   small {
-    color: #ddd;
+    color: $color--faint;
     font-size: 100%;
+  }
+
+  footer {
+    font-size: 0;
+
+    cite a {
+      padding: rem($tick / 2);
+      margin: rem(-$tick / 2);
+      color: $color--minor;
+
+      &:hover {
+        color: $color--accent;
+      }
+    }
+
+    cite {
+      @extend %heading;
+      display: block;
+      font-style: normal;
+      transition: trans(color);
+
+      &::before {
+        content: '\2015';
+      }
+
+      a::after {
+        content: '\00a0\2192';
+      }
+    }
   }
 
   &__image {
@@ -21,27 +50,24 @@
     margin-top: rem($tick);
   }
 
-  &__meta {
+  &__links {
     @extend %container;
     margin-top: rem($tick);
-    text-align: right;
-  }
-
-  &__date {
-    @extend %heading;
-    margin: 0;
-    float: left;
-  }
-
-  &__links {
-    @include clearfix();
-    margin: 0;
     padding: 0;
 
     li {
-      float: right;
+      display: inline-block;
       list-style: none;
-      margin-left: 0.5em;
+      width: rem(30px);
+      text-align: center;
+    }
+
+    a {
+      color: $color--faint;
+
+      &:hover {
+        color: $color--accent;
+      }
     }
 
     .like_button, .reblog_button {
@@ -51,7 +77,7 @@
       z-index: 1;
 
       & + i {
-        color: $color--minor;
+        color: $color--faint;
         transition: trans(color);
       }
 
