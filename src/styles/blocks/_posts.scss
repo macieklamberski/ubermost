@@ -41,4 +41,22 @@
     top: 0;
     left: 0;
   }
+
+  @include breakpoint(tablet) {
+    li {
+      flex-basis: 25%;
+    }
+  }
+
+  @include breakpoint(phablet) {
+    li {
+      flex-basis: 33.3%;
+    }
+  }
+
+  @include breakpoint(phone) {
+    li {
+      flex-basis: 50%;
+    }
+  }
 }

@@ -3,8 +3,8 @@
   text-transform: uppercase;
   text-align: center;
   color: #fff;
-  height: rem(($tick - 3px) * 2);
-  line-height: rem(($tick - 3px) * 2);
+  height: rem($tick * 2);
+  line-height: rem($tick * 2);
   padding: 0 rem($tick * 2);
   transition: trans(background), trans(color);
 
@@ -22,6 +22,18 @@
     font-weight: 600;
 
     &:hover {
+      color: #000;
+      background: $color--accent;
+    }
+  }
+
+  @include breakpoint(tablet) {
+    &--change {
+      text-transform: none;
+      line-height: rem($tick * 1.5);
+      height: rem($tick * 1.5);
+      margin: rem($tick / 4) 0;
+      padding: 0 rem($tick);
       color: #000;
       background: $color--accent;
     }

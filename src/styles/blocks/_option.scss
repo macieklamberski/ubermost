@@ -1,5 +1,9 @@
 .option {
-  margin-bottom: rem($tick * 2);
+  margin-top: rem($tick * 2);
+
+  &:first-child {
+    margin-top: 0;
+  }
 
   &__heading {
     @extend %heading;
@@ -15,7 +19,7 @@
       top: 0;
       right: 0;
       left: 0;
-      height: rem(1px);
+      height: 1px;
       background: $color--border;
     }
 
@@ -26,10 +30,20 @@
       left: 50%;
       line-height: rem($tick);
       color: $color--faint;
-      font-size: $size--minor;
+      font-size: rem($size--minor);
       padding: 0 rem(10px);
       background: #fff;
       transform: translate(-50%, -50%);
+    }
+  }
+
+  @include breakpoint(tablet) {
+    &, &:first-child {
+      margin-top: rem($tick);
+    }
+
+    &--download {
+      padding-top: rem($tick);
     }
   }
 }

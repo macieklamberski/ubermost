@@ -46,4 +46,16 @@
       display: none;
     }
   }
+
+  @include breakpoint(phablet) {
+    &__group {
+      flex-basis: 50%;
+    }
+  }
+
+  @include breakpoint(mobile) {
+    &__group {
+      flex-basis: 100%;
+    }
+  }
 }

@@ -9,7 +9,6 @@
 
     &__logo {
       img {
-        height: rem($tick * 2);
         height: rem($tick * 1.5);
         margin: rem($tick * .25) 0;
       }
@@ -18,11 +17,17 @@
     &__menu {
       margin: 0 0 0 auto;
       display: flex;
+      padding: 0;
 
       li {
         @extend %heading;
         list-style: none;
         margin-left: rem($tick);
+      }
+
+      i {
+        display: none;
+        font-size: rem($size--base);
       }
 
       a {
@@ -47,6 +52,50 @@
       padding-top: rem($tick * 2);
       flex-basis: 61.8%;
       color: $color--minor;
+    }
+  }
+
+  @include breakpoint(tablet) {
+    &__body {
+      &__info {
+        flex-basis: $width--wrapper;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+  }
+
+  @include breakpoint(phablet) {
+    &__body {
+      &__logo {
+        img {
+          height: rem($tick);
+          margin: 0;
+        }
+      }
+
+      &__menu {
+        align-items: flex-end;
+
+        a {
+          position: relative;
+          margin: 0;
+          top: rem($tick / 4);
+        }
+
+        span {
+          display: none;
+        }
+
+        i {
+          display: inline-block;
+        }
+      }
+
+
+      &__info {
+        flex-basis: 100%;
+      }
     }
   }
 }

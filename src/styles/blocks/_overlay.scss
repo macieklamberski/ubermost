@@ -7,9 +7,9 @@
   bottom: 0;
   left: 0;
   background: rgba(#fff, 0.98);
-  transition: trans(opacity, $duration--overlay), trans(visibility, $duration--overlay);
+  transition: trans(opacity, $duration--overlay), trans(transform, 0s) $duration--overlay;
+  transform: translateX(-100%);
   opacity: 0;
-  visibility: hidden;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   padding: rem($tick * 2) 0;
@@ -59,9 +59,9 @@
   }
 
   &--open {
-    transition: trans(opacity, $duration--overlay), trans(visibility, $duration--overlay);
     opacity: 1;
-    visibility: visible;
+    transform: translateX(0);
+    transition: trans(opacity, $duration--overlay), trans(transform, 0s);
   }
 
   &--open &__body {
@@ -83,6 +83,15 @@
 
     &::after {
       transform: rotate(-45deg);
+    }
+  }
+
+  @include breakpoint(tablet) {
+    padding: rem($tick * 3) 0 rem($tick * 2);
+
+    &__close {
+      background: rgba(#fff, .75);
+      color: $color--base;
     }
   }
 }

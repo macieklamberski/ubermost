@@ -3,6 +3,7 @@
   @extend %container--generator;
   display: flex;
   flex-direction: row-reverse;
+  align-items: flex-start;
 
   &__preview, &__options {
     min-width: 0;
@@ -16,5 +17,24 @@
   &__options {
     flex-basis: 38.2%;
     padding-right: rem($tick * 2);
+  }
+
+  @include breakpoint(tablet) {
+    max-width: $width--wrapper;
+    display: block;
+
+    &__options {
+      padding: 0;
+    }
+  }
+
+  @include breakpoint(phablet) {
+    max-width: none;
+    padding: 0;
+
+    &__options {
+      padding-left: $width--margin;
+      padding-right: $width--margin;
+    }
   }
 }

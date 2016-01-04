@@ -3,7 +3,7 @@
   margin-top: rem($tick * 2);
 
   * {
-    font-size: $size--minor;
+    font-size: rem($size--minor);
     color: $color--faint;
   }
 

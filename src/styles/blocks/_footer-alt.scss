@@ -4,7 +4,7 @@
   background: #F0F0F0;
 
   * {
-    font-size: $size--minor;
+    font-size: rem($size--minor);
     color: $color--faint;
   }
 
@@ -41,7 +41,7 @@
         right: 0;
         bottom: 0;
         left: 0;
-        height: rem(1px);
+        height: 1px;
         background: $color--background;
       }
 
@@ -71,9 +71,11 @@
       }
 
       input {
+        box-sizing: border-box;
+        border-radius: 0;
         border: 0;
         padding: ($tick / 2);
-        height: rem($tick / 2);
+        height: rem($tick * 1.5);
         width: rem($tick * 8);
         color: $color--base;
       }
@@ -86,8 +88,8 @@
         position: absolute;
         top: rem($tick / 4);
         right: 0;
-        padding: ($tick / 2);
-        line-height: rem($tick / 2);
+        padding: 0 ($tick / 2);
+        height: rem($tick * 1.5);
         cursor: pointer;
 
         i {
@@ -106,6 +108,42 @@
 
     &__copy {
       float: right;
+    }
+  }
+
+  @include breakpoint(tablet) {
+    &__body {
+      &__newsletter {
+        fieldset {
+          position: relative;
+        }
+      }
+    }
+  }
+
+  @include breakpoint(phablet) {
+    &__body {
+      &__links {
+        display: none;
+      }
+
+      &__copy {
+        float: none;
+      }
+    }
+  }
+
+  @include breakpoint(phone) {
+    padding-top: rem($tick);
+    padding-bottom: rem($tick);
+
+    &__body {
+      &__newsletter {
+        fieldset, input {
+          display: block;
+          width: 100%;
+        }
+      }
     }
   }
 }

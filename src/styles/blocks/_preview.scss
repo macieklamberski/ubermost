@@ -3,7 +3,7 @@
   overflow: hidden;
   width: 100%;
   padding-top: 100%;
-  background: $color--faint no-repeat center;
+  background: $color--faint no-repeat top;
   background-size: contain;
 
   &__image {
@@ -32,7 +32,8 @@
       color: $color--minor;
 
       &__change, &__or {
-        transition: trans(transform);
+        transition: trans(transform), trans(opacity);
+        opacity: 0;
       }
 
       &__change {
@@ -59,5 +60,33 @@
   .loading--done &:hover &__details__body__change,
   .loading--done &:hover &__details__body__or {
     transform: translateY(0);
+    opacity: 1;
+  }
+
+  @include breakpoint(tablet) {
+    padding-bottom: rem($tick * 3);
+
+    &__details {
+      opacity: 1;
+      top: auto;
+      padding: rem($tick / 2) 0;
+      background: $color--base;
+
+      &__body {
+        position: static;
+        transform: translate(0);
+
+        &__change, &__or {
+          margin: 0;
+          transform: none;
+          opacity: 1;
+          display: inline-block;
+        }
+
+        &__or span {
+          margin: 0 rem($tick / 8) 0 rem($tick / 4);
+        }
+      }
+    }
   }
 }

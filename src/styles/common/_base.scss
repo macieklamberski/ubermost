@@ -16,7 +16,7 @@ html {
   }
 
   @include breakpoint(phone) {
-    font-size: rem($size--base * 0.9);
+    font-size: rem($size--base * 0.95);
   }
 }
 

@@ -31,6 +31,6 @@
   &__label {
     margin-right: rem(5px);
     float: left;
-    font-size: $size--minor;
+    font-size: rem($size--minor);
   }
 }

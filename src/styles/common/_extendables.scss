@@ -7,8 +7,8 @@
   padding-right: rem($tick);
 
   @include breakpoint(phablet) {
-    padding-left: 5%;
-    padding-right: 5%;
+    padding-left: $width--margin;
+    padding-right: $width--margin;
   }
 }
 
