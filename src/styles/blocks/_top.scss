@@ -21,6 +21,8 @@
 
     a {
       text-decoration: underline;
+      padding: rem($tick / 2);
+      margin: rem(-$tick / 2);
     }
   }
 
@@ -30,7 +32,7 @@
     padding: 0.5em;
   }
 
-  @include breakpoint(phablet) {
+  @include breakpoint(phone) {
     padding-top: rem($tick);
     padding-bottom: rem($tick);
 

@@ -53,7 +53,7 @@
   &__links {
     @extend %container;
     margin-top: rem($tick);
-    padding: 0;
+    margin-bottom: 0;
 
     li {
       display: inline-block;
@@ -99,6 +99,7 @@
     }
 
     &__image {
+      max-width: none;
       padding-left: 0;
       padding-right: 0;
     }

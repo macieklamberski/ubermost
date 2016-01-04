@@ -11,8 +11,12 @@ html {
     background: $color--accent;
   }
 
+  @include breakpoint(phablet) {
+    font-size: rem($size--base * 0.975);
+  }
+
   @include breakpoint(phone) {
-    font-size: rem($size--base) * 0.9;
+    font-size: rem($size--base * 0.9);
   }
 }
 

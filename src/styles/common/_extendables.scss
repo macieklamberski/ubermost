@@ -20,6 +20,7 @@
   position: relative;
   padding-top: rem($tick * 2);
   padding-bottom: rem($tick * 2);
+  margin: 0;
 
   &::before {
     content: '';
@@ -31,7 +32,7 @@
     background-color: $color--border;
   }
 
-  @include breakpoint(phablet) {
+  @include breakpoint(phone) {
     padding-top: rem($tick);
     padding-bottom: rem($tick);
   }
