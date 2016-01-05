@@ -82,7 +82,25 @@
           margin: 0;
           top: rem($tick / 4);
         }
+      }
 
+      &__info {
+        flex-basis: 100%;
+      }
+    }
+  }
+
+  @include breakpoint(phone) {
+    &__body {
+      &__info {
+        padding-top: rem($tick);
+      }
+    }
+  }
+
+  @include breakpoint(mobile) {
+    &__body {
+      &__menu {
         span {
           display: none;
         }
@@ -90,11 +108,6 @@
         i {
           display: inline-block;
         }
-      }
-
-
-      &__info {
-        flex-basis: 100%;
       }
     }
   }
