@@ -1,4 +1,6 @@
 .button {
+  border: 0;
+  margin: 0;
   display: block;
   text-transform: uppercase;
   text-align: center;
@@ -14,6 +16,15 @@
     &:hover {
       color: #fff;
       background: #000;
+    }
+  }
+
+  &--download {
+    width: 100%;
+
+    &:disabled {
+      background: $color--base;
+      cursor: progress;
     }
   }
 

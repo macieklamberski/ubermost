@@ -2,6 +2,12 @@
   color: $color--minor;
   font-size: 0;
   line-height: rem($tick * 2);
+  opacity: 0;
+  transition: trans(opacity, $duration--ease);
+
+  &--enabled {
+    opacity: 1;
+  }
 
   &__link {
     float: left;

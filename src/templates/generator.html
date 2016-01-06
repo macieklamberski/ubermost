@@ -39,11 +39,11 @@
 
     <main class="main">
       <div class="main__preview loading">
-        <div class="loading__body preview" data-gateway="media/post.json" data-post-id="1"></div>
+        <div class="loading__body preview" data-gateway="media/post.json" data-action="get_post" data-post-id="1"></div>
         <span class="loading__indicator"></span>
       </div>
 
-      <div class="main__options">
+      <form method="post" action="" class="main__options">
         <section class="option">
           <h2 class="option__heading">Color</h2>
           <ul class="colors">
@@ -79,24 +79,10 @@
           </div>
         </section>
         <section class="option option--download">
-          <a href="#" class="button button--download">Download wallpaper</a>
-          <div class="share">
-            <span class="share__label">Or share the wisdom:</span>
-            <a href="http://www.facebook.com/sharer/sharer.php?u=http://iconosquare.com/p/1089242589679850121_1998556539" class="share__link share__link--facebook">
-              <i class="fa fa-facebook"></i>
-            </a>
-            <a href="http://pinterest.com/pin/create/button/?url=http://iconosquare.com/p/1089242589679850121_1998556539&media=https://scontent.cdninstagram.com/hphotos-xpa1/t51.2885-15/e15/12106281_1692144297685773_1294270895_n.jpg" class="share__link share__link--pinterest">
-              <i class="fa fa-pinterest-p"></i>
-            </a>
-            <a href="http://twitter.com/intent/tweet?source=iconosquare&text=Instagram%20photo%20by%20@klaaaudiiaaaa%20(Klaudia%20Sztejkowska)%20-%20via%20Iconosquare&url=http://iconosquare.com/p/1089242589679850121_1998556539" class="share__link share__link--twitter">
-              <i class="fa fa-twitter"></i>
-            </a>
-            <a href="http://www.tumblr.com/share/photo?source=https%3A%2F%2Fscontent.cdninstagram.com%2Fhphotos-xpa1%2Ft51.2885-15%2Fe15%2F12106281_1692144297685773_1294270895_n.jpg&caption=%23chlejemy+%23zdr%C3%B3wko+%23m%C5%82odych+%23pan+%21+%3A%2A&clickthru=http%3A%2F%2Ficonosquare.com%2Fp%2F1089242589679850121_1998556539" class="share__link share__link--tumblr">
-              <i class="fa fa-tumblr"></i>
-            </a>
-          </div>
+          <button type="submit" class="button button--download" disabled>Download wallpaper</button>
+          <div class="share"></div>
         </section>
-      </div>
+      </form>
     </main>
 
     <footer class="footer-alt">
@@ -239,7 +225,7 @@
     <section id="posts-overlay" class="overlay loading">
       <a href="#" class="overlay__close"></a>
       <div class="overlay__body">
-        <ul class="loading__body posts" data-gateway="media/posts.json"></ul>
+        <ul class="loading__body posts" data-gateway="media/posts.json" data-action="get_posts"></ul>
       </div>
       <span class="loading__indicator"></span>
     </section>
@@ -257,6 +243,26 @@
             </p>
           </div>
         </div>
+      {% endraw %}
+    </script>
+
+    <script id="share-template" type="x-handlebars-template">
+      {% raw %}
+        <span class="share__label">Or share the wisdom:</span>
+        <a href="http://www.facebook.com/sharer/sharer.php?u={{blog_link}}" class="share__link share__link--facebook">
+          <i class="fa fa-facebook"></i>
+        </a>
+        <a href="http://pinterest.com/pin/create/button/?url={{blog_link}}&amp;media={{blog_image}}" class="share__link share__link--pinterest">
+          <i class="fa fa-pinterest-p"></i>
+        </a>
+        <a href="http://twitter.com/intent/tweet?source=Ubermost&amp;text=&url={{blog_link}}" class="share__link share__link--twitter">
+          <i class="fa fa-twitter"></i>
+        </a>
+        {{#if reblog_link}}
+        <a href="{{reblog_link}}" class="share__link share__link--tumblr">
+          <i class="fa fa-tumblr"></i>
+        </a>
+        {{/if}}
       {% endraw %}
     </script>
 

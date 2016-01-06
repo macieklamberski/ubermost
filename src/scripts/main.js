@@ -86,6 +86,7 @@
   var Posts = {
     $container: $('.posts'),
     $gateway: $('.posts').data('gateway'),
+    $action: $('.posts').data('action'),
     $overlay: $('#posts-overlay'),
     $loading: $('#posts-overlay'),
 
@@ -118,7 +119,13 @@
         return;
       }
 
-      $.get(Posts.$gateway, function (data) {
+      $.get(Posts.$gateway, {action: Posts.$action}, function (result) {
+        if (result.data) {
+          data = result.data;
+        } else {
+          return;
+        }
+
         var html = Helper.compileTemplate('posts', data);
         Posts.$container.html(html);
         Posts.$container.find('img').css('opacity', 0);
@@ -141,7 +148,9 @@
 
   var Preview = {
     $container: $('.preview'),
+    $share: $('.share'),
     $gateway: $('.preview').data('gateway'),
+    $action: $('.preview').data('action'),
     $loading: $('.preview').closest('.loading'),
 
     init: function () {
@@ -157,15 +166,23 @@
 
     load: function (postId, colorId) {
       Helper.startLoading(Preview.$loading);
+      Download.$trigger.attr('disabled', 'disabled');
 
       setTimeout(function () {
-        $.get(Preview.$gateway, {id: postId, color: colorId}, function (data) {
+        $.get(Preview.$gateway, {action: Preview.$action, post: postId, color: colorId}, function (result) {
+          if (result.data) {
+            data = result.data;
+          } else {
+            return;
+          }
+
+          Preview.$share.html(Helper.compileTemplate('share', data));
+          Preview.$share.addClass('share--enabled');
+          Download.$trigger.removeAttr('disabled');
+
           Preview.$container.data('post-id', postId);
-
-          var html = Helper.compileTemplate('post', data);
-          Preview.$container.html(html);
+          Preview.$container.html(Helper.compileTemplate('post', data));
           Preview.$container.find('img').css('opacity', 0);
-
           Preview.$container.imagesLoaded(function () {
             Helper.stopLoading(Preview.$loading);
             Preview.$container.find('img')
@@ -180,6 +197,15 @@
       }, 1000);
     }
   };
+
+  var Download = {
+    $form: $('.button--download'),
+    $trigger: $('.button--download'),
+
+    init: function () {
+
+    }
+  }
 
   var Keyboard = {
     init: function () {
@@ -204,6 +230,7 @@
       Colors.init();
       Posts.init();
       Preview.init();
+      Download.init();
       Keyboard.init();
     }
   };
