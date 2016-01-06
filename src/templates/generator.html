@@ -39,11 +39,14 @@
 
     <main class="main">
       <div class="main__preview loading">
-        <div class="loading__body preview" data-gateway="media/post.json" data-action="get_post" data-post-id="1"></div>
+        <div class="loading__body preview" data-gateway="media/post.json" data-action="get_post"></div>
         <span class="loading__indicator"></span>
       </div>
 
-      <form method="post" action="" class="main__options">
+      <form method="get" action="" class="main__options">
+        <input type="hidden" name="post" value="1">
+        <input type="hidden" name="size" value="">
+
         <section class="option">
           <h2 class="option__heading">Color</h2>
           <ul class="colors">

@@ -1,8 +1,6 @@
 .option {
-  margin-top: rem($tick * 2);
-
-  &:first-child {
-    margin-top: 0;
+  & + & {
+    margin-top: rem($tick * 2);
   }
 
   &__heading {

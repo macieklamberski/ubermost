@@ -39,6 +39,7 @@
     $trigger: $('.dropdown'),
     $selected: $('.dropdown span'),
     $overlay: $('#sizes-overlay'),
+    $input: $('form input[name="size"]'),
 
     init: function () {
       Sizes.bindOpenOverlay();
@@ -54,7 +55,9 @@
 
     bindSelectSize: function () {
       Sizes.$overlay.find('label').on('click', function (event) {
-        Sizes.$selected.html($(this).find('span').html());
+        var $self = $(this);
+        Sizes.$input.val($('input', $self).val());
+        Sizes.$selected.html($('span', $self).html());
         Helper.closeOverlay(Sizes.$overlay);
         event.preventDefault();
       });
@@ -152,6 +155,7 @@
     $gateway: $('.preview').data('gateway'),
     $action: $('.preview').data('action'),
     $loading: $('.preview').closest('.loading'),
+    $input: $('form input[name="post"]'),
 
     init: function () {
       Preview.load(
@@ -161,7 +165,7 @@
     },
 
     getCurrentPostId: function () {
-      return Preview.$container.data('post-id');
+      return Preview.$input.val();
     },
 
     load: function (postId, colorId) {
@@ -180,7 +184,7 @@
           Preview.$share.addClass('share--enabled');
           Download.$trigger.removeAttr('disabled');
 
-          Preview.$container.data('post-id', postId);
+          Preview.$input.val(postId);
           Preview.$container.html(Helper.compileTemplate('post', data));
           Preview.$container.find('img').css('opacity', 0);
           Preview.$container.imagesLoaded(function () {
@@ -199,11 +203,20 @@
   };
 
   var Download = {
-    $form: $('.button--download'),
+    $form: $('.main__options'),
     $trigger: $('.button--download'),
 
     init: function () {
+      Download.bindDownloadWallpaper();
+    },
 
+    bindDownloadWallpaper: function () {
+      Download.$form.on('submit', function (event) {
+        var self = this;
+        Download.$trigger.text('Good choice, man!');
+        event.preventDefault();
+        setTimeout(function() { self.submit(); }, 1);
+      });
     }
   }
 
