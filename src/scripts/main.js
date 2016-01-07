@@ -44,6 +44,7 @@
     init: function () {
       Sizes.bindOpenOverlay();
       Sizes.bindSelectSize();
+      Sizes.detectInitialResolution();
     },
 
     bindOpenOverlay: function () {
@@ -61,6 +62,51 @@
         Helper.closeOverlay(Sizes.$overlay);
         event.preventDefault();
       });
+    },
+
+    detectInitialResolution: function () {
+      var screenX = screen.width;
+      var screenY = screen.height;
+      var $matched = null;
+
+      // Check if there's option with exact size.
+      $('label[data-width="' + screenX + '"][data-height="' + screenY + '"]').each(function () {
+        $matched = $(this);
+      });
+
+      // Check if there's option with the same ratio.
+      if (!$matched) {
+        var $sizes = $('label[data-ratio="' + (screenX / screenY).toFixed(1) + '"]');
+
+        $sizes.each(function () {
+          var $self = $(this);
+          if ($self.data('width') > screenX && $self.data('height') > screenY) {
+            if (!$matched || $self.data('width') < $matched.data('width') && $self.data('height') < $matched.data('height')) {
+              $matched = $self;
+            }
+          }
+        });
+      }
+
+      // Match any resolution that is bigger.
+      if (!$matched) {
+        var $sizes = $('label[data-ratio]');
+
+        $sizes.each(function () {
+          var $self = $(this);
+          if ($self.data('width') > screenX && $self.data('height') > screenY) {
+            if (!$matched || $self.data('width') < $matched.data('width') && $self.data('height') < $matched.data('height')) {
+              $matched = $self;
+            }
+          }
+        });
+      }
+
+      if ($matched) {
+        $matched.trigger('click');
+        Sizes.$selected.find('em').remove();
+        Sizes.$selected.append(Sizes.$selected.data('detected'));
+      }
     }
   };
 
@@ -213,7 +259,6 @@
     bindDownloadWallpaper: function () {
       Download.$form.on('submit', function (event) {
         var self = this;
-        Download.$trigger.text('Good choice, man!');
         event.preventDefault();
         setTimeout(function() { self.submit(); }, 1);
       });
