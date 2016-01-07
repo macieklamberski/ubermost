@@ -218,33 +218,31 @@
       Helper.startLoading(Preview.$loading);
       Download.$trigger.attr('disabled', 'disabled');
 
-      setTimeout(function () {
-        $.get(Preview.$gateway, {action: Preview.$action, post: postId, color: colorId}, function (result) {
-          if (result.data) {
-            data = result.data;
-          } else {
-            return;
-          }
+      $.get(Preview.$gateway, {action: Preview.$action, post: postId, color: colorId}, function (result) {
+        if (result.data) {
+          data = result.data;
+        } else {
+          return;
+        }
 
-          Preview.$share.html(Helper.compileTemplate('share', data));
-          Preview.$share.addClass('share--enabled');
-          Download.$trigger.removeAttr('disabled');
+        Preview.$share.html(Helper.compileTemplate('share', data));
+        Preview.$share.addClass('share--enabled');
+        Download.$trigger.removeAttr('disabled');
 
-          Preview.$input.val(postId);
-          Preview.$container.html(Helper.compileTemplate('post', data));
-          Preview.$container.find('img').css('opacity', 0);
-          Preview.$container.imagesLoaded(function () {
-            Helper.stopLoading(Preview.$loading);
-            Preview.$container.find('img')
-              .velocity('fadeIn', {
-                duration: 400,
-                complete: function () {
-                  Preview.$container.css('background-image', 'url(' + data.image + ')');
-                }
-              });
-          });
-        }, 'json');
-      }, 1000);
+        Preview.$input.val(postId);
+        Preview.$container.html(Helper.compileTemplate('post', data));
+        Preview.$container.find('img').css('opacity', 0);
+        Preview.$container.imagesLoaded(function () {
+          Helper.stopLoading(Preview.$loading);
+          Preview.$container.find('img')
+            .velocity('fadeIn', {
+              duration: 400,
+              complete: function () {
+                Preview.$container.css('background-image', 'url(' + data.image + ')');
+              }
+            });
+        });
+      }, 'json');
     }
   };
 
