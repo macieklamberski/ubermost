@@ -44,7 +44,10 @@
     init: function () {
       Sizes.bindOpenOverlay();
       Sizes.bindSelectSize();
-      Sizes.detectInitialResolution();
+
+      if (!Sizes.$input.val()) {
+        Sizes.detectInitialResolution();
+      }
     },
 
     bindOpenOverlay: function () {
