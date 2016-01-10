@@ -39,7 +39,7 @@
     $trigger: $('.dropdown'),
     $selected: $('.dropdown span'),
     $overlay: $('#sizes-overlay'),
-    $input: $('form input[name="size"]'),
+    $input: $('form input[name="size_id"]'),
 
     init: function () {
       Sizes.bindOpenOverlay();
@@ -201,7 +201,7 @@
     $gateway: $('.preview').data('gateway'),
     $action: $('.preview').data('action'),
     $loading: $('.preview').closest('.loading'),
-    $input: $('form input[name="post"]'),
+    $input: $('form input[name="post_id"]'),
 
     init: function () {
       Preview.load(
@@ -218,7 +218,7 @@
       Helper.startLoading(Preview.$loading);
       Download.$trigger.attr('disabled', 'disabled');
 
-      $.get(Preview.$gateway, {action: Preview.$action, post: postId, color: colorId}, function (result) {
+      $.get(Preview.$gateway, {action: Preview.$action, post_id: postId, color_id: colorId}, function (result) {
         if (result.data) {
           data = result.data;
         } else {

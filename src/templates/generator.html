@@ -44,8 +44,8 @@
       </div>
 
       <form method="get" action="" class="main__options">
-        <input type="hidden" name="post" value="1">
-        <input type="hidden" name="size" value="">
+        <input type="hidden" name="post_id" value="1">
+        <input type="hidden" name="size_id" value="">
 
         <section class="option">
           <h2 class="option__heading">Color</h2>
@@ -67,7 +67,7 @@
             {% for index, color in colors %}
               <li>
                 <label class="color" style="color: {{ color[0] }}">
-                  <input type="radio" name="color" value="{{ index + 1 }}" {% if loop.first %}checked{% endif %}>
+                  <input type="radio" name="color_id" value="{{ index + 1 }}" {% if loop.first %}checked{% endif %}>
                   <span><i class="fa fa-check" style="color: {{ color[1] }}"></i></span>
                 </label>
               </li>
