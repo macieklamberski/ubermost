@@ -218,7 +218,10 @@
     },
 
     load: function (postId, colorId) {
-      Helper.startLoading(Preview.$loading);
+      var loading = setTimeout(function () {
+        Helper.startLoading(Preview.$loading);
+      }, 250);
+
       Download.$trigger.attr('disabled', 'disabled');
 
       $.get(Preview.$gateway, {action: Preview.$action, post_id: postId, color_id: colorId}, function (result) {
@@ -236,6 +239,7 @@
         Preview.$container.html(Helper.compileTemplate('post', data));
         Preview.$container.find('img').css('opacity', 0);
         Preview.$container.imagesLoaded(function () {
+          clearTimeout(loading);
           Helper.stopLoading(Preview.$loading);
           Preview.$container.find('img')
             .velocity('fadeIn', {
