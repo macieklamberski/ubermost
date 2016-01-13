@@ -8,10 +8,9 @@
 
   &__image {
     position: absolute;
-    top: -1%;
-    left: -1%;
-    width: 102%;
-    max-width: 102%;
+    top: 0;
+    left: 0;
+    width: 100%;
   }
 
   &__details {
@@ -65,7 +64,7 @@
   }
 
   @include breakpoint(tablet) {
-    padding-bottom: rem($tick * 3);
+    padding-bottom: rem($tick * 2.5);
 
     &__details {
       opacity: 1;
