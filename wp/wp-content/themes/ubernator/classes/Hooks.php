@@ -195,8 +195,6 @@ class Hooks {
                 'plural' => 'Wallpapers for %s Posts was regenerated.',
             ],
             'callback' => function ($post_ids) {
-                phpinfo(); die;
-
                 $generator = new Generator();
                 $sizes     = Helper::load_public_sizes();
                 $colors    = Helper::load_public_colors();
