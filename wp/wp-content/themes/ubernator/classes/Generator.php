@@ -49,7 +49,7 @@ class Generator {
         }
 
         $lettering = $this->imagine->open($lettering_file);
-        $lettering = $lettering->thumbnail(new Box($width, $height));
+        $lettering = $this->resizeImage($lettering, $width, $height);
 
         return $lettering;
     }
@@ -60,7 +60,7 @@ class Generator {
      */
     protected function prepareMask(Image $lettering, $width, $height) {
         $mask = $this->imagine->create(new Box($width, $height));
-        $mask = $this->trimImage($mask, $width, $height);
+        $mask = $this->resizeImage($mask, $width, $height, true);
         $mask->paste($lettering, new Point(
             ($width - $lettering->getSize()->getWidth()) / 2,
             ($height - $lettering->getSize()->getHeight()) / 2
@@ -74,7 +74,7 @@ class Generator {
      */
     protected function prepareForeground($foreground_file, Image $mask, $width, $height) {
         $foreground = $this->imagine->open($foreground_file);
-        $foreground = $this->trimImage($foreground, $width, $height);
+        $foreground = $this->resizeImage($foreground, $width, $height, true);
         $foreground->applyMask($mask);
 
         return $foreground;
@@ -85,7 +85,7 @@ class Generator {
      */
     protected function compileImage($background_file, Image $foreground, $width, $height) {
         $image = $this->imagine->open($background_file);
-        $image = $this->trimImage($image, $width, $height);
+        $image = $this->resizeImage($image, $width, $height, true);
         $image->paste($foreground, new Point(0, 0));
 
         return $image;
@@ -94,16 +94,31 @@ class Generator {
     /**
      * If image exceeds the size of generated image - scale it down and crop.
      */
-    protected function trimImage(Image $image, $width, $height) {
-        $image_width  = $image->getSize()->getWidth();
-        $image_height = $image->getSize()->getHeight();
+    protected function resizeImage(Image $image, $width, $height, $crop = false) {
+        $new     = new Box($width, $height);
+        $current = $image->getSize();
+        $ratio   = max([
+            $new->getWidth() / $current->getWidth(),
+            $new->getHeight() / $current->getHeight()
+        ]);
 
-        if ($image_width > $width || $image_height > $height) {
-            $image = $image->thumbnail(
-                new Box($width, $height),
-                Image::THUMBNAIL_OUTBOUND
-            );
+        if ($new->contains($current)) {
+            return $image;
         }
+
+        if (!$current->contains($new)) {
+            $new = new Box(
+                min($current->getWidth(), $new->getWidth()),
+                min($current->getHeight(), $new->getHeight())
+            );
+        } else {
+            $current = $image->getSize()->scale($ratio);
+            $image->resize($current);
+        }
+        $image->crop(new Point(
+            max(0, round(($current->getWidth() - $new->getWidth()) / 2)),
+            max(0, round(($current->getHeight() - $new->getHeight()) / 2))
+        ), $new);
 
         return $image;
     }
