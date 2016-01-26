@@ -3,6 +3,7 @@ namespace Ubernator;
 
 use Ubernator\Generator;
 use Ubernator\Helper;
+use Ubernator\Wallpapers;
 
 /**
  * Sack for all the custom filters and actions.
@@ -14,7 +15,7 @@ class Hooks {
      */
     public function register() {
         add_filter('upload_mimes', [$this, 'allow_svg_upload']);
-        add_action('admin_init', [$this, 'enable_bigger_limits_for_admin']);
+        add_action('init', [$this, 'register_utility_page']);
         add_action('init', [$this, 'register_posts']);
         add_action('init', [$this, 'register_groups_taxonomy']);
         add_action('wp_ajax_get_post', [$this, 'get_post']);
@@ -35,11 +36,16 @@ class Hooks {
     }
 
     /**
-     * Add more memory and execution time for the admin.
+     * Add custom utility page for regenerating wallpapers.
      */
-    public function enable_bigger_limits_for_admin() {
-        ini_set('max_execution_time', 3600);
-        ini_set('memory_limit', '1G');
+    public function register_utility_page() {
+        add_management_page(
+            'Regnerate Wallpapers',
+            'Regen. Wallpapers',
+            'upload_files',
+            'regenerate-wallpapers',
+            [new Wallpapers(), 'build']
+        );
     }
 
     /**
