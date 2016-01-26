@@ -195,9 +195,12 @@ class Hooks {
                 'plural' => 'Wallpapers for %s Posts was regenerated.',
             ],
             'callback' => function ($post_ids) {
+                $start_time   = microtime(true);
+                $start_memory = '';
+
                 $generator = new Generator();
-                $sizes     = Helper::load_public_sizes();
-                $colors    = Helper::load_public_colors();
+                $sizes     = get_posts(['post_type' => 'size', 'posts_per_page' => -1]);
+                $colors    = get_posts(['post_type' => 'color', 'posts_per_page' => -1]);
 
                 foreach ($sizes as $id => $size) {
                     $sizes[$id] = [
@@ -242,6 +245,13 @@ class Hooks {
                         }
                     }
                 }
+
+                print_r([
+                    'execution_max_memory' => round(memory_get_peak_usage(true) / 1048576, 2).'MB',
+                    'execution_memory'     => round(memory_get_usage(true) / 1048576, 2).'MB',
+                    'execution_time'       => round(microtime(true) - $start_time, 2).'s',
+                ]);
+                die;
 
                 return true;
             }
