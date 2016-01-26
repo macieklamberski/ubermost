@@ -14,6 +14,7 @@ class Hooks {
      */
     public function register() {
         add_filter('upload_mimes', [$this, 'allow_svg_upload']);
+        add_action('admin_init', [$this, 'enable_bigger_limits_for_admin']);
         // add_action('init', [$this, 'register_thumbnail_sizes']);
         add_action('init', [$this, 'register_posts']);
         add_action('init', [$this, 'register_groups_taxonomy']);
@@ -32,6 +33,14 @@ class Hooks {
         if (class_exists('\Seravo_Custom_Bulk_Action')) {
             $this->define_bulk_regenerate_posts_wallpapers();
         }
+    }
+
+    /**
+     * Add more memory and execution time for the admin.
+     */
+    public function enable_bigger_limits_for_admin() {
+        ini_set('max_execution_time', 3600);
+        ini_set('memory_limit', '1G');
     }
 
     /**
@@ -186,8 +195,7 @@ class Hooks {
                 'plural' => 'Wallpapers for %s Posts was regenerated.',
             ],
             'callback' => function ($post_ids) {
-                $start_time   = microtime(true);
-                $start_memory = '';
+                phpinfo(); die;
 
                 $generator = new Generator();
                 $sizes     = Helper::load_public_sizes();
@@ -236,13 +244,6 @@ class Hooks {
                         }
                     }
                 }
-
-                print_r([
-                    'execution_max_memory' => round(memory_get_peak_usage() / 1048576, 2).'MB',
-                    'execution_memory'     => round(memory_get_usage() / 1048576, 2).'MB',
-                    'execution_time'       => round(microtime(true) - $start_time, 2).'s',
-                ]);
-                die;
 
                 return true;
             }
