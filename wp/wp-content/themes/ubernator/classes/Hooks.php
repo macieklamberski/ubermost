@@ -15,7 +15,6 @@ class Hooks {
     public function register() {
         add_filter('upload_mimes', [$this, 'allow_svg_upload']);
         add_action('admin_init', [$this, 'enable_bigger_limits_for_admin']);
-        // add_action('init', [$this, 'register_thumbnail_sizes']);
         add_action('init', [$this, 'register_posts']);
         add_action('init', [$this, 'register_groups_taxonomy']);
         add_action('wp_ajax_get_post', [$this, 'get_post']);
@@ -41,22 +40,6 @@ class Hooks {
     public function enable_bigger_limits_for_admin() {
         ini_set('max_execution_time', 3600);
         ini_set('memory_limit', '1G');
-    }
-
-    /**
-     * Register additional thumbnail sizes from the Sizes CPT.
-     */
-    public function register_thumbnail_sizes() {
-        $sizes = get_posts(['post_type' => 'size', 'posts_per_page' => -1]);
-
-        foreach ($sizes as $size) {
-            add_image_size(
-                $size->post_name,
-                get_field('width', $size->ID),
-                get_field('height', $size->ID),
-                true
-            );
-        }
     }
 
     /**
