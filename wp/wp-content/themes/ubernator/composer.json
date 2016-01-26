@@ -1,0 +1,10 @@
+{
+    "require": {
+        "imagine/imagine": "0.6.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ubernator\\": "classes/"
+        }
+    }
+}
