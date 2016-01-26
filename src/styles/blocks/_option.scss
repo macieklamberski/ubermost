@@ -36,7 +36,7 @@
   }
 
   @include breakpoint(tablet) {
-    &, &:first-child {
+    &, & + & {
       margin-top: rem($tick);
     }
 

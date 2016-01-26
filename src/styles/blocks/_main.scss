@@ -20,7 +20,7 @@
   }
 
   @include breakpoint(tablet) {
-    max-width: $width--wrapper;
+    max-width: rem($width--wrapper);
     display: block;
 
     &__options {
@@ -33,8 +33,8 @@
     padding: 0;
 
     &__options {
-      padding-left: $width--margin;
-      padding-right: $width--margin;
+      padding-left: rem($width--margin);
+      padding-right: rem($width--margin);
     }
   }
 }

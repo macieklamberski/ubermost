@@ -22,11 +22,11 @@ $font--serif : ('Source Serif Pro', Georgia, serif);
 $font--sans  : ('Source Sans Pro', Arial, sans-serif);
 $font--mono  : (Inconsolata, monospace, sans-serif);
 
-$width--margin    : 5%;
-$width--wrapper   : rem($tick * 20);
-$width--generator : rem($tick * 35);
+$width--margin    : $tick / 2;
+$width--wrapper   : $tick * 20;
+$width--generator : $tick * 35;
 $width--left      : ($width--generator / 1.61803398875);
-$width--right     : ($width--generator - $width--left) - rem($tick * 2);
+$width--right     : ($width--generator - $width--left) - ($tick * 2);
 
 $duration--base    : 200ms;
 $duration--ease    : 400ms;

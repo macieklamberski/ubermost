@@ -11,7 +11,7 @@ Helper::download($current_post, $current_color, $current_size);
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
         <title>Ubermost&mdash;Create</title>
         <link href="//assets.ubermost.com/images/favicon.png" rel="shortcut icon">
         <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro|Source+Serif+Pro:400,600" rel="stylesheet">

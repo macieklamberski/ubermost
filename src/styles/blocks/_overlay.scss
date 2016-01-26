@@ -7,7 +7,7 @@
   bottom: 0;
   left: 0;
   background: rgba(#fff, 0.98);
-  transition: trans(opacity, $duration--overlay), trans(transform, 0s) $duration--overlay;
+  transition: trans(opacity, $duration--overlay / 2), trans(transform, 0ms) ($duration--overlay / 2);
   transform: translateX(-100%);
   opacity: 0;
   overflow: auto;
@@ -26,15 +26,16 @@
   }
 
   &__close {
+    $whitespace: $tick / 2;
     position: fixed;
     z-index: 1;
-    top: rem($tick);
-    right: rem($tick);
+    top: rem($whitespace);
+    right: rem($whitespace);
     font-size: rem(24px);
     width: rem($tick);
     height: rem($tick);
-    padding: rem($tick);
-    margin: rem(-$tick);
+    padding: rem($whitespace);
+    margin: rem(-$whitespace);
 
     &::before, &::after {
       content: '';
@@ -43,8 +44,8 @@
       top: 50%;
       margin-top: rem(-1.5px);
       opacity: 0;
-      left: rem($tick);
-      right: rem($tick);
+      left: rem($whitespace);
+      right: rem($whitespace);
       background: currentColor;
       transition: trans(transform, $duration--overlay, ease-out), trans(opacity, $duration--overlay);
     }
@@ -61,7 +62,7 @@
   &--open {
     opacity: 1;
     transform: translateX(0);
-    transition: trans(opacity, $duration--overlay), trans(transform, 0s);
+    transition: trans(opacity, $duration--overlay), trans(transform, 0ms);
   }
 
   &--open &__body {
@@ -87,7 +88,7 @@
   }
 
   @include breakpoint(tablet) {
-    padding: rem($tick * 3) 0 rem($tick * 2);
+    padding: rem($tick / 2) 0;
 
     &__close {
       background: rgba(#fff, .75);

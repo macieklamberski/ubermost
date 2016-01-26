@@ -1,19 +1,19 @@
 %container {
   display: block;
-  max-width: $width--wrapper;
+  max-width: rem($width--wrapper);
   margin-left: auto;
   margin-right: auto;
   padding-left: rem($tick);
   padding-right: rem($tick);
 
   @include breakpoint(phablet) {
-    padding-left: $width--margin;
-    padding-right: $width--margin;
+    padding-left: rem($width--margin);
+    padding-right: rem($width--margin);
   }
 }
 
 %container--generator {
-  max-width: $width--generator;
+  max-width: rem($width--generator);
 }
 
 %block {

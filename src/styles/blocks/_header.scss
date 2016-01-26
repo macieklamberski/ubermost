@@ -58,7 +58,7 @@
   @include breakpoint(tablet) {
     &__body {
       &__info {
-        flex-basis: $width--wrapper;
+        flex-basis: rem($width--wrapper);
         margin-left: auto;
         margin-right: auto;
       }
