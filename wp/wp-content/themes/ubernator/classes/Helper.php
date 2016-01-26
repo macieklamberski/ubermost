@@ -102,7 +102,7 @@ class Helper {
     }
 
     /**
-     * Load size given in parameter if it meet requirements of being selected.
+     * Load Posts that can be publicly visible.
      */
     public static function load_public_posts() {
         $public_posts = [];
@@ -122,6 +122,9 @@ class Helper {
         return $public_posts;
     }
 
+    /**
+     * Load Colors that can be publicly visible.
+     */
     public static function load_public_colors() {
         return get_posts([
             'post_type'      => 'color',
@@ -135,6 +138,9 @@ class Helper {
         ]);
     }
 
+    /**
+     * Load Sizes that can be publicly visible.
+     */
     public static function load_public_sizes($group = null) {
         return get_posts([
             'post_type'      => 'size',

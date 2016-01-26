@@ -14,6 +14,7 @@ class Hooks {
      */
     public function register() {
         add_filter('upload_mimes', [$this, 'allow_svg_upload']);
+        // add_action('init', [$this, 'register_thumbnail_sizes']);
         add_action('init', [$this, 'register_posts']);
         add_action('init', [$this, 'register_groups_taxonomy']);
         add_action('wp_ajax_get_post', [$this, 'get_post']);
@@ -29,7 +30,23 @@ class Hooks {
 
         // Define custom bulk actions (but only if dsds plugin is enabled).
         if (class_exists('\Seravo_Custom_Bulk_Action')) {
-            $this->define_bulk_regenerate_posts_cache();
+            $this->define_bulk_regenerate_posts_wallpapers();
+        }
+    }
+
+    /**
+     * Register additional thumbnail sizes from the Sizes CPT.
+     */
+    public function register_thumbnail_sizes() {
+        $sizes = get_posts(['post_type' => 'size', 'posts_per_page' => -1]);
+
+        foreach ($sizes as $size) {
+            add_image_size(
+                $size->post_name,
+                get_field('width', $size->ID),
+                get_field('height', $size->ID),
+                true
+            );
         }
     }
 
@@ -155,23 +172,26 @@ class Hooks {
     }
 
     /**
-     * Bulk action for generating cache for selected Posts.
+     * Bulk action for generating wallpapers cache for selected Posts.
      */
-    public function define_bulk_regenerate_posts_cache() {
+    public function define_bulk_regenerate_posts_wallpapers() {
         $bulk_actions = new \Seravo_Custom_Bulk_Action([
             'post_type' => 'post',
         ]);
 
         $bulk_actions->register_bulk_action([
-            'menu_text' => 'Regenerate Cache',
+            'menu_text' => 'Regenerate Wallpapers',
             'admin_notice' => [
-                'single' => 'Cache for 1 Post was regenerated.',
-                'plural' => 'Cache for %s Posts was regenerated.',
+                'single' => 'Wallpapers for 1 Post was regenerated.',
+                'plural' => 'Wallpapers for %s Posts was regenerated.',
             ],
             'callback' => function ($post_ids) {
+                $start_time   = microtime(true);
+                $start_memory = '';
+
                 $generator = new Generator();
-                $sizes     = get_posts(['post_type' => 'size', 'posts_per_page' => -1]);
-                $colors    = get_posts(['post_type' => 'color', 'posts_per_page' => -1]);
+                $sizes     = Helper::get_public_sizes();
+                $colors    = Helper::get_public_sizes();
 
                 foreach ($sizes as $id => $size) {
                     $sizes[$id] = [
@@ -217,7 +237,12 @@ class Hooks {
                     }
                 }
 
-                die(memory_get_peak_usage());
+                print_r([
+                    'execution_max_memory' => round(memory_get_peak_usage() / 1048576, 2).'MB',
+                    'execution_memory'     => round(memory_get_usage() / 1048576, 2).'MB',
+                    'execution_time'       => round(microtime(true) - $start_time, 2).'s',
+                ]);
+                die;
 
                 return true;
             }
