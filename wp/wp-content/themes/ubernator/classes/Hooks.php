@@ -190,8 +190,8 @@ class Hooks {
                 $start_memory = '';
 
                 $generator = new Generator();
-                $sizes     = Helper::get_public_sizes();
-                $colors    = Helper::get_public_sizes();
+                $sizes     = Helper::load_public_sizes();
+                $colors    = Helper::load_public_colors();
 
                 foreach ($sizes as $id => $size) {
                     $sizes[$id] = [
