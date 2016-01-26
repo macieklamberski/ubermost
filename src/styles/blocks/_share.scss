@@ -39,4 +39,11 @@
     float: left;
     font-size: rem($size--minor);
   }
+
+  @include breakpoint(tablet) {
+    &__link {
+      padding-left: rem(10px);
+      padding-right: rem(10px);
+    }
+  }
 }
