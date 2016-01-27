@@ -15,14 +15,15 @@ class Hooks {
      */
     public function register() {
         add_filter('upload_mimes', [$this, 'allow_svg_upload']);
-        add_action('init', [$this, 'register_utility_page']);
         add_action('init', [$this, 'register_posts']);
         add_action('init', [$this, 'register_groups_taxonomy']);
         add_action('wp_ajax_get_post', [$this, 'get_post']);
         add_action('wp_ajax_nopriv_get_post', [$this, 'get_post']);
         add_action('wp_ajax_get_posts', [$this, 'get_posts']);
         add_action('wp_ajax_nopriv_get_posts', [$this, 'get_posts']);
+        add_action('wp_ajax_regenerate_wallpaper', [$this, 'regenerate_wallpaper']);
         add_action('admin_menu', [$this, 'show_published_by_default']);
+        add_action('admin_menu', [$this, 'register_utility_page']);
 
         // Enable Options page if ACF plugins is enabled.
         if (function_exists('acf_add_options_page')) {
@@ -39,12 +40,14 @@ class Hooks {
      * Add custom utility page for regenerating wallpapers.
      */
     public function register_utility_page() {
-        add_management_page(
+        \add_management_page(
             'Regnerate Wallpapers',
             'Regen. Wallpapers',
-            'upload_files',
+            'publish_posts',
             'regenerate-wallpapers',
-            [new Wallpapers(), 'build']
+            function () {
+                require get_stylesheet_directory().'/wallpapers/template.php';
+            }
         );
     }
 
@@ -184,69 +187,49 @@ class Hooks {
                 'plural' => 'Wallpapers for %s Posts was regenerated.',
             ],
             'callback' => function ($post_ids) {
-                $start_time   = microtime(true);
-                $start_memory = '';
-
-                $generator = new Generator();
-                $sizes     = get_posts(['post_type' => 'size', 'posts_per_page' => -1]);
-                $colors    = get_posts(['post_type' => 'color', 'posts_per_page' => -1]);
-
-                foreach ($sizes as $id => $size) {
-                    $sizes[$id] = [
-                        'ID'     => $size->ID,
-                        'width'  => get_field('width', $size->ID),
-                        'height' => get_field('height', $size->ID),
-                        'scale'  => get_field('scale', $size->ID),
-                    ];
-                }
-
-                foreach ($colors as $id => $color) {
-                    $colors[$id] = [
-                        'ID'         => $color->ID,
-                        'foreground' => $this->get_local_path(get_field('fg_texture', $color->ID)),
-                        'background' => $this->get_local_path(get_field('bg_texture', $color->ID)),
-                    ];
-                }
-
-                foreach ($post_ids as $post_id) {
-                    $lettering = $this->get_local_path(get_field('lettering', $post_id));
-
-                    if (!$lettering) {
-                        continue;
-                    }
-
-                    foreach ($colors as $color) {
-                        foreach ($sizes as $size) {
-                            $cache_file = Helper::get_cache_file(
-                                $post_id, $color['ID'], $size['ID']
-                            );
-
-                            $generator
-                                ->generate(
-                                    $lettering,
-                                    $color['foreground'],
-                                    $color['background'],
-                                    $size['width'],
-                                    $size['height'],
-                                    $size['scale']
-                                )
-                                ->save($cache_file, ['jpeg_quality' => 100]);
-                        }
-                    }
-                }
-
-                print_r([
-                    'execution_max_memory' => round(memory_get_peak_usage(true) / 1048576, 2).'MB',
-                    'execution_memory'     => round(memory_get_usage(true) / 1048576, 2).'MB',
-                    'execution_time'       => round(microtime(true) - $start_time, 2).'s',
-                ]);
-                die;
-
-                return true;
+                $url = admin_url('admin.php?page=regenerate-wallpapers');
+                $url = add_query_arg('ids', implode($post_ids, ','), $url);
+                wp_redirect($url);
+                exit;
             }
         ]);
 
         $bulk_actions->init();
+    }
+
+    /**
+     * Regenerate wallpaper for given Post, Color and Size.
+     */
+    public function regenerate_wallpaper() {
+        if (empty($_GET['post_id']) || empty($_GET['color_id']) || empty($_GET['size_id'])) {
+            $this->return_api_error();
+        }
+
+        $post  = get_post(intval($_GET['post_id']));
+        $color = get_post(intval($_GET['color_id']));
+        $size  = get_post(intval($_GET['size_id']));
+
+        if (!$post || !$color || !$size) {
+            $this->return_api_error();
+        }
+
+        (new Generator())
+            ->generate(
+                $this->get_local_path(get_field('lettering', $post->ID)),
+                $this->get_local_path(get_field('fg_texture', $color->ID)),
+                $this->get_local_path(get_field('bg_texture', $color->ID)),
+                get_field('width', $size->ID),
+                get_field('height', $size->ID),
+                get_field('scale', $size->ID)
+            )
+            ->save(
+                $cache_file = Helper::get_cache_file(
+                    $post->ID, $color->ID, $size->ID
+                ),
+                ['jpeg_quality' => 100]
+            );
+
+        return true;
     }
 
     /**
