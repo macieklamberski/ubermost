@@ -9,8 +9,8 @@ if ($_GET['ids']) {
 
 $combinations  = [];
 $public_posts  = array_map(function ($post) { return $post->ID; }, Helper::load_public_posts());
-$public_colors = Helper::load_public_colors();
-$public_sizes  = Helper::load_public_sizes();
+$public_colors = get_posts(['post_type' => 'color', 'posts_per_page' => -1]);
+$public_sizes  = get_posts(['post_type' => 'size', 'posts_per_page' => -1]);
 
 $posts = array_intersect($posts, $public_posts);
 
