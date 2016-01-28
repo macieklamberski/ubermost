@@ -32,6 +32,12 @@
     padding: 0.5em;
   }
 
+  @include breakpoint(phablet) {
+    &__logo img {
+      height: rem($tick);
+    }
+  }
+
   @include breakpoint(phone) {
     padding-top: rem($tick);
     padding-bottom: rem($tick);
