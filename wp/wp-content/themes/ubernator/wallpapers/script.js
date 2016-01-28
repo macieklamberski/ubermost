@@ -29,7 +29,7 @@
             }
 
             Wallpapers.$sectionStart.find('input').on('click', function () {
-               alert('ZACZYNAMY');
+               Wallpapers.startRegeneration(Wallpapers.combinations);
             });
         },
 
