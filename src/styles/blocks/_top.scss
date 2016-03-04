@@ -11,7 +11,7 @@
       display: inline-block;
     }
 
-    img {
+    svg {
       height: rem($tick * 2);
     }
   }
@@ -33,7 +33,7 @@
   }
 
   @include breakpoint(phablet) {
-    &__logo img {
+    &__logo svg {
       height: rem($tick);
     }
   }
