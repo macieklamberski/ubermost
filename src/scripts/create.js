@@ -1,3 +1,9 @@
+//= include ../../bower_components/jquery/dist/jquery.js
+//= include ../../bower_components/velocity/velocity.min.js
+//= include ../../bower_components/velocity/velocity.ui.min.js
+//= include ../../bower_components/imagesloaded/imagesloaded.pkgd.min.js
+//= include ../../bower_components/handlebars/handlebars.min.js
+
 (function ($) {
 
   var Helper = {

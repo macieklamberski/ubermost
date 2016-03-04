@@ -8,7 +8,7 @@
     flex-wrap: wrap;
 
     &__logo {
-      img {
+      svg {
         height: rem($tick * 1.5);
         margin: rem($tick * .25) 0;
       }
@@ -68,7 +68,7 @@
   @include breakpoint(phablet) {
     &__body {
       &__logo {
-        img {
+        svg {
           height: rem($tick);
           margin: 0;
         }
