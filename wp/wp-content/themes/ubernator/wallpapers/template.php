@@ -18,9 +18,9 @@ foreach ($posts as $post) {
   foreach ($public_colors as $color) {
     foreach ($public_sizes as $size) {
       $combinations[] = [
-      'post'  => $post,
-      'color' => $color->ID,
-      'size'  => $size->ID,
+        'post'  => $post,
+        'color' => $color->ID,
+        'size'  => $size->ID,
       ];
     }
   }
@@ -30,9 +30,17 @@ foreach ($posts as $post) {
   <h2>Regenerate wallpapers</h2>
   <?php if (!$_GET['ids']): ?>
     <p>To begin, just press the button below.</p>
-    <p id="wallpapers-start">
-      <input type="submit" class="button button-primary" value="Regenerate all wallpapers">
-    </p>
+    <div id="wallpapers-start">
+      <p>
+        <label>
+          <input type="checkbox" name="omit_existing" checked>
+          Omit existing wallpapers
+        </label>
+      </p>
+      <p>
+        <input type="submit" class="button button-primary" value="Regenerate all wallpapers">
+      </p>
+    </div>
   <?php endif; ?>
   <div id="wallpapers-processing" style="display: none">
     <h3>

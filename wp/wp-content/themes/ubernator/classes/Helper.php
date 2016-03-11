@@ -13,11 +13,21 @@ class Helper {
    * post, color and size.
    */
   public static function get_cache_file($post_id, $color_id, $size_id, $path = true) {
-    $cache_dir = wp_upload_dir();
-    $cache_dir = $path ? $cache_dir['basedir'] : $cache_dir['baseurl'];
-    $cache_dir = $cache_dir.'/wallpapers';
+    $uploads_dir = wp_upload_dir();
+    $cache_dir   = $uploads_dir['basedir'].'/wallpapers';
+    $file_name   = $post_id.'-'.$color_id.'-'.$size_id.'.jpg';
+    $file_path   = $cache_dir.'/'.$file_name;
 
-    return $cache_dir.'/'.$post_id.'-'.$color_id.'-'.$size_id.'.jpg';
+    if (!$path) {
+      if (file_exists($file_path)) {
+        $timestamp = filemtime($file_path);
+        $file_path = str_replace($file_name, $file_name.'?'.$timestamp, $file_path);
+      }
+
+      $file_path = str_replace($uploads_dir['basedir'], $uploads_dir['baseurl'], $file_path);
+    }
+
+    return $file_path;
   }
 
   /**

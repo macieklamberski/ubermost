@@ -48,7 +48,7 @@ class Hooks {
       function () {
         require get_stylesheet_directory().'/wallpapers/template.php';
       }
-      );
+    );
   }
 
   /**
@@ -64,8 +64,8 @@ class Hooks {
    */
   public function register_posts() {
     $types = [
-    'color' => 'dashicons-admin-customizer',
-    'size'  => 'dashicons-image-crop',
+      'color' => 'dashicons-admin-customizer',
+      'size'  => 'dashicons-image-crop',
     ];
 
     foreach ($types as $slug => $icon) {
@@ -77,7 +77,7 @@ class Hooks {
         'supports'      => ['title'],
         'menu_position' => 5,
         'menu_icon'     => $icon,
-        ]);
+      ]);
     }
   }
 
@@ -102,7 +102,7 @@ class Hooks {
       'show_admin_column' => true,
       'query_var'         => true,
       'rewrite'           => ['slug' => $name],
-      ]);
+    ]);
   }
 
   /**
@@ -119,20 +119,20 @@ class Hooks {
     $name = ucfirst($name);
 
     return [
-    'name'               => $name.'s',
-    'singular_name'      => $name,
-    'menu_name'          => $name.'s',
-    'name_admin_bar'     => $name,
-    'add_new'            => 'Add New',
-    'add_new_item'       => 'Add New '.$name,
-    'new_item'           => 'New '.$name,
-    'edit_item'          => 'Edit '.$name,
-    'view_item'          => 'View '.$name,
-    'all_items'          => 'All '.$name.'s',
-    'search_items'       => 'Search '.$name.'s',
-    'parent_item_colon'  => 'Parent '.$name.'s:',
-    'not_found'          => 'No '.$name.'s found.',
-    'not_found_in_trash' => 'No '.$name.'s found in Trash.',
+      'name'               => $name.'s',
+      'singular_name'      => $name,
+      'menu_name'          => $name.'s',
+      'name_admin_bar'     => $name,
+      'add_new'            => 'Add New',
+      'add_new_item'       => 'Add New '.$name,
+      'new_item'           => 'New '.$name,
+      'edit_item'          => 'Edit '.$name,
+      'view_item'          => 'View '.$name,
+      'all_items'          => 'All '.$name.'s',
+      'search_items'       => 'Search '.$name.'s',
+      'parent_item_colon'  => 'Parent '.$name.'s:',
+      'not_found'          => 'No '.$name.'s found.',
+      'not_found_in_trash' => 'No '.$name.'s found in Trash.',
     ];
   }
 
@@ -143,22 +143,22 @@ class Hooks {
     $name = ucfirst($name);
 
     return [
-    'name'                       => $name.'s',
-    'singular_name'              => $name,
-    'search_items'               => 'Search '.$name.'s',
-    'popular_items'              => 'Popular '.$name.'s',
-    'all_items'                  => 'All '.$name.'s',
-    'parent_item'                => 'Parent'.$name,
-    'parent_item_colon'          => 'Parent '.$name.':',
-    'edit_item'                  => 'Edit'.$name,
-    'update_item'                => 'Update'.$name,
-    'add_new_item'               => 'Add New'.$name,
-    'new_item_name'              => 'New '.$name.' Name',
-    'separate_items_with_commas' => 'Separate '.$name.'s with commas',
-    'add_or_remove_items'        => 'Add or remove '.$name.'s',
-    'choose_from_most_used'      => 'Choose from the most used '.$name.'s',
-    'not_found'                  => 'No '.$name.'s found.',
-    'menu_name'                  => $name.'s',
+      'name'                       => $name.'s',
+      'singular_name'              => $name,
+      'search_items'               => 'Search '.$name.'s',
+      'popular_items'              => 'Popular '.$name.'s',
+      'all_items'                  => 'All '.$name.'s',
+      'parent_item'                => 'Parent'.$name,
+      'parent_item_colon'          => 'Parent '.$name.':',
+      'edit_item'                  => 'Edit'.$name,
+      'update_item'                => 'Update'.$name,
+      'add_new_item'               => 'Add New'.$name,
+      'new_item_name'              => 'New '.$name.' Name',
+      'separate_items_with_commas' => 'Separate '.$name.'s with commas',
+      'add_or_remove_items'        => 'Add or remove '.$name.'s',
+      'choose_from_most_used'      => 'Choose from the most used '.$name.'s',
+      'not_found'                  => 'No '.$name.'s found.',
+      'menu_name'                  => $name.'s',
     ];
   }
 
@@ -178,13 +178,13 @@ class Hooks {
   public function define_bulk_regenerate_posts_wallpapers() {
     $bulk_actions = new \Seravo_Custom_Bulk_Action([
       'post_type' => 'post',
-      ]);
+    ]);
 
     $bulk_actions->register_bulk_action([
       'menu_text' => 'Regenerate Wallpapers',
       'admin_notice' => [
-      'single' => 'Wallpapers for 1 Post was regenerated.',
-      'plural' => 'Wallpapers for %s Posts was regenerated.',
+        'single' => 'Wallpapers for 1 Post was regenerated.',
+        'plural' => 'Wallpapers for %s Posts was regenerated.',
       ],
       'callback' => function ($post_ids) {
         $url = admin_url('admin.php?page=regenerate-wallpapers');
@@ -192,7 +192,7 @@ class Hooks {
         wp_redirect($url);
         exit;
       }
-      ]);
+    ]);
 
     $bulk_actions->init();
   }
@@ -213,21 +213,24 @@ class Hooks {
       $this->return_api_error();
     }
 
+    $cache_file = Helper::get_cache_file(
+      $post->ID, $color->ID, $size->ID
+    );
+
+    if ($_GET['omit_existing'] && file_exists($cache_file)) {
+      return true;
+    }
+
     (new Generator())
-    ->generate(
-      $this->get_local_path(get_field('lettering', $post->ID)),
-      $this->get_local_path(get_field('fg_texture', $color->ID)),
-      $this->get_local_path(get_field('bg_texture', $color->ID)),
-      get_field('width', $size->ID),
-      get_field('height', $size->ID),
-      get_field('scale', $size->ID)
+      ->generate(
+        $this->get_local_path(get_field('lettering',  $post->ID)),
+        $this->get_local_path(get_field('fg_texture', $color->ID)),
+        $this->get_local_path(get_field('bg_texture', $color->ID)),
+          get_field('width',  $size->ID),
+          get_field('height', $size->ID),
+          get_field('scale',  $size->ID)
       )
-    ->save(
-      $cache_file = Helper::get_cache_file(
-        $post->ID, $color->ID, $size->ID
-        ),
-      ['jpeg_quality' => 100]
-      );
+      ->save($cache_file, ['jpeg_quality' => 100]);
 
     return true;
   }
@@ -261,7 +264,7 @@ class Hooks {
       'blog_link'   => get_field('blog_link', $post->ID),
       'blog_image'  => get_field('blog_image', $post->ID),
       'reblog_link' => get_field('reblog_link', $post->ID),
-      ]);
+    ]);
   }
 
   /**
@@ -273,9 +276,9 @@ class Hooks {
 
     foreach ($posts as $post) {
       $result[] = [
-      'ID'        => $post->ID,
-      'permalink' => site_url('?post='.$post->ID),
-      'thumbnail' => str_replace('_1280', '_250', get_field('blog_image', $post->ID)),
+        'ID'        => $post->ID,
+        'permalink' => site_url('?post='.$post->ID),
+        'thumbnail' => str_replace('_1280', '_250', get_field('blog_image', $post->ID)),
       ];
     }
 

@@ -4,6 +4,7 @@
     ajaxGateway        : $('#wallpapers').data('gateway'),
     ajaxAction         : $('#wallpapers').data('action'),
     combinations       : $('#wallpapers').data('combinations'),
+    omitExisting       : $('#wallpapers-start [name="omit_existing"]'),
     $sectionStart      : $('#wallpapers-start'),
     $sectionProcessing : $('#wallpapers-processing'),
     $sectionDone       : $('#wallpapers-done'),
@@ -29,7 +30,7 @@
       }
 
       Wallpapers.$sectionStart.find('input').on('click', function () {
-       Wallpapers.startRegeneration(Wallpapers.combinations);
+        Wallpapers.startRegeneration(Wallpapers.combinations);
      });
     },
 
@@ -45,10 +46,11 @@
 
       var combination = combinations[index];
       var parameters  = {
-        action   : Wallpapers.ajaxAction,
-        post_id  : combination.post,
-        color_id : combination.color,
-        size_id  : combination.size
+        action        : Wallpapers.ajaxAction,
+        omit_existing : Wallpapers.omitExisting.is(':checked'),
+        post_id       : combination.post,
+        color_id      : combination.color,
+        size_id       : combination.size
       };
 
       $.get(Wallpapers.ajaxGateway, parameters, function () {
