@@ -1,10 +1,11 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "abb3757f1dd22c7e2d5af150b6f54165",
+    "hash": "b9d2a24b04c969654c74ab5932190301",
+    "content-hash": "856252ded61cd6ec7138cc9c6016f8f1",
     "packages": [
         {
             "name": "imagine/imagine",
