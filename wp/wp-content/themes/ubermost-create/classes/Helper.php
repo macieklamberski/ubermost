@@ -1,7 +1,7 @@
 <?php
-namespace Ubernator;
+namespace UbermostCreate;
 
-use Ubernator\Generator;
+use UbermostCreate\Generator;
 
 /**
  * Sack for static helper methods used in templates.

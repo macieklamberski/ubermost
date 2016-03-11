@@ -1,5 +1,5 @@
 <?php
-use Ubernator\Helper;
+use UbermostCreate\Helper;
 
 $current_post  = Helper::load_selected_post($_GET['post_id']);
 $current_color = Helper::load_selected_color($_GET['color_id']);

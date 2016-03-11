@@ -1,5 +1,5 @@
 <?php
-use Ubernator\Helper;
+use UbermostCreate\Helper;
 
 if ($_GET['ids']) {
   $posts = explode(',', $_GET['ids']);

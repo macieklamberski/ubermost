@@ -1,5 +1,5 @@
 <?php
-namespace Ubernator;
+namespace UbermostCreate;
 
 use Imagine\Imagick\Imagine;
 use Imagine\Image\Box;

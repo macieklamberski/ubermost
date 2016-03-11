@@ -1,9 +1,9 @@
 <?php
-namespace Ubernator;
+namespace UbermostCreate;
 
-use Ubernator\Generator;
-use Ubernator\Helper;
-use Ubernator\Wallpapers;
+use UbermostCreate\Generator;
+use UbermostCreate\Helper;
+use UbermostCreate\Wallpapers;
 
 /**
  * Sack for all the custom filters and actions.
