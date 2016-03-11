@@ -249,7 +249,7 @@ class Hooks {
 
     $preview_image = Helper::get_cache_file(
       $post->ID, $color->ID, get_field('preview_size', 'option'), false
-      );
+    );
 
     wp_send_json_success([
       'ID'          => $post->ID,
