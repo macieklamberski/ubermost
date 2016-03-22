@@ -5,12 +5,12 @@ module.exports = function (gulp, plugins, config, helpers) {
       .pipe(plugins.iconfont({
         fontName: 'Icons',
         className: 'icon',
-        'normalize': true,
-        'fontHeight': 1001,
-        appendCodepoints: false
+        normalize: true,
+        fontHeight: 1001,
+        appendUnicode: false
       }))
-      .on('codepoints', function(codepoints, options) {
-        options.glyphs = codepoints;
+      .on('glyphs', function(glyphs, options) {
+        options.glyphs = glyphs;
         var stream = gulp.src('gulpfile.js/icons.css')
           .pipe(plugins.consolidate('lodash', options))
           .pipe(helpers.ifNotDev(plugins.minifyCss()))
