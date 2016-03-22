@@ -17,7 +17,7 @@
       }
     ],
     "deploy": {
-      "production": {
+      "assets": {
         "adapter": "rsync",
         "files": [
           "dist/**/*"
@@ -26,6 +26,17 @@
         "port": 25000,
         "hostname": "lamberski@assets.ubermost.com",
         "destination": "/var/www/ubermost.com",
+        "incremental": true
+      },
+      "theme": {
+        "adapter": "rsync",
+        "files": [
+          "wp/wp-content/themes/ubermost-create/**/*"
+        ],
+        "root": "wp",
+        "port": 25000,
+        "hostname": "lamberski@create.ubermost.com",
+        "destination": "/var/www/create.ubermost.com",
         "incremental": true
       }
     }
