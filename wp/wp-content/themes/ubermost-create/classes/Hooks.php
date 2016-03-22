@@ -222,14 +222,14 @@ class Hooks {
     }
 
     (new Generator())
-      ->generate(
-        $this->get_local_path(get_field('lettering',  $post->ID)),
-        $this->get_local_path(get_field('fg_texture', $color->ID)),
-        $this->get_local_path(get_field('bg_texture', $color->ID)),
-          get_field('width',  $size->ID),
-          get_field('height', $size->ID),
-          get_field('scale',  $size->ID)
-      )
+      ->generate([
+        'lettering_file'  => $this->get_local_path(get_field('lettering',  $post->ID)),
+        'foreground_file' => $this->get_local_path(get_field('fg_texture', $color->ID)),
+        'background_file' => $this->get_local_path(get_field('bg_texture', $color->ID)),
+        'width'           => get_field('width',  $size->ID),
+        'height'          => get_field('height', $size->ID),
+        'scale'           => get_field('scale',  $size->ID)
+      ])
       ->save($cache_file, ['jpeg_quality' => 100]);
 
     return true;
