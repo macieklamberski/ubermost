@@ -1,15 +1,21 @@
 <?php
+
 namespace UbermostCreate;
 
-use Imagine\Imagick\Imagine;
 use Imagine\Image\Box;
 use Imagine\Image\Point;
 use Imagine\Imagick\Image;
+use Imagine\Imagick\Imagine;
 
 /**
  * Utility class for creating merged lettering images.
  */
-class Generator {
+class Generator
+{
+  /**
+   * Array with list of settings.
+   */
+  protected $settings;
 
   /**
    * Instance of Imagine\Imagick\Imagine.
@@ -20,35 +26,58 @@ class Generator {
    * Constructor used for initializing Imagine library as it's referred to
    * multiple times.
    */
-  public function __construct() {
+  public function __construct(array $settings)
+  {
     $this->imagine = new Imagine();
+    $this->settings = array_merge([
+      'partials_path' => sys_get_temp_dir(),
+      'combined_path' => sys_get_temp_dir(),
+      'quality' => 100,
+    ], $settings);
   }
 
   /**
    * Generate final image from given colors, lettering shape and size.
    */
-  public function generate($parameters) {
-    $lettering  = $this->prepareLettering($parameters);
-    $mask       = $this->prepareMask($lettering, $parameters);
+  public function combine(array $parameters)
+  {
+    $lettering = $this->prepareLettering($parameters);
+    $mask = $this->prepareMask($lettering, $parameters);
     $foreground = $this->prepareForeground($mask, $parameters);
 
-    return $this->compileImage($foreground, $parameters);
+    $this
+      ->compileImage($foreground, $parameters)
+      ->save(
+        $this->getFileName($this->settings['combined_path'], $parameters),
+        ['jpeg_quality' => $this->settings['quality']]
+      );
+  }
+
+  /**
+   * Compile array of parameters into hash for storing the file.
+   */
+  protected function getFileName(string $path, array $parameters)
+  {
+    $path = rtrim($cache_dir, '/').'/';
+    $file = md5(implode($parameters)).'.jpg';
+    return $path.$file;
   }
 
   /**
    * Return image resource if cache file exists. If not - invoke callback method to
    * generate the image.
    */
-  protected function getCacheFile($parameters, $callback) {
-    $temp_hash = md5(implode($parameters));
-    $cache_dir = WP_CONTENT_DIR.'/cache/wallpapers';
-    $temp_file = rtrim($cache_dir, '/').'/'.$temp_hash.'.jpg';
+  protected function getCacheFile(array $parameters, callable $callback)
+  {
+    $temp_file = $this->getFileName($this->settings['partials_path'], $parameters);
 
     if (file_exists($temp_file)) {
       $image = $this->imagine->open($temp_file);
     } else {
       $image = $callback();
-      $image->save($temp_file, ['jpeg_quality' => 100]);
+      $image->save($temp_file, [
+        'jpeg_quality' => $this->settings['quality'],
+      ]);
     }
 
     return $image;
@@ -57,7 +86,8 @@ class Generator {
   /**
    * Load and scale down the shape of lettering.
    */
-  protected function prepareLettering($parameters) {
+  protected function prepareLettering(array $parameters)
+  {
     return $this->getCacheFile(
       [
         $parameters['lettering_file'],
@@ -68,7 +98,7 @@ class Generator {
       function () use ($parameters) {
         extract($parameters);
 
-        $width  *= $scale;
+        $width *= $scale;
         $height *= $scale;
 
         if ($width < $height) {
@@ -89,7 +119,8 @@ class Generator {
    * Create black/white mask from the lettering shape. It will be later used
    * to cut out needed parts of the foreground texture.
    */
-  protected function prepareMask(Image $lettering, $parameters) {
+  protected function prepareMask(Image $lettering, array $parameters)
+  {
     return $this->getCacheFile(
       [
         $parameters['lettering_file'],
@@ -114,7 +145,8 @@ class Generator {
   /**
    * Load and cut out foreground texture using lettering shape as a mask.
    */
-  protected function prepareForeground(Image $mask, $parameters) {
+  protected function prepareForeground(Image $mask, array $parameters)
+  {
     $foreground = $this->getCacheFile(
       [
         $parameters['foreground_file'],
@@ -139,7 +171,8 @@ class Generator {
   /**
    * Having all parts of the output image generated, merge them together.
    */
-  protected function compileImage(Image $foreground, $parameters) {
+  protected function compileImage(Image $foreground, array $parameters)
+  {
     $image = $this->getCacheFile(
       [
         $parameters['background_file'],
@@ -164,8 +197,9 @@ class Generator {
   /**
    * If image exceeds the size of generated image - scale it down and crop.
    */
-  protected function trimImage(Image $image, $width, $height) {
-    $image_width  = $image->getSize()->getWidth();
+  protected function trimImage(Image $image, int $width, int $height)
+  {
+    $image_width = $image->getSize()->getWidth();
     $image_height = $image->getSize()->getHeight();
 
     if ($image_width > $width || $image_height > $height) {
