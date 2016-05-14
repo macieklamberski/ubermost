@@ -64,7 +64,7 @@ class Generator
   /**
    * Compile array of parameters into hash for storing the file.
    */
-  protected function getFileName(string $path, array $parameters)
+  protected function getFileName($path, array $parameters)
   {
     $path = rtrim($path, '/').'/';
     $file = md5(implode($parameters)).'.jpg';
@@ -205,7 +205,7 @@ class Generator
   /**
    * If image exceeds the size of generated image - scale it down and crop.
    */
-  protected function trimImage(Image $image, int $width, int $height)
+  protected function trimImage(Image $image, $width, $height)
   {
     $image_width = $image->getSize()->getWidth();
     $image_height = $image->getSize()->getHeight();
