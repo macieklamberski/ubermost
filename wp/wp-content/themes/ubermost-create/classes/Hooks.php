@@ -25,6 +25,9 @@ class Hooks
     add_action('wp_ajax_regenerate_wallpaper', [$this, 'regenerate_wallpaper']);
     add_action('admin_menu', [$this, 'show_published_by_default']);
     add_action('admin_menu', [$this, 'register_utility_page']);
+    add_action('admin_menu', [$this, 'remove_menu_pages']);
+    add_action('wp_before_admin_bar_render', [$this, 'remove_not_needed_items_from_admin_bar'], 11);
+    add_action('admin_head', [$this, 'hide_link_to_mine_posts']);
 
     // Enable Options page if ACF plugins is enabled.
     if (function_exists('acf_add_options_page')) {
@@ -109,6 +112,39 @@ class Hooks
       'query_var' => true,
       'rewrite' => ['slug' => $name],
     ]);
+  }
+
+  /**
+   * Remove unnecessary pages from the WP Admin menu.
+   */
+  public function remove_menu_pages()
+  {
+    remove_menu_page('edit-comments.php');
+    remove_menu_page('themes.php');
+    remove_menu_page('users.php');
+    remove_menu_page('edit.php?post_type=page');
+  }
+
+  /**
+   * Hide Logo, Search, Comments etc. sections from Admin Bar.
+   */
+  public function remove_not_needed_items_from_admin_bar()
+  {
+    global $wp_admin_bar;
+    $wp_admin_bar->remove_menu('comments');
+    $wp_admin_bar->remove_menu('wpfc-toolbar-parent');
+    $wp_admin_bar->remove_menu('customize');
+    $wp_admin_bar->remove_menu('wp-logo');
+    $wp_admin_bar->remove_menu('search');
+    $wp_admin_bar->remove_menu('new-content');
+  }
+
+  /**
+   * Hide link to Mine posts.
+   */
+  public function hide_link_to_mine_posts()
+  {
+    echo '<style>.subsubsub .mine { display: none; }</style>';
   }
 
   /**
