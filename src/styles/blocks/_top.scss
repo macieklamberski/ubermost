@@ -5,14 +5,15 @@
   padding-bottom: rem($tick * 2);
 
   &__logo {
-    margin: 0 0 rem($tick) 0;
+    margin: 0 0 rem($tick * 2) 0;
 
     a {
       display: inline-block;
     }
 
     svg {
-      height: rem($tick * 2);
+      height: rem($tick * 1.5);
+      margin: rem($tick * .25) 0;
     }
   }
 
