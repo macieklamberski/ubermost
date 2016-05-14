@@ -1,11 +1,13 @@
 <?php
 use UbermostCreate\Helper;
 
-$current_post  = Helper::load_selected_post($_GET['post_id']);
+$current_post = Helper::load_selected_post($_GET['post_id']);
 $current_color = Helper::load_selected_color($_GET['color_id']);
-$current_size  = Helper::load_selected_size($_GET['size_id']);
+$current_size = Helper::load_selected_size($_GET['size_id']);
 
-Helper::download($current_post, $current_color, $current_size);
+if ($current_post && $current_color && $current_size) {
+  Helper::get_file($_GET['action'], $current_post, $current_color, $current_size);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -65,12 +67,12 @@ Helper::download($current_post, $current_color, $current_size);
         <ul class="colors">
           <?php foreach (Helper::load_public_colors() as $color): ?>
             <li>
-              <label class="color" style="color: <?php the_field('bg_color', $color->ID); ?>">
+              <label class="color" style="color: <?php the_field('bg_color', $color->ID);?>">
                 <input type="radio" name="color_id" value="<?php echo $color->ID; ?>" <?php echo $current_color && $current_color->ID == $color->ID ? 'checked' : ''; ?>>
-                <span><i class="fa fa-check" style="color: <?php the_field('fg_color', $color->ID); ?>"></i></span>
+                <span><i class="fa fa-check" style="color: <?php the_field('fg_color', $color->ID);?>"></i></span>
               </label>
             </li>
-          <?php endforeach; ?>
+          <?php endforeach;?>
         </ul>
       </section>
       <section class="option">
@@ -79,11 +81,11 @@ Helper::download($current_post, $current_color, $current_size);
           <?php if ($current_size): ?>
             <span>
               <?php echo $current_size->post_title; ?>
-              <em><?php the_field('device_name', $current_size->ID); ?></em>
+              <em><?php the_field('device_name', $current_size->ID);?></em>
             </span>
           <?php else: ?>
             <span data-detected=" <em>(detected)</em>"></span>
-          <?php endif; ?>
+          <?php endif;?>
           <i class="fa fa-bars"></i>
         </div>
       </section>
@@ -123,28 +125,28 @@ Helper::download($current_post, $current_color, $current_size);
       <?php foreach (get_terms(['group']) as $group): ?>
         <section class="sizes__group">
           <h3 class="sizes__group__heading">
-            <i class="fa fa-<?php the_field('icon', $group); ?>"></i>
+            <i class="fa fa-<?php the_field('icon', $group);?>"></i>
             <?php echo $group->name; ?>
           </h3>
           <?php foreach (Helper::load_public_sizes($group->name) as $size): ?>
             <?php
-              $width  = get_field('width', $size->ID);
-              $height = get_field('height', $size->ID);
-              $ratio  = round($width / $height, 1);
-              $name   = get_field('device_name', $size->ID);
-            ?>
+$width = get_field('width', $size->ID);
+$height = get_field('height', $size->ID);
+$ratio = round($width / $height, 1);
+$name = get_field('device_name', $size->ID);
+?>
             <label data-width="<?php echo $width; ?>" data-height="<?php echo $height; ?>" data-ratio="<?php echo $ratio; ?>">
               <input type="radio" name="size" value="<?php echo $size->ID; ?>">
               <span>
                 <?php echo $size->post_title; ?>
                 <?php if ($name): ?>
                   <em><?php echo $name; ?></em>
-                <?php endif; ?>
+                <?php endif;?>
               </span>
             </label>
-          <?php endforeach; ?>
+          <?php endforeach;?>
         </section>
-      <?php endforeach; ?>
+      <?php endforeach;?>
     </div>
   </section>
 
@@ -198,7 +200,7 @@ Helper::download($current_post, $current_color, $current_size);
     {{/each}}
   </script>
 
-  <?php wp_footer(); ?>
+  <?php wp_footer();?>
 
   <script async src="//assets.ubermost.com/scripts/create.min.js"></script>
 </body>

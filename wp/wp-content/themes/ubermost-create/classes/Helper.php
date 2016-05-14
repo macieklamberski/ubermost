@@ -1,48 +1,28 @@
 <?php
+
 namespace UbermostCreate;
 
-use UbermostCreate\Generator;
+use WP_Post;
 
 /**
  * Sack for static helper methods used in templates.
  */
-class Helper {
-
-  /**
-   * Return path (or URL) to the wallpaper file with generated for given
-   * post, color and size.
-   */
-  public static function get_cache_file($post_id, $color_id, $size_id, $path = true) {
-    $uploads_dir = wp_upload_dir();
-    $cache_dir   = $uploads_dir['basedir'].'/wallpapers';
-    $file_name   = $post_id.'-'.$color_id.'-'.$size_id.'.jpg';
-    $file_path   = $cache_dir.'/'.$file_name;
-
-    if (!$path) {
-      if (file_exists($file_path)) {
-        $timestamp = filemtime($file_path);
-        $file_path = str_replace($file_name, $file_name.'?'.$timestamp, $file_path);
-      }
-
-      $file_path = str_replace($uploads_dir['basedir'], $uploads_dir['baseurl'], $file_path);
-    }
-
-    return $file_path;
-  }
-
+class Helper
+{
   /**
    * Load post given in parameter or load default one if given does not
    * meet requirements of being selected or it does not exist.
    */
-  public static function load_selected_post($post_id) {
+  public static function load_selected_post($post_id)
+  {
     if ($post_id) {
       $post = get_post($post_id);
     }
 
-    if (!$post || $post->post_status != 'publish' || $post->post_type != 'post') {
+    if ( ! $post || $post->post_status != 'publish' || $post->post_type != 'post') {
       $posts = wp_get_recent_posts([
-        'post_type'      => 'post',
-        'post_status'    => 'publish',
+        'post_type' => 'post',
+        'post_status' => 'publish',
         'posts_per_page' => 1,
       ], OBJECT);
 
@@ -56,18 +36,19 @@ class Helper {
    * Load color given in parameter or load default one if given does not
    * meet requirements of being selected or it does not exist.
    */
-  public static function load_selected_color($color_id) {
+  public static function load_selected_color($color_id)
+  {
     if ($color_id) {
       $color = get_post($color_id);
     }
 
-    if (!$color || $color->post_status != 'publish' || $color->post_type != 'color' || !get_field('public', $color->ID)) {
+    if ( ! $color || $color->post_status != 'publish' || $color->post_type != 'color' || ! get_field('public', $color->ID)) {
       $colors = get_posts([
-        'post_type'      => 'color',
-        'post_status'    => 'publish',
+        'post_type' => 'color',
+        'post_status' => 'publish',
         'posts_per_page' => 1,
-        'meta_key'       => 'public',
-        'meta_value'     => true,
+        'meta_key' => 'public',
+        'meta_value' => true,
       ], OBJECT);
 
       return isset($colors[0]) ? $colors[0] : null;
@@ -79,50 +60,30 @@ class Helper {
   /**
    * Load size given in parameter if it meet requirements of being selected.
    */
-  public static function load_selected_size($size_id) {
+  public static function load_selected_size($size_id)
+  {
     if ($size_id) {
       $size = get_post($size_id);
     }
 
-    if ($size && $size->post_status == 'publish' && $size->post_type == 'size' && get_field('public', $size->ID)) {
+    if ($size && $size->post_status == 'publish' && $size->post_type == 'size') {
       return $size;
     }
   }
 
   /**
-   * Invoke download action if all the parameters are set correctly.
-   */
-  public static function download($post, $color, $size) {
-    $download = $_GET['action'] == 'download';
-    $post     = $post->ID == $_GET['post_id'] ? $post : null;
-    $color    = $color->ID == $_GET['color_id'] ? $color : null;
-    $size     = $size->ID == $_GET['size_id'] ? $size : null;
-
-    if (!$download || !$post || !$color || !$size) {
-      return;
-    }
-
-    $file = self::get_cache_file($post->ID, $color->ID, $size->ID);
-    $info = getimagesizefromstring(file_get_contents($file));
-    $name = 'Ubermost - '.$post->post_title.' - '.$size->post_title.'.jpg';
-    header('Content-type: '.$info['mime']);
-    header('Content-Transfer-Encoding: Binary');
-    header('Content-disposition: attachment; filename="'.$name.'"');
-    readfile($file);
-  }
-
-  /**
    * Load Posts that can be publicly visible.
    */
-  public static function load_public_posts() {
+  public static function load_public_posts()
+  {
     $public_posts = [];
-    $all_posts    = get_posts([
-      'post_type'      => 'post',
+    $all_posts = get_posts([
+      'post_type' => 'post',
       'posts_per_page' => -1,
-      ]);
+    ]);
 
     foreach ($all_posts as $post) {
-      if (!get_field('lettering', $post->ID)) {
+      if ( ! get_field('lettering', $post->ID)) {
         continue;
       }
 
@@ -135,15 +96,16 @@ class Helper {
   /**
    * Load Colors that can be publicly visible.
    */
-  public static function load_public_colors() {
+  public static function load_public_colors()
+  {
     return get_posts([
-      'post_type'      => 'color',
+      'post_type' => 'color',
       'posts_per_page' => -1,
-      'meta_query'     => [
+      'meta_query' => [
         [
-          'key'   => 'public',
+          'key' => 'public',
           'value' => true,
-        ]
+        ],
       ],
     ]);
   }
@@ -151,17 +113,86 @@ class Helper {
   /**
    * Load Sizes that can be publicly visible.
    */
-  public static function load_public_sizes($group = null) {
+  public static function load_public_sizes($group = null)
+  {
     return get_posts([
-      'post_type'      => 'size',
+      'post_type' => 'size',
       'posts_per_page' => -1,
-      'group'          => $group,
-      'meta_query'     => [
+      'group' => $group,
+      'meta_query' => [
         [
-          'key'   => 'public',
+          'key' => 'public',
           'value' => true,
-        ]
+        ],
       ],
     ]);
+  }
+
+  /**
+   * Return absolute path to the file (based on the site URL).
+   */
+  protected static function get_local_path($url)
+  {
+    $uploads_dir = wp_upload_dir();
+    $local_path = str_replace($uploads_dir['baseurl'], $uploads_dir['basedir'], $url);
+
+    return $local_path;
+  }
+
+  public static function combine_wallpaper(WP_Post $post, WP_Post $color, WP_Post $size)
+  {
+    (new Generator())
+      ->combine([
+        'lettering_file' => self::get_local_path(get_field('lettering', $post->ID)),
+        'foreground_file' => self::get_local_path(get_field('fg_texture', $color->ID)),
+        'background_file' => self::get_local_path(get_field('bg_texture', $color->ID)),
+        'width' => get_field('width', $size->ID),
+        'height' => get_field('height', $size->ID),
+        'scale' => get_field('scale', $size->ID),
+      ], [
+        $post->ID, $color->ID, $size->ID,
+      ]);
+  }
+
+  /**
+   * Invoke download action if all the parameters are set correctly.
+   */
+  public static function get_file($action, WP_Post $post, WP_Post $color, WP_Post $size)
+  {
+    if ( ! in_array($action, ['download', 'show'])) {
+      return;
+    }
+
+    $file = (new Generator())->getCombinedFile([$post->ID, $color->ID, $size->ID]);
+
+    if ( ! file_exists($file)) {
+      Helper::combine_wallpaper($post, $color, $size);
+    }
+
+    $name = 'Ubermost - '.$post->post_title.' - '.$size->post_title.'.jpg';
+
+    header('Content-Type: image/jpeg');
+
+    if ($action == 'download') {
+      header('Content-Transfer-Encoding: Binary');
+      header('Content-disposition: attachment; filename="'.$name.'"');
+    } else {
+      header('content-disposition: inline; filename="'.$name.'";');
+    }
+
+    readfile($file);
+  }
+
+  /**
+   * Return URL to the image generation script.
+   */
+  public static function get_file_link($action, $post_id, $color_id, $size_id)
+  {
+    return add_query_arg([
+      'action' => $action,
+      'post_id' => $post_id,
+      'color_id' => $color_id,
+      'size_id' => $size_id,
+    ], site_url());
   }
 }

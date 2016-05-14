@@ -26,7 +26,7 @@ class Generator
    * Constructor used for initializing Imagine library as it's referred to
    * multiple times.
    */
-  public function __construct(array $settings)
+  public function __construct(array $settings = [])
   {
     $this->imagine = new Imagine();
     $this->settings = array_merge([
@@ -39,7 +39,7 @@ class Generator
   /**
    * Generate final image from given colors, lettering shape and size.
    */
-  public function combine(array $parameters)
+  public function combine(array $parameters, array $ids)
   {
     $lettering = $this->prepareLettering($parameters);
     $mask = $this->prepareMask($lettering, $parameters);
@@ -48,9 +48,17 @@ class Generator
     $this
       ->compileImage($foreground, $parameters)
       ->save(
-        $this->getFileName($this->settings['combined_path'], $parameters),
+        $this->getCombinedFile($ids),
         ['jpeg_quality' => $this->settings['quality']]
       );
+  }
+
+  /**
+   * Return path to combined wallpaper file.
+   */
+  public function getCombinedFile(array $ids)
+  {
+    return $this->getFileName($this->settings['combined_path'], $ids);
   }
 
   /**
@@ -58,7 +66,7 @@ class Generator
    */
   protected function getFileName(string $path, array $parameters)
   {
-    $path = rtrim($cache_dir, '/').'/';
+    $path = rtrim($path, '/').'/';
     $file = md5(implode($parameters)).'.jpg';
     return $path.$file;
   }
@@ -67,7 +75,7 @@ class Generator
    * Return image resource if cache file exists. If not - invoke callback method to
    * generate the image.
    */
-  protected function getCacheFile(array $parameters, callable $callback)
+  protected function getPartialFile(array $parameters, callable $callback)
   {
     $temp_file = $this->getFileName($this->settings['partials_path'], $parameters);
 
@@ -88,7 +96,7 @@ class Generator
    */
   protected function prepareLettering(array $parameters)
   {
-    return $this->getCacheFile(
+    return $this->getPartialFile(
       [
         $parameters['lettering_file'],
         $parameters['width'],
@@ -121,7 +129,7 @@ class Generator
    */
   protected function prepareMask(Image $lettering, array $parameters)
   {
-    return $this->getCacheFile(
+    return $this->getPartialFile(
       [
         $parameters['lettering_file'],
         $parameters['width'],
@@ -147,7 +155,7 @@ class Generator
    */
   protected function prepareForeground(Image $mask, array $parameters)
   {
-    $foreground = $this->getCacheFile(
+    $foreground = $this->getPartialFile(
       [
         $parameters['foreground_file'],
         $parameters['width'],
@@ -173,7 +181,7 @@ class Generator
    */
   protected function compileImage(Image $foreground, array $parameters)
   {
-    $image = $this->getCacheFile(
+    $image = $this->getPartialFile(
       [
         $parameters['background_file'],
         $parameters['width'],

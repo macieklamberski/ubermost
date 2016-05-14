@@ -1,16 +1,17 @@
 <?php
+
 use UbermostCreate\Helper;
 
 if ($_GET['ids']) {
   $posts = explode(',', $_GET['ids']);
 } else {
-  $posts = array_map(function ($post) { return $post->ID; }, get_posts(['posts_per_page' => -1]));
+  $posts = array_map(function ($post) {return $post->ID;}, get_posts(['posts_per_page' => -1]));
 }
 
-$combinations  = [];
-$public_posts  = array_map(function ($post) { return $post->ID; }, Helper::load_public_posts());
+$combinations = [];
+$public_posts = array_map(function ($post) {return $post->ID;}, Helper::load_public_posts());
 $public_colors = get_posts(['post_type' => 'color', 'posts_per_page' => -1]);
-$public_sizes  = get_posts(['post_type' => 'size', 'posts_per_page' => -1]);
+$public_sizes = get_posts(['post_type' => 'size', 'posts_per_page' => -1]);
 
 $posts = array_intersect($posts, $public_posts);
 
@@ -18,9 +19,9 @@ foreach ($posts as $post) {
   foreach ($public_colors as $color) {
     foreach ($public_sizes as $size) {
       $combinations[] = [
-        'post'  => $post,
+        'post' => $post,
         'color' => $color->ID,
-        'size'  => $size->ID,
+        'size' => $size->ID,
       ];
     }
   }
@@ -28,20 +29,14 @@ foreach ($posts as $post) {
 ?>
 <div class="wrap" id="wallpapers" data-gateway="<?php echo admin_url('admin-ajax.php'); ?>" data-action="regenerate_wallpaper" data-combinations='<?php echo json_encode($combinations); ?>'>
   <h2>Regenerate wallpapers</h2>
-  <?php if (!$_GET['ids']): ?>
+  <?php if ( ! $_GET['ids']): ?>
     <p>To begin, just press the button below.</p>
     <div id="wallpapers-start">
-      <p>
-        <label>
-          <input type="checkbox" name="omit_existing" checked>
-          Omit existing wallpapers
-        </label>
-      </p>
       <p>
         <input type="submit" class="button button-primary" value="Regenerate all wallpapers">
       </p>
     </div>
-  <?php endif; ?>
+  <?php endif;?>
   <div id="wallpapers-processing" style="display: none">
     <h3>
       Processing&hellip;
