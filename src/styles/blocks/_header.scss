@@ -12,6 +12,10 @@
         height: rem($tick * 1.5);
         margin: rem($tick * .25) 0;
       }
+
+      svg + svg {
+        fill: $color--faint;
+      }
     }
 
     &__menu {
@@ -100,6 +104,12 @@
 
   @include breakpoint(mobile) {
     &__body {
+      &__logo {
+        svg + svg {
+          display: none;
+        }
+      }
+
       &__menu {
         span {
           display: none;

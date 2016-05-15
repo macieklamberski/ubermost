@@ -36,6 +36,7 @@
   @include breakpoint(phablet) {
     &__logo svg {
       height: rem($tick);
+      margin: 0;
     }
   }
 
@@ -46,6 +47,10 @@
     a {
       margin: rem(-$tick / 2);
       padding: rem($tick / 2);
+    }
+
+    &__logo {
+      margin-bottom: rem($tick);
     }
   }
 }

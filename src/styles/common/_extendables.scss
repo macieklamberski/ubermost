@@ -22,7 +22,7 @@
   padding-bottom: rem($tick * 2);
   margin: 0;
 
-  &::before {
+  &:not(:first-child)::before {
     content: '';
     position: absolute;
     top: 0;
