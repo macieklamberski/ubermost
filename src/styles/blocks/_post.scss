@@ -25,10 +25,6 @@
       font-style: normal;
       transition: trans(color);
 
-      &::before {
-        content: '\2015';
-      }
-
       a::after {
         content: '\00a0\2192';
       }
