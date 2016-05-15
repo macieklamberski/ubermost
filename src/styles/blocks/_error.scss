@@ -1,8 +1,9 @@
 .error {
-  flex-basis: 100%;
+  @extend %container;
+  @extend %container--generator;
+  align-self: center;
 
   svg {
     fill: $color--border;
-    width: 100%;
   }
 }

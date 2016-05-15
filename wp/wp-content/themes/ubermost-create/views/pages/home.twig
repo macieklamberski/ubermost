@@ -1,55 +1,57 @@
 {% extends 'layouts/main.twig' %}
 
 {% block content %}
-  <div class="main__preview loading">
-    <div class="loading__body preview" data-endpoint="{{ api_endpoint }}" data-action="get_post"></div>
-    <span class="loading__indicator"></span>
+  <div class="main">
+    <div class="main__preview loading">
+      <div class="loading__body preview" data-endpoint="{{ api_endpoint }}" data-action="get_post"></div>
+      <span class="loading__indicator"></span>
+    </div>
+
+    <form method="get" action="{{ site.link }}" class="main__options">
+      <input type="hidden" name="action" value="download">
+      <input type="hidden" name="post_id" value="{{ current_post.ID }}">
+      <input type="hidden" name="size_id" value="{{ current_size.ID }}">
+
+      <section class="option">
+        <h2 class="option__heading">Color</h2>
+        <ul class="colors">
+          {% for color in public_colors %}
+            {% set color = TimberPost(color.ID) %}
+            <li>
+              <label class="color" style="color: {{ color.get_field('bg_color') }}">
+                <input
+                  type="radio"
+                  name="color_id"
+                  value="{{ color.ID }}"
+                  {{ current_color.ID == color.ID ? 'checked' }}>
+                <span>
+                  <i class="fa fa-check" style="color: {{ color.get_field('fg_color') }}"></i>
+                </span>
+              </label>
+            </li>
+          {% endfor %}
+        </ul>
+      </section>
+      <section class="option">
+        <h2 class="option__heading">Screen Size</h2>
+        <div class="dropdown">
+          {{ current_size | print_r }}
+
+          {% if current_size %}
+            <span>
+              {{ current_size.post_title }}
+              <em>{{ current_size.get_field('device_name') }}</em>
+            </span>
+          {% else %}
+            <span data-detected=" <em>(detected)</em>"></span>
+          {% endif %}
+          <i class="fa fa-bars"></i>
+        </div>
+      </section>
+      <section class="option option--download">
+        <button type="submit" class="button button--download">Download wallpaper</button>
+        <div class="share"></div>
+      </section>
+    </form>
   </div>
-
-  <form method="get" action="{{ site.link }}" class="main__options">
-    <input type="hidden" name="action" value="download">
-    <input type="hidden" name="post_id" value="{{ current_post.ID }}">
-    <input type="hidden" name="size_id" value="{{ current_size.ID }}">
-
-    <section class="option">
-      <h2 class="option__heading">Color</h2>
-      <ul class="colors">
-        {% for color in public_colors %}
-          {% set color = TimberPost(color.ID) %}
-          <li>
-            <label class="color" style="color: {{ color.get_field('bg_color') }}">
-              <input
-                type="radio"
-                name="color_id"
-                value="{{ color.ID }}"
-                {{ current_color.ID == color.ID ? 'checked' }}>
-              <span>
-                <i class="fa fa-check" style="color: {{ color.get_field('fg_color') }}"></i>
-              </span>
-            </label>
-          </li>
-        {% endfor %}
-      </ul>
-    </section>
-    <section class="option">
-      <h2 class="option__heading">Screen Size</h2>
-      <div class="dropdown">
-        {{ current_size | print_r }}
-
-        {% if current_size %}
-          <span>
-            {{ current_size.post_title }}
-            <em>{{ current_size.get_field('device_name') }}</em>
-          </span>
-        {% else %}
-          <span data-detected=" <em>(detected)</em>"></span>
-        {% endif %}
-        <i class="fa fa-bars"></i>
-      </div>
-    </section>
-    <section class="option option--download">
-      <button type="submit" class="button button--download">Download wallpaper</button>
-      <div class="share"></div>
-    </section>
-  </form>
 {% endblock %}
