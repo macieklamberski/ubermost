@@ -1,7 +1,7 @@
 .footer-alt {
   padding: rem($tick * 2) 0;
   margin-top: rem($tick * 3);
-  background: #F0F0F0;
+  background: $color--border;
 
   * {
     font-size: rem($size--minor);
