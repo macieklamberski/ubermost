@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Ubermost&mdash;Create</title>
+    <link href="http://feeds.feedburner.com/ubermost" rel="alternate" type="application/rss+xml">
+    <link href="//assets.ubermost.com/images/favicon.png" rel="shortcut icon">
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro|Source+Serif+Pro:400,600" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    {% if environment == 'development' %}
+      <link href="{{ theme.link }}/assets/styles/main.min.css" rel="stylesheet">
+    {% else %}
+      <link href="//assets.ubermost.com/styles/main.min.css" rel="stylesheet">
+    {% endif %}
+    {{ wp_head }}
+  </head>
+  <body>
+    {% include 'partials/header.twig' %}
+
+    <main class="main">
+      {% block content %}{% endblock %}
+    </main>
+
+    {% include 'partials/footer.twig' %}
+    {% include 'partials/overlays.twig' %}
+    {% include 'partials/templates.twig' %}
+
+    {{ wp_footer }}
+
+    <script async src="//assets.ubermost.com/scripts/create.min.js"></script>
+  </body>
+</html>
