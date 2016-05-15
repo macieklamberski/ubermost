@@ -2,6 +2,7 @@
 node_modules
 bower_components
 dist
+public
 resources
 resources.zip
 wp/wp-content/plugins
@@ -19,3 +20,4 @@ wp/wp-content/index.php
 wp/wp-content/themes/index.php
 wp/xmlrpc.php
 vendor
+wp/wp-content/themes/ubermost-create/assets/
