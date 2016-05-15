@@ -143,7 +143,7 @@
 
   var Posts = {
     $container: $('.posts'),
-    $gateway: $('.posts').data('gateway'),
+    $endpoint: $('.posts').data('endpoint'),
     $action: $('.posts').data('action'),
     $overlay: $('#posts-overlay'),
     $loading: $('#posts-overlay'),
@@ -177,7 +177,7 @@
         return;
       }
 
-      $.get(Posts.$gateway, {action: Posts.$action}, function (result) {
+      $.get(Posts.$endpoint, {action: Posts.$action}, function (result) {
         if (result.data) {
           data = result.data;
         } else {
@@ -207,7 +207,7 @@
   var Preview = {
     $container: $('.preview'),
     $share: $('.share'),
-    $gateway: $('.preview').data('gateway'),
+    $endpoint: $('.preview').data('endpoint'),
     $action: $('.preview').data('action'),
     $loading: $('.preview').closest('.loading'),
     $input: $('form input[name="post_id"]'),
@@ -230,7 +230,7 @@
 
       Download.$trigger.attr('disabled', 'disabled');
 
-      $.get(Preview.$gateway, {action: Preview.$action, post_id: postId, color_id: colorId}, function (result) {
+      $.get(Preview.$endpoint, {action: Preview.$action, post_id: postId, color_id: colorId}, function (result) {
         if (result.data) {
           data = result.data;
         } else {

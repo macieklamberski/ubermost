@@ -19,6 +19,7 @@ $context['current_color'] = new Post($current_color);
 $context['current_size'] = $current_size ? new Post($current_size) : null;
 $context['public_colors'] = Helper::load_public_colors();
 $context['size_groups'] = Timber::get_terms('group');
+$context['environment'] = 'development';
 
 foreach ($context['size_groups'] as $group) {
   $context['sizes'][$group->name] = Helper::load_public_sizes($group->name);

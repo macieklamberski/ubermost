@@ -1,3 +1,9 @@
+{%
+  set assets_path = environment == 'development'
+    ? theme.link ~ '/assets'
+    : '//assets.ubermost.com'
+%}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,11 +14,7 @@
     <link href="//assets.ubermost.com/images/favicon.png" rel="shortcut icon">
     <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro|Source+Serif+Pro:400,600" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
-    {% if environment == 'development' %}
-      <link href="{{ theme.link }}/assets/styles/main.min.css" rel="stylesheet">
-    {% else %}
-      <link href="//assets.ubermost.com/styles/main.min.css" rel="stylesheet">
-    {% endif %}
+    <link href="{{ assets_path }}/styles/main.min.css" rel="stylesheet">
   </head>
   <body>
     {% include 'partials/header.twig' %}
@@ -25,6 +27,6 @@
     {% include 'partials/overlays.twig' %}
     {% include 'partials/templates.twig' %}
 
-    <script async src="//assets.ubermost.com/scripts/create.min.js"></script>
+    <script src="{{ assets_path }}/scripts/create.min.js"></script>
   </body>
 </html>
