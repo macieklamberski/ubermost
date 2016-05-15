@@ -13,7 +13,6 @@
     {% else %}
       <link href="//assets.ubermost.com/styles/main.min.css" rel="stylesheet">
     {% endif %}
-    {{ wp_head }}
   </head>
   <body>
     {% include 'partials/header.twig' %}
@@ -25,8 +24,6 @@
     {% include 'partials/footer.twig' %}
     {% include 'partials/overlays.twig' %}
     {% include 'partials/templates.twig' %}
-
-    {{ wp_footer }}
 
     <script async src="//assets.ubermost.com/scripts/create.min.js"></script>
   </body>
