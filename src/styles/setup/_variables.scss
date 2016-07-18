@@ -1,15 +1,16 @@
-$breakpoints: (
-  'laptop'  : '(max-width: 1439px)',
-  'tablet'  : '(max-width: 1023px)',
-  'phablet' : '(max-width: 735px)',
-  'phone'   : '(max-width: 635px)',
-  'mobile'  : '(max-width: 500px)',
+$breakpoints       : (
+  'laptop'         : '(max-width: 1439px)',
+  'tablet'         : '(max-width: 1023px)',
+  'phablet'        : '(max-width: 735px)',
+  'phone'          : '(max-width: 635px)',
+  'mobile'         : '(max-width: 500px)',
 );
 
-$tick : 30px;
+$tick--vertical    : 34px;
+$tick--horizontal  : 30px;
 
-$size--base  : 18px;
-$size--minor : 15px;
+$size--base        : 18px;
+$size--minor       : 15px;
 
 $color--accent     : #ffcd44;
 $color--base       : #313130;
@@ -18,15 +19,15 @@ $color--faint      : #bbbbb8;
 $color--border     : #F0F0EB;
 $color--background : #e6e6e4;
 
-$font--serif : ('Source Serif Pro', Georgia, serif);
-$font--sans  : ('Source Sans Pro', Arial, sans-serif);
-$font--mono  : (Inconsolata, monospace, sans-serif);
+$font--serif       : ('Source Serif Pro', Georgia, serif);
+$font--sans        : ('Source Sans Pro', Arial, sans-serif);
+$font--mono        : (Inconsolata, monospace, sans-serif);
 
-$width--margin    : $tick / 2;
-$width--wrapper   : $tick * 20;
-$width--generator : $tick * 35;
-$width--left      : ($width--generator / 1.61803398875);
-$width--right     : ($width--generator - $width--left) - ($tick * 2);
+$width--margin     : $tick--horizontal / 2;
+$width--wrapper    : $tick--horizontal * 20;
+$width--generator  : $tick--horizontal * 35;
+$width--left       : ($width--generator / 1.61803398875);
+$width--right      : ($width--generator - $width--left) - ($tick--horizontal * 2);
 
 $duration--base    : 200ms;
 $duration--ease    : 400ms;

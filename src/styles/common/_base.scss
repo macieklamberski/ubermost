@@ -24,7 +24,7 @@ body {
   position: relative;
   color: $color--base;
   font-family: $font--sans;
-  line-height: rem($tick);
+  line-height: rem($tick--vertical);
   height: 100%;
   min-height: 100vh;
   display: flex;
@@ -42,11 +42,31 @@ svg, img, iframe {
 }
 
 a {
-  color: $color--minor;
-  transition: trans(color);
+  position: relative;
+  color: currentColor;
   text-decoration: none;
+  transition: trans(color);
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: -0.5em;
+    right: -0.5em;
+    bottom: -0.5em;
+    left: -0.5em;
+  }
 
   &:hover {
     color: $color--accent;
+  }
+}
+
+%underlined-anchor {
+  border-bottom: rem(1px) solid $color--faint;
+  padding-bottom: rem($tick--vertical * 0.125);
+  margin-bottom: rem(-$tick--vertical * 0.125);
+
+  &:hover {
+    border-color: $color--accent;
   }
 }

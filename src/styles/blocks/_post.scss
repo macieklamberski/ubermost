@@ -10,13 +10,7 @@
     font-size: 0;
 
     cite a {
-      padding: rem($tick / 2);
-      margin: rem(-$tick / 2);
-      color: $color--minor;
-
-      &:hover {
-        color: $color--accent;
-      }
+      @extend %underlined-anchor;
     }
 
     cite {
@@ -24,10 +18,6 @@
       display: block;
       font-style: normal;
       transition: trans(color);
-
-      a::after {
-        content: '\00a0\2192';
-      }
     }
   }
 
@@ -43,12 +33,12 @@
   }
 
   &__image + &__text {
-    margin-top: rem($tick);
+    margin-top: rem($tick--vertical);
   }
 
   &__links {
     @extend %container;
-    margin-top: rem($tick);
+    margin-top: rem($tick--vertical);
     margin-bottom: 0;
 
     li {

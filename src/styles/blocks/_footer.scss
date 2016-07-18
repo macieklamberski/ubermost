@@ -1,6 +1,6 @@
 .footer {
   @extend %block;
-  margin-top: rem($tick * 2);
+  margin-top: rem($tick--vertical * 2);
 
   * {
     font-size: rem($size--minor);

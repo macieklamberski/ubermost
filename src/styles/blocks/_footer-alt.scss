@@ -1,6 +1,6 @@
 .footer-alt {
-  padding: rem($tick * 2) 0;
-  margin-top: rem($tick * 3);
+  padding: rem($tick--vertical * 2) 0;
+  margin-top: rem($tick--vertical * 3);
   background: $color--border;
 
   * {
@@ -32,8 +32,8 @@
 
     &__newsletter {
       position: relative;
-      padding-bottom: rem($tick / 2);
-      margin-bottom: rem($tick / 2);
+      padding-bottom: rem($tick--vertical / 2);
+      margin-bottom: rem($tick--vertical / 2);
 
       &::after {
         content: '';
@@ -65,7 +65,7 @@
         top: 0;
         right: 0;
         margin: 0;
-        padding: rem($tick / 4) 0;
+        padding: rem($tick--vertical / 4) 0;
         border: 0;
         display: inline-block;
       }
@@ -74,9 +74,9 @@
         box-sizing: border-box;
         border-radius: 0;
         border: 0;
-        padding: ($tick / 2);
-        height: rem($tick * 1.5);
-        width: rem($tick * 8);
+        padding: ($tick--vertical / 2);
+        height: rem($tick--vertical * 1.5);
+        width: rem($tick--horizontal * 8);
         color: $color--base;
       }
 
@@ -86,10 +86,10 @@
         border: 0;
         background: transparent;
         position: absolute;
-        top: rem($tick / 4);
+        top: rem($tick--vertical / 4);
         right: 0;
-        padding: 0 ($tick / 2);
-        height: rem($tick * 1.5);
+        padding: 0 ($tick--vertical / 2);
+        height: rem($tick--vertical * 1.5);
         cursor: pointer;
 
         i {
@@ -134,8 +134,8 @@
   }
 
   @include breakpoint(phone) {
-    padding-top: rem($tick);
-    padding-bottom: rem($tick);
+    padding-top: rem($tick--vertical);
+    padding-bottom: rem($tick--vertical);
 
     &__body {
       &__newsletter {

@@ -1,6 +1,6 @@
 .option {
   & + & {
-    margin-top: rem($tick * 2);
+    margin-top: rem($tick--vertical * 2);
   }
 
   &__heading {
@@ -8,7 +8,7 @@
   }
 
   &--download {
-    padding-top: rem($tick * 2);
+    padding-top: rem($tick--vertical * 2);
     position: relative;
 
     &::before {
@@ -26,7 +26,7 @@
       position: absolute;
       top: 0;
       left: 50%;
-      line-height: rem($tick);
+      line-height: rem($tick--vertical);
       color: $color--faint;
       font-size: rem($size--minor);
       padding: 0 rem(10px);
@@ -37,11 +37,11 @@
 
   @include breakpoint(tablet) {
     &, & + & {
-      margin-top: rem($tick);
+      margin-top: rem($tick--vertical);
     }
 
     &--download {
-      padding-top: rem($tick);
+      padding-top: rem($tick--vertical);
     }
   }
 }

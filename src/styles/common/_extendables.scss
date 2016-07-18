@@ -3,8 +3,8 @@
   max-width: rem($width--wrapper);
   margin-left: auto;
   margin-right: auto;
-  padding-left: rem($tick);
-  padding-right: rem($tick);
+  padding-left: rem($tick--vertical);
+  padding-right: rem($tick--vertical);
 
   @include breakpoint(phablet) {
     padding-left: rem($width--margin);
@@ -18,8 +18,8 @@
 
 %block {
   position: relative;
-  padding-top: rem($tick * 2);
-  padding-bottom: rem($tick * 2);
+  padding-top: rem($tick--vertical * 2);
+  padding-bottom: rem($tick--vertical * 2);
   margin: 0;
 
   &:not(:first-child)::before {
@@ -33,15 +33,15 @@
   }
 
   @include breakpoint(phone) {
-    padding-top: rem($tick);
-    padding-bottom: rem($tick);
+    padding-top: rem($tick--vertical);
+    padding-bottom: rem($tick--vertical);
   }
 }
 
 %text {
   blockquote > *,
   & > * {
-    margin-top: rem($tick);
+    margin-top: rem($tick--vertical);
     margin-bottom: 0;
   }
 

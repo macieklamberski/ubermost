@@ -3,8 +3,8 @@
   text-align: center;
 
   a {
-    margin: rem(-$tick) 0;
-    padding: rem($tick);
+    margin: rem(-$tick--vertical) 0;
+    padding: rem($tick--vertical);
     color: $color--minor;
 
     &:hover {

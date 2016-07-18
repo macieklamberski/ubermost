@@ -11,7 +11,7 @@
 
   i, span {
     padding: 0 rem(20px);
-    line-height: rem($tick * 2);
+    line-height: rem($tick--vertical * 2);
   }
 
   i {

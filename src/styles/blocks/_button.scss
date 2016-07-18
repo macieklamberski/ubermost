@@ -5,9 +5,9 @@
   text-transform: uppercase;
   text-align: center;
   color: #fff;
-  height: rem($tick * 2);
-  line-height: rem($tick * 2);
-  padding: 0 rem($tick * 2);
+  height: rem($tick--vertical * 2);
+  line-height: rem($tick--vertical * 2);
+  padding: 0 rem($tick--vertical * 2);
   transition: trans(background), trans(color);
 
   &--download, &--change {
@@ -41,10 +41,10 @@
   @include breakpoint(tablet) {
     &--change {
       text-transform: none;
-      line-height: rem($tick * 1.5);
-      height: rem($tick * 1.5);
-      margin: rem($tick / 4) 0;
-      padding: 0 rem($tick);
+      line-height: rem($tick--vertical * 1.5);
+      height: rem($tick--vertical * 1.5);
+      margin: rem($tick--vertical / 4) 0;
+      padding: 0 rem($tick--vertical);
       color: #000;
       background: $color--accent;
     }

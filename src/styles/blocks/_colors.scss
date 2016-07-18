@@ -1,6 +1,6 @@
 .colors {
   @include clearfix();
-  margin: rem(-$tick * 0.25);
+  margin: rem(-$tick--vertical * 0.25);
   padding: 0;
   list-style: none;
   position: relative;
@@ -11,7 +11,7 @@
 
   label {
     display: block;
-    padding: rem($tick * 0.25);
+    padding: rem($tick--vertical * 0.25);
     cursor: pointer;
   }
 
@@ -20,8 +20,8 @@
     background: currentColor;
     border-radius: 50%;
     position: relative;
-    height: rem($tick * 1.5);
-    width: rem($tick * 1.5);
+    height: rem($tick--vertical * 1.5);
+    width: rem($tick--horizontal * 1.5);
     opacity: 0.8;
     transition: trans(opacity), trans(transform, 125ms);
   }
@@ -38,7 +38,7 @@
     opacity: 0;
     color: #fff;
     transform: scale(0.6);
-    line-height: rem($tick * 1.5);
+    line-height: rem($tick--vertical * 1.5);
     text-align: center;
     font-size: rem(20px);
     transition: trans(opacity, 125ms), trans(transform);

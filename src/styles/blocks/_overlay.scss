@@ -12,7 +12,7 @@
   opacity: 0;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
-  padding: rem($tick * 2) 0;
+  padding: rem($tick--vertical * 2) 0;
 
   &__body {
     @extend %container;
@@ -26,14 +26,14 @@
   }
 
   &__close {
-    $whitespace: $tick / 2;
+    $whitespace: $tick--vertical / 2;
     position: fixed;
     z-index: 1;
     top: rem($whitespace);
     right: rem($whitespace);
     font-size: rem(24px);
-    width: rem($tick);
-    height: rem($tick);
+    width: rem($tick--horizontal);
+    height: rem($tick--vertical);
     padding: rem($whitespace);
     margin: rem(-$whitespace);
 
@@ -88,7 +88,7 @@
   }
 
   @include breakpoint(tablet) {
-    padding: rem($tick / 2) 0;
+    padding: rem($tick--vertical / 2) 0;
 
     &__close {
       background: rgba(#fff, .75);

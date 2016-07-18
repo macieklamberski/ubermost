@@ -16,7 +16,7 @@
 
   &__options {
     flex-basis: 38.2%;
-    padding-right: rem($tick * 2);
+    padding-right: rem($tick--vertical * 2);
   }
 
   @include breakpoint(tablet) {

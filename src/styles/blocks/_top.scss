@@ -1,19 +1,19 @@
 .top {
   @extend %container;
   color: $color--minor;
-  padding-top: rem($tick * 2);
-  padding-bottom: rem($tick * 2);
+  padding-top: rem($tick--vertical * 2);
+  padding-bottom: rem($tick--vertical * 2);
 
   &__logo {
-    margin: 0 0 rem($tick * 2) 0;
+    margin: 0 0 rem($tick--vertical * 2) 0;
 
     a {
       display: inline-block;
     }
 
     svg {
-      height: rem($tick * 1.5);
-      margin: rem($tick * .25) 0;
+      height: rem($tick--vertical * 1.5);
+      margin: rem($tick--vertical * .25) 0;
     }
   }
 
@@ -21,9 +21,7 @@
     margin: 0;
 
     a {
-      text-decoration: underline;
-      padding: rem($tick / 2);
-      margin: rem(-$tick / 2);
+      @extend %underlined-anchor;
     }
   }
 
@@ -35,22 +33,17 @@
 
   @include breakpoint(phablet) {
     &__logo svg {
-      height: rem($tick);
+      height: rem($tick--vertical);
       margin: 0;
     }
   }
 
   @include breakpoint(phone) {
-    padding-top: rem($tick);
-    padding-bottom: rem($tick);
-
-    a {
-      margin: rem(-$tick / 2);
-      padding: rem($tick / 2);
-    }
+    padding-top: rem($tick--vertical);
+    padding-bottom: rem($tick--vertical);
 
     &__logo {
-      margin-bottom: rem($tick);
+      margin-bottom: rem($tick--vertical);
     }
   }
 }

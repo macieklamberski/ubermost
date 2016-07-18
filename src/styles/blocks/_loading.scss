@@ -3,9 +3,9 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: rem($tick);
-    height: rem($tick);
-    margin: rem(-$tick * 0.5) 0 0 rem(-$tick * 0.5);
+    width: rem($tick--horizontal);
+    height: rem($tick--vertical);
+    margin: rem(-$tick--vertical * 0.5) 0 0 rem(-$tick--vertical * 0.5);
     transform: scale(1);
     transition: trans(transform, $duration--overlay);
 

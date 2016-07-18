@@ -64,12 +64,12 @@
   }
 
   @include breakpoint(tablet) {
-    padding-bottom: rem($tick * 2.5);
+    padding-bottom: rem($tick--vertical * 2.5);
 
     &__details {
       opacity: 1;
       top: auto;
-      padding: rem($tick / 2) 0;
+      padding: rem($tick--vertical / 2) 0;
       background: $color--base;
 
       &__body {
@@ -84,7 +84,7 @@
         }
 
         &__or span {
-          margin: 0 rem($tick / 8) 0 rem($tick / 4);
+          margin: 0 rem($tick--vertical / 8) 0 rem($tick--vertical / 4);
         }
       }
     }
