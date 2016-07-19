@@ -176,7 +176,7 @@ var Posts = {
 
     $.get(Posts.$endpoint, {action: Posts.$action}, function (result) {
       if (result.data) {
-        data = result.data;
+        var data = result.data;
       } else {
         return;
       }
@@ -184,7 +184,7 @@ var Posts = {
       var html = Helper.compileTemplate('posts', data);
       Posts.$container.html(html);
       Posts.$container.find('img').css('opacity', 0);
-      Posts.$container.imagesLoaded(function () {
+      ImagesLoaded(Posts.$container.get(0), function () {
         Helper.stopLoading(Posts.$loading);
         Posts.fadeInElements();
       });
@@ -192,12 +192,13 @@ var Posts = {
   },
 
   fadeInElements: function () {
-    Posts.$container.find('img')
-      .css('opacity', 0)
-      .velocity('transition.slideLeftIn', {
-        duration: 500,
-        stagger: 12.5
-      });
+    var images = Posts.$container.find('img');
+    images.css('opacity', 0);
+
+    Velocity(images.get(), 'fadeIn', {
+      duration: 500,
+      stagger: 12.5
+    });
   }
 };
 
@@ -229,7 +230,7 @@ var Preview = {
 
     $.get(Preview.$endpoint, {action: Preview.$action, post_id: postId, color_id: colorId}, function (result) {
       if (result.data) {
-        data = result.data;
+        var data = result.data;
       } else {
         return;
       }
@@ -241,16 +242,17 @@ var Preview = {
       Preview.$input.val(postId);
       Preview.$container.html(Helper.compileTemplate('post', data));
       Preview.$container.find('img').css('opacity', 0);
-      Preview.$container.imagesLoaded(function () {
+
+      ImagesLoaded(Preview.$container.get(0), function () {
         clearTimeout(loading);
         Helper.stopLoading(Preview.$loading);
-        Preview.$container.find('img')
-          .velocity('fadeIn', {
-            duration: 400,
-            complete: function () {
-              Preview.$container.css('background-image', 'url(' + data.image + ')');
-            }
-          });
+
+        Velocity(Preview.$container.find('img').get(), 'fadeIn', {
+          duration: 400,
+          complete: function () {
+            Preview.$container.css('background-image', 'url(' + data.image + ')');
+          }
+        });
       });
     }, 'json');
   }
@@ -294,10 +296,10 @@ var Application = {
   init: function () {
     Sizes.init();
     Colors.init();
-    // Posts.init();
-    // Preview.init();
-    // Download.init();
-    // Keyboard.init();
+    Posts.init();
+    Preview.init();
+    Download.init();
+    Keyboard.init();
   }
 };
 

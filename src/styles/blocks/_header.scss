@@ -27,6 +27,7 @@
         @extend %heading;
         list-style: none;
         margin-left: rem($tick--vertical);
+        margin-top: rem($tick--vertical);
       }
 
       i {
@@ -35,18 +36,7 @@
       }
 
       a {
-        position: relative;
-        display: block;
-        margin-top: rem($tick--vertical);
-
-        &::before {
-          content: '';
-          position: absolute;
-          top: -1em;
-          right: -1em;
-          bottom: -1em;
-          left: -1em;
-        }
+        @extend %underlined-anchor;
       }
     }
 
@@ -81,9 +71,12 @@
       &__menu {
         align-items: flex-end;
 
+        li {
+          margin-top: 0;
+        }
+
         a {
           position: relative;
-          margin: 0;
           top: rem($tick--vertical / 4);
         }
       }

@@ -45,7 +45,7 @@ a {
   position: relative;
   color: currentColor;
   text-decoration: none;
-  transition: trans(color);
+  transition: trans(color), trans(border-color);
 
   &::after {
     content: '';
@@ -63,8 +63,8 @@ a {
 
 %underlined-anchor {
   border-bottom: rem(1px) solid $color--faint;
-  padding-bottom: rem($tick--vertical * 0.125);
-  margin-bottom: rem(-$tick--vertical * 0.125);
+  padding-bottom: rem($tick--vertical * 0.0625);
+  margin-bottom: rem(-$tick--vertical * 0.0625);
 
   &:hover {
     border-color: $color--accent;
