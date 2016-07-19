@@ -139,6 +139,12 @@
   }
 
   @include breakpoint(phablet) {
+    text-align: center;
+
+    &--create {
+      text-align: left;
+    }
+
     &__body {
       &__links {
         display: none;
