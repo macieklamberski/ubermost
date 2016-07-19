@@ -13,14 +13,6 @@ require('frontkit')(require('gulp'), {
         "fonts",
         "media"
       ]
-    },
-    {
-      "path": "wp/wp-content/themes/ubermost-create/assets",
-      "tasks": [
-        "scripts",
-        "styles",
-        "images"
-      ]
     }
   ],
   "deploy": require('./deploy.json')
