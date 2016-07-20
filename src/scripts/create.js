@@ -5,19 +5,20 @@ var Handlebars = require('handlebars')
 
 var Helper = {
   compileTemplate: function (id, data) {
-    var template = Handlebars.compile($('#' + id + '-template').html());
-    return template(data);
+    var template = Handlebars.compile($('#' + id + '-template').html())
+    return template(data)
   },
 
   openOverlay: function ($overlay, callback) {
-    Application.$BODY.css('overflow', 'hidden');
-    $overlay.addClass('overlay--open');
+    Application.$BODY.css('overflow', 'hidden')
+    $overlay.addClass('overlay--open')
     $overlay.find('.overlay__close').on('click', function (event) {
-      Helper.closeOverlay($overlay);
-      event.preventDefault();
-    });
+      Helper.closeOverlay($overlay)
+      event.preventDefault()
+    })
+
     if (callback !== undefined) {
-      callback($overlay);
+      callback($overlay)
     }
   },
 
@@ -25,18 +26,18 @@ var Helper = {
     if (!$overlay.length) {
       return;
     }
-    Application.$BODY.css('overflow', 'auto');
-    $overlay.removeClass('overlay--open');
+    Application.$BODY.css('overflow', 'auto')
+    $overlay.removeClass('overlay--open')
   },
 
   startLoading: function ($loading) {
-    $loading.removeClass('loading--done');
+    $loading.removeClass('loading--done')
   },
 
   stopLoading: function ($loading) {
-    $loading.addClass('loading--done');
+    $loading.addClass('loading--done')
   }
-};
+}
 
 var Sizes = {
   $trigger: $('.dropdown'),
@@ -45,29 +46,29 @@ var Sizes = {
   $input: $('form input[name="size_id"]'),
 
   init: function () {
-    Sizes.bindOpenOverlay();
-    Sizes.bindSelectSize();
+    Sizes.bindOpenOverlay()
+    Sizes.bindSelectSize()
 
     if (!Sizes.$input.val()) {
-      Sizes.detectInitialResolution();
+      Sizes.detectInitialResolution()
     }
   },
 
   bindOpenOverlay: function () {
     Sizes.$trigger.on('click', function (event) {
-      Helper.openOverlay(Sizes.$overlay);
-      event.preventDefault();
-    });
+      Helper.openOverlay(Sizes.$overlay)
+      event.preventDefault()
+    })
   },
 
   bindSelectSize: function () {
     Sizes.$overlay.find('label').on('click', function (event) {
-      var $self = $(this);
-      Sizes.$input.val($('input', $self).val());
-      Sizes.$selected.html($('span', $self).html());
-      Helper.closeOverlay(Sizes.$overlay);
-      event.preventDefault();
-    });
+      var $self = $(this)
+      Sizes.$input.val($('input', $self).val())
+      Sizes.$selected.html($('span', $self).html())
+      Helper.closeOverlay(Sizes.$overlay)
+      event.preventDefault()
+    })
   },
 
   detectInitialResolution: function () {
@@ -77,54 +78,54 @@ var Sizes = {
 
     // Check if there's option with exact size.
     $('label[data-width="' + screenX + '"][data-height="' + screenY + '"]').each(function () {
-      $matched = $(this);
-    });
+      $matched = $(this)
+    })
 
     // Check if there's option with the same ratio.
     if (!$matched) {
-      var $sizes = $('label[data-ratio="' + (screenX / screenY).toFixed(1) + '"]');
+      var $sizes = $('label[data-ratio="' + (screenX / screenY).toFixed(1) + '"]')
 
       $sizes.each(function () {
-        var $self = $(this);
+        var $self = $(this)
         if ($self.data('width') > screenX && $self.data('height') > screenY) {
           if (!$matched || $self.data('width') < $matched.data('width') && $self.data('height') < $matched.data('height')) {
             $matched = $self;
           }
         }
-      });
+      })
     }
 
     // Match any resolution that is bigger.
     if (!$matched) {
-      var $sizes = $('label[data-ratio]');
+      var $sizes = $('label[data-ratio]')
 
       $sizes.each(function () {
-        var $self = $(this);
+        var $self = $(this)
         if ($self.data('width') > screenX && $self.data('height') > screenY) {
           if (!$matched || $self.data('width') < $matched.data('width') && $self.data('height') < $matched.data('height')) {
             $matched = $self;
           }
         }
-      });
+      })
     }
 
     if ($matched) {
-      $matched.trigger('click');
-      Sizes.$selected.find('em').remove();
-      Sizes.$selected.append(Sizes.$selected.data('detected'));
+      $matched.trigger('click')
+      Sizes.$selected.find('em').remove()
+      Sizes.$selected.append(Sizes.$selected.data('detected'))
     }
   }
-};
+}
 
 var Colors = {
   $inputs: $('.colors input[type="radio"]'),
 
   init: function () {
-    Colors.bindSelectColor();
+    Colors.bindSelectColor()
   },
 
   getCurrentColorId: function () {
-    return Colors.$inputs.filter(':checked').val();
+    return Colors.$inputs.filter(':checked').val()
   },
 
   bindSelectColor: function () {
@@ -132,11 +133,11 @@ var Colors = {
       Preview.load(
         Preview.getCurrentPostId(),
         Colors.getCurrentColorId()
-      );
-      event.preventDefault();
-    });
+      )
+      event.preventDefault()
+    })
   }
-};
+}
 
 var Posts = {
   $container: $('.posts'),
@@ -146,15 +147,15 @@ var Posts = {
   $loading: $('#posts-overlay'),
 
   init: function () {
-    Posts.bindOpenOverlay();
-    Posts.bindSelectPost();
+    Posts.bindOpenOverlay()
+    Posts.bindSelectPost()
   },
 
   bindOpenOverlay: function () {
     Application.$BODY.on('click', '.button--change', function (event) {
-      Helper.openOverlay(Posts.$overlay, Posts.load);
-      event.preventDefault();
-    });
+      Helper.openOverlay(Posts.$overlay, Posts.load)
+      event.preventDefault()
+    })
   },
 
   bindSelectPost: function () {
@@ -162,15 +163,15 @@ var Posts = {
       Preview.load(
         $(this).data('post-id'),
         Colors.getCurrentColorId()
-      );
-      Helper.closeOverlay(Posts.$overlay);
-      event.preventDefault();
-    });
+      )
+      Helper.closeOverlay(Posts.$overlay)
+      event.preventDefault()
+    })
   },
 
   load: function ($overlay) {
     if (Posts.$container.children().length) {
-      Posts.fadeInElements();
+      Posts.fadeInElements()
       return;
     }
 
@@ -181,26 +182,26 @@ var Posts = {
         return;
       }
 
-      var html = Helper.compileTemplate('posts', data);
-      Posts.$container.html(html);
-      Posts.$container.find('img').css('opacity', 0);
+      var html = Helper.compileTemplate('posts', data)
+      Posts.$container.html(html)
+      Posts.$container.find('img').css('opacity', 0)
       ImagesLoaded(Posts.$container.get(0), function () {
-        Helper.stopLoading(Posts.$loading);
-        Posts.fadeInElements();
-      });
-    }, 'json');
+        Helper.stopLoading(Posts.$loading)
+        Posts.fadeInElements()
+      })
+    }, 'json')
   },
 
   fadeInElements: function () {
-    var images = Posts.$container.find('img');
-    images.css('opacity', 0);
+    var images = Posts.$container.find('img')
+    images.css('opacity', 0)
 
     Velocity(images.get(), 'fadeIn', {
       duration: 500,
       stagger: 12.5
-    });
+    })
   }
-};
+}
 
 var Preview = {
   $container: $('.preview'),
@@ -214,19 +215,19 @@ var Preview = {
     Preview.load(
       Preview.getCurrentPostId(),
       Colors.getCurrentColorId()
-    );
+    )
   },
 
   getCurrentPostId: function () {
-    return Preview.$input.val();
+    return Preview.$input.val()
   },
 
   load: function (postId, colorId) {
     var loading = setTimeout(function () {
-      Helper.startLoading(Preview.$loading);
-    }, 250);
+      Helper.startLoading(Preview.$loading)
+    }, 250)
 
-    Download.$trigger.attr('disabled', 'disabled');
+    Download.$trigger.attr('disabled', 'disabled')
 
     $.get(Preview.$endpoint, {action: Preview.$action, post_id: postId, color_id: colorId}, function (result) {
       if (result.data) {
@@ -235,74 +236,74 @@ var Preview = {
         return;
       }
 
-      Preview.$share.html(Helper.compileTemplate('share', data));
-      Preview.$share.addClass('share--enabled');
-      Download.$trigger.removeAttr('disabled');
+      Preview.$share.html(Helper.compileTemplate('share', data))
+      Preview.$share.addClass('share--enabled')
+      Download.$trigger.removeAttr('disabled')
 
-      Preview.$input.val(postId);
-      Preview.$container.html(Helper.compileTemplate('post', data));
-      Preview.$container.find('img').css('opacity', 0);
+      Preview.$input.val(postId)
+      Preview.$container.html(Helper.compileTemplate('post', data))
+      Preview.$container.find('img').css('opacity', 0)
 
       ImagesLoaded(Preview.$container.get(0), function () {
-        clearTimeout(loading);
-        Helper.stopLoading(Preview.$loading);
+        clearTimeout(loading)
+        Helper.stopLoading(Preview.$loading)
 
         Velocity(Preview.$container.find('img').get(), 'fadeIn', {
           duration: 400,
           complete: function () {
-            Preview.$container.css('background-image', 'url(' + data.image + ')');
+            Preview.$container.css('background-image', 'url(' + data.image + ')')
           }
-        });
-      });
-    }, 'json');
+        })
+      })
+    }, 'json')
   }
-};
+}
 
 var Download = {
   $form: $('.main__options'),
   $trigger: $('.button--download'),
 
   init: function () {
-    Download.bindDownloadWallpaper();
+    Download.bindDownloadWallpaper()
   },
 
   bindDownloadWallpaper: function () {
     Download.$form.on('submit', function (event) {
       var self = this;
-      event.preventDefault();
-      setTimeout(function() { self.submit(); }, 1);
-    });
+      event.preventDefault()
+      setTimeout(function() { self.submit() }, 1)
+    })
   }
 }
 
 var Keyboard = {
   init: function () {
-    Keyboard.bindCloseOverlayOnEscape();
+    Keyboard.bindCloseOverlayOnEscape()
   },
 
   bindCloseOverlayOnEscape: function () {
     Application.$DOCUMENT.on('keydown', function (event) {
       if (event.keyCode == 27) {
-        Helper.closeOverlay($('.overlay--open'));
+        Helper.closeOverlay($('.overlay--open'))
       }
-    });
+    })
   }
-};
+}
 
 var Application = {
   $DOCUMENT: $(document),
   $BODY: $('body'),
 
   init: function () {
-    Sizes.init();
-    Colors.init();
-    Posts.init();
-    Preview.init();
-    Download.init();
-    Keyboard.init();
+    Sizes.init()
+    Colors.init()
+    Posts.init()
+    Preview.init()
+    Download.init()
+    Keyboard.init()
   }
-};
+}
 
 $(function () {
-  Application.init();
-});
+  Application.init()
+})
