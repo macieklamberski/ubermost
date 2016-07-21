@@ -73,6 +73,7 @@ class Hooks
     $types = [
       'color' => 'dashicons-admin-customizer',
       'size' => 'dashicons-image-crop',
+      'book' => 'dashicons-book-alt',
     ];
 
     foreach ($types as $slug => $icon) {
