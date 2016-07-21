@@ -28,7 +28,7 @@
   <hr>
 
   {block:Posts}
-    <article class="post">
+    <article class="post" data-tags="{block:Tags}{Tag} {/block:Tags}">
       {block:Photo}
         <a href="{Permalink}" class="post__image">
           <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}">
