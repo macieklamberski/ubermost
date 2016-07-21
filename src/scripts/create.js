@@ -293,6 +293,7 @@ var Keyboard = {
 var ExternalLinks = {
   init: function () {
     var elements = [
+      '.preview__details__body__or a',
       '[rel="external"]'
     ]
 

@@ -17,17 +17,17 @@
 <script id="share-template" type="x-handlebars-template">
   {% raw %}
     <span class="share__label">Or share the wisdom:</span>
-    <a href="http://facebook.com/sharer/sharer.php?u={{blog_link}}" class="share__link share__link--facebook">
+    <a href="http://facebook.com/sharer/sharer.php?u={{blog_link}}" class="share__link share__link--facebook" target="_new">
       <i class="fa fa-facebook"></i>
     </a>
-    <a href="http://pinterest.com/pin/create/button/?url={{blog_link}}&amp;media={{blog_image}}" class="share__link share__link--pinterest">
+    <a href="http://pinterest.com/pin/create/button/?url={{blog_link}}&amp;media={{blog_image}}" class="share__link share__link--pinterest" target="_new">
       <i class="fa fa-pinterest-p"></i>
     </a>
-    <a href="http://twitter.com/intent/tweet?source=Ubermost&amp;text=&url={{blog_link}}" class="share__link share__link--twitter">
+    <a href="http://twitter.com/intent/tweet?source=Ubermost&amp;text=&url={{blog_link}}" class="share__link share__link--twitter" target="_new">
       <i class="fa fa-twitter"></i>
     </a>
     {{#if reblog_link}}
-      <a href="{{reblog_link}}" class="share__link share__link--tumblr">
+      <a href="{{reblog_link}}" class="share__link share__link--tumblr" target="_new">
         <i class="fa fa-tumblr"></i>
       </a>
     {{/if}}
