@@ -290,6 +290,16 @@ var Keyboard = {
   }
 }
 
+var ExternalLinks = {
+  init: function () {
+    var elements = [
+      '[rel="external"]'
+    ]
+
+    $(elements.join()).attr('target', '_new')
+  }
+}
+
 var Application = {
   $DOCUMENT: $(document),
   $BODY: $('body'),
@@ -301,6 +311,7 @@ var Application = {
     Preview.init()
     Download.init()
     Keyboard.init()
+    ExternalLinks.init()
   }
 }
 
