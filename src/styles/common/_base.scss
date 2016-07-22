@@ -62,7 +62,7 @@ a {
 }
 
 %underlined-anchor {
-  border-bottom: rem(1px) solid $color--faint;
+  border-bottom: 1px solid $color--faint;
   padding-bottom: rem($tick--vertical * 0.0625);
   margin-bottom: rem(-$tick--vertical * 0.0625);
 

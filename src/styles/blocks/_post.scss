@@ -9,15 +9,20 @@
   footer {
     font-size: 0;
 
-    cite a {
-      @extend %underlined-anchor;
-    }
-
     cite {
       @extend %heading;
       display: block;
       font-style: normal;
       transition: trans(color);
+    }
+
+    cite a {
+      @extend %underlined-anchor;
+    }
+
+    cite span::after {
+      content: ' ·';
+      padding: 0 0.5em;
     }
   }
 
