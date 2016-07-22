@@ -4,11 +4,7 @@ var BuyLinks = {
   $quotes: $('[data-tags*="isbn"]'),
 
   init: function () {
-    BuyLinks.insertCTAs(
-      BuyLinks.getLinks(
-        BuyLinks.getISBNMap()
-      )
-    )
+    BuyLinks.getLinks()
   },
 
   getISBNMap: function () {
@@ -23,31 +19,12 @@ var BuyLinks = {
       })
 
       if (isbn.length > 0) {
-        $self.data('isbn', isbn[0]);
+        $self.attr('data-isbn', isbn[0]);
         ISBNs.push(isbn[0])
       }
     })
 
     return ISBNs
-  },
-
-  getLinks: function (ISBNs) {
-    var links = []
-
-    $.ajax({
-      url: 'http://create.ubermost.com/wp-admin/admin-ajax.php',
-      data: {
-        action: 'get_isbn_links',
-        isbns: ISBNs
-      },
-      dataType: 'json'
-    })
-    .done(function (result) {
-      links = result.data.links
-      console.log(links)
-    })
-
-    return links
   },
 
   insertCTAs: function (links) {
@@ -61,6 +38,25 @@ var BuyLinks = {
           .append('<span></span>')
           .append('<a href="' + link + '">Buy the book</a>')
       }
+    })
+  },
+
+  getLinks: function () {
+    var ISBNs = BuyLinks.getISBNMap()
+    var links = []
+
+    $.ajax({
+      url: 'http://create.ubermost.com/wp-admin/admin-ajax.php',
+      data: {
+        action: 'get_isbn_links',
+        isbns: ISBNs
+      },
+      dataType: 'json'
+    })
+    .done(function (result) {
+      links = result.data.links
+      BuyLinks.insertCTAs(links)
+      ExternalLinks.init()
     })
   }
 }
