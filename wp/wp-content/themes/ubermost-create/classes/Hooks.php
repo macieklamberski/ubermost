@@ -22,6 +22,8 @@ class Hooks
     add_action('wp_ajax_nopriv_get_post', [$this, 'get_post']);
     add_action('wp_ajax_get_posts', [$this, 'get_posts']);
     add_action('wp_ajax_nopriv_get_posts', [$this, 'get_posts']);
+    add_action('wp_ajax_get_isbn_links', [$this, 'get_isbn_links']);
+    add_action('wp_ajax_nopriv_get_isbn_links', [$this, 'get_isbn_links']);
     add_action('wp_ajax_regenerate_wallpaper', [$this, 'regenerate_wallpaper']);
     add_action('admin_menu', [$this, 'show_published_by_default']);
     add_action('admin_menu', [$this, 'register_utility_page']);
@@ -309,5 +311,30 @@ class Hooks
     }
 
     wp_send_json_success(['posts' => $result]);
+  }
+
+  /**
+   * Return JSON with list of links to buy books on Amazon.
+   */
+  public function get_isbn_links()
+  {
+    $isbns = isset($_GET['isbns']) ? $_GET['isbns'] : [];
+    $links = [];
+
+    foreach ($isbns as $isbn) {
+      $book = array_pop(get_posts([
+        'post_type' => 'book',
+        'meta_query' => [
+          [
+            'key' => 'isbn_10',
+            'value' => str_replace('isbn', '', $isbn),
+          ],
+        ],
+      ]));
+
+      $links[$isbn] = get_field('link', $book->ID);
+    }
+
+    wp_send_json_success(['links' => $links]);
   }
 }

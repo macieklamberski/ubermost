@@ -43,8 +43,8 @@ var BuyLinks = {
       dataType: 'json'
     })
     .done(function (result) {
-      console.log(result)
-      links = result
+      links = result.data.links
+      console.log(links)
     })
 
     return links
