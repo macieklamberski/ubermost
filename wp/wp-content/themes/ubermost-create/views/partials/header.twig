@@ -6,7 +6,7 @@
     </a>
     <ul class="header__body__menu">
       <li>
-          <a href="http://ubermost.com">Blog</a>
+        <a href="http://ubermost.com">Blog</a>
       </li>
       <li>
         <a href="http://facebook.com/ubermost" rel="external">
@@ -20,6 +20,12 @@
           <span>Instagram</span>
         </a>
       </li>
+      {% set user = function('get_current_user_id') %}
+      {% if function('is_super_admin', user) %}
+        <li>
+          <a href="{{ function('admin_url') }}">WP Admin</a>
+        </li>
+      {% endif %}
     </ul>
     {% if not is404 %}
       <div class="header__body__info">
