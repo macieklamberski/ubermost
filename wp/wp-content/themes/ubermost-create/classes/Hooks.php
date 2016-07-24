@@ -26,7 +26,7 @@ class Hooks
     add_action('wp_ajax_nopriv_get_isbn_links', [$this, 'get_isbn_links']);
     add_action('wp_ajax_regenerate_wallpaper', [$this, 'regenerate_wallpaper']);
     add_action('admin_menu', [$this, 'show_published_by_default']);
-    add_action('admin_menu', [$this, 'register_utility_page']);
+    add_action('admin_menu', [$this, 'register_utility_pages']);
     add_action('admin_menu', [$this, 'remove_menu_pages']);
     add_action('wp_before_admin_bar_render', [$this, 'remove_not_needed_items_from_admin_bar'], 11);
     add_action('admin_head', [$this, 'hide_link_to_mine_posts']);
@@ -43,9 +43,9 @@ class Hooks
   }
 
   /**
-   * Add custom utility page for regenerating wallpapers.
+   * Add custom utility pages.
    */
-  public function register_utility_page()
+  public function register_utility_pages()
   {
     add_management_page(
       'Regnerate Wallpapers',
