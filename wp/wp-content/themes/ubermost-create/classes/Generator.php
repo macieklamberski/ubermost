@@ -2,10 +2,10 @@
 
 namespace UbermostCreate;
 
+use Imagine\GD\Image;
 use Imagine\Image\Box;
+use Imagine\GD\Imagine;
 use Imagine\Image\Point;
-use Imagine\Imagick\Image;
-use Imagine\Imagick\Imagine;
 
 /**
  * Utility class for creating merged lettering images.
@@ -18,7 +18,7 @@ class Generator
   protected $settings;
 
   /**
-   * Instance of Imagine\Imagick\Imagine.
+   * Instance of Imagine\GD\Imagine.
    */
   protected $imagine;
 
