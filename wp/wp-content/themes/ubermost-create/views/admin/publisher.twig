@@ -1,0 +1,35 @@
+<div class="wrap">
+  <div>
+    <h1>Publisher Settings</h1>
+    <p>Below is list of authorizations for external services required to post quotes to them.</p>
+  </div>
+
+  <hr>
+  <div>
+    <h2>Tumblr</h2>
+    {% if tumblr.consumer_key and tumblr.consumer_secret %}
+      <p>
+        <b>Consumer Key</b>: {{ tumblr.consumer_key }}
+        <br>
+        <b>Consumer Secret</b>: {{ tumblr.consumer_secret }}
+      </p>
+      {% if tumblr.oauth_token and tumblr.oauth_verifier %}
+        <p>
+          <b>OAuth Token</b>: {{ tumblr.oauth_token }}
+          <br>
+          <b>OAuth Token Verifier</b>: {{ tumblr.oauth_verifier }}
+        </p>
+        <p>
+          <b>Logged in as</b>: {{ tumblr.oauth_token }}
+        </p>
+      {% else %}
+        <p>
+          <a href="{{ tumblr.authorize_link }}" class="button button-primary">Connect to Tumblr</a>
+        </p>
+      {% endif %}
+    {% else %}
+      Tumblr API key and secret has not been provided. Please fill proper fields in <a href="<?php echo admin_url('admin.php?page=acf-options'); ?>">Options page</a> (API tab).
+    {% endif %}
+  </div>
+</div>
+<script src="<?php echo get_stylesheet_directory_uri(); ?>/wallpapers/script.js"></script>

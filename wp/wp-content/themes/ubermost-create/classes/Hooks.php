@@ -15,6 +15,8 @@ class Hooks
    */
   public function register()
   {
+    session_start();
+
     add_filter('upload_mimes', [$this, 'allow_svg_upload']);
     add_action('init', [$this, 'register_posts']);
     add_action('init', [$this, 'register_groups_taxonomy']);
@@ -54,6 +56,16 @@ class Hooks
       'regenerate-wallpapers',
       function () {
         require get_stylesheet_directory().'/wallpapers/template.php';
+      }
+    );
+
+    add_management_page(
+      'Publisher',
+      'Publisher',
+      'publish_posts',
+      'publisher',
+      function () {
+        require get_stylesheet_directory().'/admin-publisher.php';
       }
     );
   }
