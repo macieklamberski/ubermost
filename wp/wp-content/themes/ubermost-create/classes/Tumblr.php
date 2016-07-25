@@ -82,6 +82,11 @@ class Tumblr
     return (bool) isset($_GET['oauth_token']) && isset($_GET['oauth_verifier']);
   }
 
+  public function isConfigured()
+  {
+    return (bool) $this->data['consumer_key'] && $this->data['consumer_secret'];
+  }
+
   public function isConnected()
   {
     return (bool) $this->data['oauth_token'] && $this->data['oauth_token_secret'];
@@ -114,13 +119,19 @@ class Tumblr
     $this->setup();
   }
 
-  // public function makeRequest($method, $uri, $params)
-  public function getPosts()
+  public function getData()
+  {
+    return $this->data;
+  }
+
+  public function getUserData()
   {
     $this->request->setBaseUrl('https://api.tumblr.com/v2');
 
-    return $this->request
-      ->request('GET', 'blog/ubermost.com/posts/queue', [])
+    $response = $this->request
+      ->request('GET', 'user/info', [])
       ->body->__toString();
+
+    return json_decode($response)->response;
   }
 }

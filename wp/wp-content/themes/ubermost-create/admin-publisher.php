@@ -3,21 +3,10 @@
 $tumblr = new UbermostCreate\Tumblr();
 
 if ($tumblr->isAuthorizing()) {
-
   $tumblr->authorize();
-
-  print_r($tumblr->getPosts());
-
-} else if ($tumblr->isConnected()) {
-
-  print_r($tumblr->getPosts());
-
-} else {
-
-  var_dump($tumblr->generateConnectURL());
-
 }
 
-die;
+$context = Timber::get_context();
+$context['tumblr'] = $tumblr;
 
-// Timber::render('admin/publisher.twig', $context);
+Timber::render('admin/publisher.twig', $context);

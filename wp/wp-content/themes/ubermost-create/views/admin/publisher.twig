@@ -7,24 +7,24 @@
   <hr>
   <div>
     <h2>Tumblr</h2>
-    {% if tumblr.consumer_key and tumblr.consumer_secret %}
+    {% if tumblr.isConfigured %}
       <p>
-        <b>Consumer Key</b>: {{ tumblr.consumer_key }}
+        <b>Consumer Key</b>: {{ tumblr.getData.consumer_key }}
         <br>
-        <b>Consumer Secret</b>: {{ tumblr.consumer_secret }}
+        <b>Consumer Secret</b>: {{ tumblr.getData.consumer_secret }}
       </p>
-      {% if tumblr.oauth_token and tumblr.oauth_verifier %}
+      {% if tumblr.isConnected %}
         <p>
-          <b>OAuth Token</b>: {{ tumblr.oauth_token }}
+          <b>OAuth Token</b>: {{ tumblr.getData.oauth_token }}
           <br>
-          <b>OAuth Token Verifier</b>: {{ tumblr.oauth_verifier }}
+          <b>OAuth Token Secret</b>: {{ tumblr.getData.oauth_token_secret }}
         </p>
         <p>
-          <b>Logged in as</b>: {{ tumblr.oauth_token }}
+          <b>Logged in as</b>: {{ tumblr.getUserData.user.name }}
         </p>
       {% else %}
         <p>
-          <a href="{{ tumblr.authorize_link }}" class="button button-primary">Connect to Tumblr</a>
+          <a href="{{ tumblr.generateConnectURL }}" class="button button-primary">Connect to Tumblr</a>
         </p>
       {% endif %}
     {% else %}
@@ -32,4 +32,3 @@
     {% endif %}
   </div>
 </div>
-<script src="<?php echo get_stylesheet_directory_uri(); ?>/wallpapers/script.js"></script>
