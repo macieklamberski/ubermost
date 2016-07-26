@@ -132,6 +132,6 @@ class Tumblr
       ->request('GET', 'user/info', [])
       ->body->__toString();
 
-    return json_decode($response)->response;
+    return json_decode($response)->response->user;
   }
 }

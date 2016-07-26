@@ -5,6 +5,7 @@
   </div>
 
   <hr>
+
   <div>
     <h2>Tumblr</h2>
     {% if tumblr.isConfigured %}
@@ -20,7 +21,7 @@
           <b>OAuth Token Secret</b>: {{ tumblr.getData.oauth_token_secret }}
         </p>
         <p>
-          <b>Logged in as</b>: {{ tumblr.getUserData.user.name }}
+          <b>Logged in as</b>: {{ tumblr.getUserData.name }}
         </p>
       {% else %}
         <p>
@@ -29,6 +30,33 @@
       {% endif %}
     {% else %}
       Tumblr API key and secret has not been provided. Please fill proper fields in <a href="<?php echo admin_url('admin.php?page=acf-options'); ?>">Options page</a> (API tab).
+    {% endif %}
+  </div>
+
+  <hr>
+
+  <div>
+    <h2>Facebook</h2>
+    {% if facebook.isConfigured %}
+      <p>
+        <b>App ID</b>: {{ facebook.getData.app_id }}
+        <br>
+        <b>App Secret</b>: {{ facebook.getData.app_secret }}
+      </p>
+      {% if facebook.isConnected %}
+        <p>
+          <b>OAuth Token</b>: {{ facebook.getData.oauth_token | slice(0, 16) }}&hellip;
+        </p>
+        <p>
+          <b>Logged in as</b>: {{ facebook.getUserData.name }}
+        </p>
+      {% else %}
+        <p>
+          <a href="{{ facebook.generateConnectURL }}" class="button button-primary">Connect to Facebook</a>
+        </p>
+      {% endif %}
+    {% else %}
+      Facebook API ID and secret has not been provided. Please fill proper fields in <a href="<?php echo admin_url('admin.php?page=acf-options'); ?>">Options page</a> (API tab).
     {% endif %}
   </div>
 </div>
