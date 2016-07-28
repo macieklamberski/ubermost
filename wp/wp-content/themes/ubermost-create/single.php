@@ -15,10 +15,19 @@ if ( ! $post || ! $color || ! $size) {
   die;
 }
 
-$image = Helper::get_file_link('show', $post->ID, $color->ID, $size->ID);
+if (
+  strpos($_SERVER['HTTP_USER_AGENT'], 'facebookexternalhit/') !== false ||
+  strpos($_SERVER['HTTP_USER_AGENT'], 'Facebot') !== false ||
+  strpos($_SERVER['HTTP_USER_AGENT'], 'Twitterbot') !== false
+) {
+  $image = Helper::get_file_link('show', $post->ID, $color->ID, $size->ID);
 
-$context = Timber::get_context();
-$context['post'] = new Post($post->ID);
-$context['image'] = $image;
+  $context = Timber::get_context();
+  $context['post'] = new Post($post->ID);
+  $context['image'] = $image;
 
-Timber::render('views/pages/single.twig', $context);
+  Timber::render('views/pages/single.twig', $context);
+} else {
+  header('Location: '.get_field('blog_link', $post->ID));
+  exit;
+}
