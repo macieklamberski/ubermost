@@ -1,33 +1,17 @@
 <?php
 
-namespace UbermostCreate;
+namespace UbermostCreate\API;
+
+use UbermostCreate\API as AbstractAPI;
 
 /**
  * Class for setting up Facebook connection.
  */
-class Facebook
+class Facebook extends AbstractAPI
 {
-  /**
-   * Storing API keys, etc.
-   */
-  protected $data;
-
-  /**
-   * Storing Tumblr API client.
-   */
-  protected $client;
-
-  /**
-   * Constructor, biatch.
-   */
-  public function __construct()
-  {
-    $this->setup();
-  }
-
   public function isConfigured()
   {
-    return (bool) $this->data['app_id'] && $this->data['app_secret'];
+    return (bool) $this->data['app_id'] && $this->data['app_secret'] && $this->data['page_id'];
   }
 
   public function isConnected()
@@ -40,17 +24,13 @@ class Facebook
     return (bool) isset($_GET['code']) && isset($_GET['state']);
   }
 
-  public function getData()
-  {
-    return $this->data;
-  }
-
-  public function setup()
+  protected function setup()
   {
     $this->data = [
       'app_id' => get_field('facebook_app_id', 'option'),
       'app_secret' => get_field('facebook_app_secret', 'option'),
       'oauth_token' => get_field('facebook_oauth_token', 'option'),
+      'page_id' => get_field('facebook_page_id', 'option'),
     ];
 
     $this->client = new \Facebook\Facebook([
@@ -65,7 +45,7 @@ class Facebook
     $helper = $this->client->getRedirectLoginHelper();
     $loginUrl = $helper->getLoginUrl(
       admin_url('tools.php?page=publisher'),
-      ['email']
+      ['email', 'manage_pages', 'publish_pages', 'status_update']
     );
 
     return $loginUrl;
@@ -124,5 +104,37 @@ class Facebook
   {
     return $this->client->get('/me?fields=id,name', $this->data['oauth_token'])
       ->getGraphUser();
+  }
+
+  public function publishPost()
+  {
+    $pageAccessToken = $this->client
+      ->get(
+        '/'.$this->data['page_id'].'/?fields=access_token',
+        $this->data['oauth_token']
+      )
+      ->getDecodedBody();
+
+    $data = [
+      'access_token' => $pageAccessToken['access_token'],
+      'name' => 'Sprzedam skarpetki',
+      'link' => 'http://i45.tinypic.com/xfoolt.jpg',
+      'caption' => 'Gratis dorzucam osrane gacie.',
+      'message' => 'Chuj dupa kurwa cipsko!',
+    ];
+
+    $page_post = $this->client
+      ->post('/'.$this->data['page_id'].'/feed', $data)
+      ->getGraphObject()
+      ->asArray();
+  }
+
+  public function getPagesList()
+  {
+    $result = $this->client
+      ->get('/me/accounts', $this->data['oauth_token'])
+      ->getDecodedBody();
+
+    return $result['data'];
   }
 }

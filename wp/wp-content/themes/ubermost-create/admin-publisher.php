@@ -1,7 +1,7 @@
 <?php
 
-$tumblr = new UbermostCreate\Tumblr();
-$facebook = new UbermostCreate\Facebook();
+$tumblr = new UbermostCreate\API\Tumblr();
+$facebook = new UbermostCreate\API\Facebook();
 
 if ($tumblr->isAuthorizing()) {
   $tumblr->authorize();
@@ -10,6 +10,8 @@ if ($tumblr->isAuthorizing()) {
 if ($facebook->isAuthorizing()) {
   $facebook->authorize();
 }
+
+$facebook->publishPost();
 
 $context = Timber::get_context();
 $context['tumblr'] = $tumblr;

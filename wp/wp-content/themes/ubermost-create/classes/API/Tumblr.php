@@ -1,36 +1,19 @@
 <?php
 
-namespace UbermostCreate;
+namespace UbermostCreate\API;
 
 use Tumblr\API\Client;
+use UbermostCreate\API as AbstractAPI;
 
 /**
  * Class for setting up Tumblr connection.
  */
-class Tumblr
+class Tumblr extends AbstractAPI
 {
-  /**
-   * Storing API keys, etc.
-   */
-  protected $data;
-
-  /**
-   * Storing Tumblr API client.
-   */
-  protected $client;
-
   /**
    * Storing Tumblr request handler.
    */
   protected $request;
-
-  /**
-   * Constructor, biatch.
-   */
-  public function __construct()
-  {
-    $this->setup();
-  }
 
   /**
    * Get request token.
@@ -57,6 +40,21 @@ class Tumblr
     $_SESSION['tumblr_request_token'] = [];
   }
 
+  public function isConfigured()
+  {
+    return (bool) $this->data['consumer_key'] && $this->data['consumer_secret'];
+  }
+
+  public function isConnected()
+  {
+    return (bool) $this->data['oauth_token'] && $this->data['oauth_token_secret'];
+  }
+
+  public function isAuthorizing()
+  {
+    return (bool) isset($_GET['oauth_token']) && isset($_GET['oauth_verifier']);
+  }
+
   protected function setup()
   {
     $this->data = [
@@ -75,21 +73,6 @@ class Tumblr
 
     $this->request = $this->client->getRequestHandler();
     $this->request->setBaseUrl('https://www.tumblr.com');
-  }
-
-  public function isAuthorizing()
-  {
-    return (bool) isset($_GET['oauth_token']) && isset($_GET['oauth_verifier']);
-  }
-
-  public function isConfigured()
-  {
-    return (bool) $this->data['consumer_key'] && $this->data['consumer_secret'];
-  }
-
-  public function isConnected()
-  {
-    return (bool) $this->data['oauth_token'] && $this->data['oauth_token_secret'];
   }
 
   public function generateConnectURL()
@@ -119,11 +102,6 @@ class Tumblr
     $this->setup();
   }
 
-  public function getData()
-  {
-    return $this->data;
-  }
-
   public function getUserData()
   {
     $this->request->setBaseUrl('https://api.tumblr.com/v2');
@@ -133,5 +111,11 @@ class Tumblr
       ->body->__toString();
 
     return json_decode($response)->response->user;
+  }
+
+  public function publishPost()
+  {
+    // fsdfsd
+    // fsdfsd
   }
 }

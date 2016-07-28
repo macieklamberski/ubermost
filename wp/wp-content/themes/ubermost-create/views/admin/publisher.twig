@@ -48,6 +48,12 @@
           <b>OAuth Token</b>: {{ facebook.getData.oauth_token | slice(0, 16) }}&hellip;
         </p>
         <p>
+          <b>Pages</b> (IDs):
+          {% for page in facebook.getPagesList %}
+            <br><em>{{ page.name }}</em>: {{ page.id }}
+          {% endfor %}
+        </p>
+        <p>
           <b>Logged in as</b>: {{ facebook.getUserData.name }}
         </p>
       {% else %}
