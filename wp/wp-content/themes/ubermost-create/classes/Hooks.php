@@ -275,12 +275,17 @@ class Hooks
    */
   public function get_post()
   {
-    if (empty($_GET['post_id']) || empty($_GET['color_id'])) {
+    if (empty($_GET['post_id'])) {
       $this->return_api_error();
     }
 
     $post = get_post(intval($_GET['post_id']));
-    $color = get_post(intval($_GET['color_id']));
+
+    if (empty($_GET['color_id'])) {
+      $color = get_post(get_field('default_color', 'option'));
+    } else {
+      $color = get_post(intval($_GET['color_id']));
+    }
 
     if ( ! $post || ! $color) {
       $this->return_api_error();
