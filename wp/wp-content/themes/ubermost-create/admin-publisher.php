@@ -11,8 +11,6 @@ if ($facebook->isAuthorizing()) {
   $facebook->authorize();
 }
 
-$facebook->publishPost();
-
 $context = Timber::get_context();
 $context['tumblr'] = $tumblr;
 $context['facebook'] = $facebook;

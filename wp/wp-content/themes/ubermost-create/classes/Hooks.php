@@ -55,7 +55,7 @@ class Hooks
       'publish_posts',
       'regenerate-wallpapers',
       function () {
-        require get_stylesheet_directory().'/wallpapers/template.php';
+        require get_stylesheet_directory().'/admin-wallpapers.php';
       }
     );
 
