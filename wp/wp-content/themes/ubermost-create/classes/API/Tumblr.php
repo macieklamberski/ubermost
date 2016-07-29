@@ -52,6 +52,10 @@ class Tumblr extends AbstractAPI
 
   public function isAuthorizing()
   {
+    if ($this->isConnected()) {
+      return false;
+    }
+
     return (bool) isset($_GET['oauth_token']) && isset($_GET['oauth_verifier']);
   }
 
@@ -78,7 +82,12 @@ class Tumblr extends AbstractAPI
   public function generateConnectURL()
   {
     $token = $this->getRequestToken();
-    return 'https://www.tumblr.com/oauth/authorize?oauth_token='.$token['oauth_token'];
+    $query = [
+      'oauth_token' => $token['oauth_token'],
+      'callback_url' => admin_url('tools.php?page=publisher'),
+    ];
+
+    return 'https://www.tumblr.com/oauth/authorize?'.http_build_query($query);
   }
 
   public function authorize()

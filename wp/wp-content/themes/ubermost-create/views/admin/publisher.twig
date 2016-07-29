@@ -36,6 +36,35 @@
   <hr>
 
   <div>
+    <h2>Twitter</h2>
+    {% if twitter.isConfigured %}
+      <p>
+        <b>Consumer Key</b>: {{ twitter.getData.consumer_key }}
+        <br>
+        <b>Consumer Secret</b>: {{ twitter.getData.consumer_secret }}
+      </p>
+      {% if twitter.isConnected %}
+        <p>
+          <b>OAuth Token</b>: {{ twitter.getData.oauth_token }}
+          <br>
+          <b>OAuth Token Secret</b>: {{ twitter.getData.oauth_token_secret }}
+        </p>
+        <p>
+          <b>Logged in as</b>: {{ twitter.getUserData.name }}
+        </p>
+      {% else %}
+        <p>
+          <a href="{{ twitter.generateConnectURL }}" class="button button-primary">Connect to Twitter</a>
+        </p>
+      {% endif %}
+    {% else %}
+      Twitter API key and secret has not been provided. Please fill proper fields in <a href="<?php echo admin_url('admin.php?page=acf-options'); ?>">Options page</a> (API tab).
+    {% endif %}
+  </div>
+
+  <hr>
+
+  <div>
     <h2>Facebook</h2>
     {% if facebook.isConfigured %}
       <p>

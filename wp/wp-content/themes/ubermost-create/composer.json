@@ -2,7 +2,8 @@
     "require": {
         "imagine/imagine": "0.6.*",
         "tumblr/tumblr": "^0.2.0",
-        "facebook/php-sdk-v4": "^5.2"
+        "facebook/php-sdk-v4": "^5.2",
+        "abraham/twitteroauth": "^0.6.4"
     },
     "autoload": {
         "psr-4": {
