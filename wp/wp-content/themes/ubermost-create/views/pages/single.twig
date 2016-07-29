@@ -7,14 +7,14 @@
     <meta property="og:title" content="">
     <meta property="og:image" content="{{ image }}">
     <meta property="og:description" content="{{ post.content | striptags }}">
-    <meta property="og:url" content="{{ post.link }}">
+    <meta property="og:url" content="{{ post.link | replace({ 'create': 'blog' }) }}">
     <meta property="og:type" content="article">
     <meta name="twitter:card" content="photo">
     <meta name="twitter:site" content="@ubermost">
     <meta name="twitter:title" content="">
     <meta name="twitter:description" content="{{ post.content | striptags }}">
     <meta name="twitter:image" content="{{ image }}">
-    <meta name="twitter:url" content="{{ post.link }}">
+    <meta name="twitter:url" content="{{ post.link | replace({ 'create': 'blog' }) }}">
   </head>
   <body>
     <!-- Nothing here. Go away. -->

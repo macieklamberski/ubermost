@@ -20,6 +20,7 @@ class Hooks
     add_filter('upload_mimes', [$this, 'allow_svg_upload']);
     add_action('init', [$this, 'register_posts']);
     add_action('init', [$this, 'register_groups_taxonomy']);
+    add_action('wp', [$this, 'check_domain']);
     add_action('wp_ajax_get_post', [$this, 'get_post']);
     add_action('wp_ajax_nopriv_get_post', [$this, 'get_post']);
     add_action('wp_ajax_get_posts', [$this, 'get_posts']);
@@ -350,5 +351,22 @@ class Hooks
     }
 
     wp_send_json_success(['links' => $links]);
+  }
+
+  /**
+   * Check if the domain is correct.
+   */
+  public function check_domain()
+  {
+    if (is_singular()) {
+      return;
+    }
+
+    $url = parse_url(get_site_url());
+
+    if ($_SERVER['HTTP_HOST'] !== $url['host']) {
+      wp_redirect(get_site_url(null, $_SERVER['REQUEST_URI']), 301);
+      exit;
+    }
   }
 }
