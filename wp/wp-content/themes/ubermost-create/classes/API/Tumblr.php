@@ -138,9 +138,27 @@ class Tumblr extends AbstractAPI
       return [];
     }
 
+    $tags = get_the_tags($post->ID);
+
+    if ($tags) {
+      $tags = array_map(function ($tag) {return $tag->slug;}, $tags);
+    }
+
+    if (get_field('source_type', $post->ID) == 'book') {
+      $book = get_field('book', $post->ID);
+      $isbn = get_field('isbn_10', $book);
+
+      if ($isbn) {
+        $tags[] = 'isbn'.$isbn;
+      }
+    }
+
+    $tags = implode(',', $tags);
+
     return [
       'type' => 'photo',
       'format' => 'html',
+      'tags' => $tags,
       'source' => Helper::get_file_link('show', $post->ID, $color->ID, $size->ID),
       'caption' => Timber::compile('admin/api/tumblr.twig', ['id' => $postId]),
     ];
