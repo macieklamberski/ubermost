@@ -5,6 +5,8 @@ namespace UbermostCreate;
 use UbermostCreate\Helper;
 use UbermostCreate\API\Tumblr;
 use UbermostCreate\Wallpapers;
+use UbermostCreate\API\Twitter;
+use UbermostCreate\API\Facebook;
 
 /**
  * Sack for all the custom filters and actions.
@@ -34,7 +36,7 @@ class Hooks
     add_action('admin_menu', [$this, 'remove_menu_pages']);
     add_action('wp_before_admin_bar_render', [$this, 'remove_not_needed_items_from_admin_bar'], 11);
     add_action('admin_head', [$this, 'hide_link_to_mine_posts']);
-    add_action('post_updated', [$this, 'publish_on_social_media'], 10, 3);
+    add_action('save_post', [$this, 'publish_on_social_media']);
 
     // Enable Options page if ACF plugins is enabled.
     if (function_exists('acf_add_options_page')) {
@@ -375,9 +377,9 @@ class Hooks
   /**
    * Publish post on social media while publishing it in generator.
    */
-  public function publish_on_social_media($postId, $postAfter, $postBefore)
+  public function publish_on_social_media($postId)
   {
-    if ($postAfter->post_status != 'publish' || $postAfter->post_status == 'publish' && $postBefore->post_status == 'publish') {
+    if ($_POST['post_status'] != 'publish' || $_POST['post_status'] == 'publish' && $_POST['original_post_status'] == 'publish') {
       return;
     }
 
@@ -401,12 +403,12 @@ class Hooks
     update_field('blog_link', $blogLink, $postId);
     update_field('reblog_link', $reblogLink, $postId);
 
-    // $twitter = new Twitter();
+    $twitter = new Twitter();
     // if ($twitter->isConfigured()) {
     //   $twitter->publishPost($postId);
     // }
 
-    // $facebook = new Facebook();
+    $facebook = new Facebook();
     // if ($facebook->isConfigured()) {
     //   $facebook->publishPost($postId);
     // }
