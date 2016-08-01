@@ -37,5 +37,5 @@ abstract class API
   abstract public function generateConnectURL();
   abstract public function authorize();
   abstract public function getUserData();
-  abstract public function publishPost();
+  abstract public function publishPost($postId);
 }
