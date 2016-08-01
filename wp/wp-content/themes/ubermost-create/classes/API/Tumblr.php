@@ -4,6 +4,7 @@ namespace UbermostCreate\API;
 
 use Timber;
 use Tumblr\API\Client;
+use UbermostCreate\Helper;
 use UbermostCreate\API as AbstractAPI;
 
 /**
@@ -127,10 +128,20 @@ class Tumblr extends AbstractAPI
   {
     $post = get_post($postId);
 
+    $color = get_field('main_color', $post->ID) ?: get_field('default_color', 'option');
+    $color = get_post($color);
+
+    $size = get_field('tumblr_size', 'option');
+    $size = get_post($size);
+
+    if ( ! $post || ! $color || ! $size) {
+      return [];
+    }
+
     return [
       'type' => 'photo',
       'format' => 'html',
-      'source' => 'image url',
+      'source' => Helper::get_file_link('show', $post->ID, $color->ID, $size->ID),
       'caption' => Timber::compile('admin/api/tumblr.twig', ['id' => $postId]),
     ];
   }
