@@ -2,6 +2,7 @@
 
 namespace UbermostCreate\API;
 
+use Timber;
 use Abraham\TwitterOAuth\TwitterOAuth;
 use UbermostCreate\API as AbstractAPI;
 
@@ -105,9 +106,15 @@ class Twitter extends AbstractAPI
     return $this->client->get('account/verify_credentials', []);
   }
 
-  public function publishPost()
+  public function compilePost($postId)
   {
-    // fsdfsd
-    // fsdfsd
+    return [
+      'status' => Timber::compile('admin/api/twitter.twig', ['id' => $postId]),
+    ];
+  }
+
+  public function publishPost($postId)
+  {
+    return $this->client->post('statuses/update', $this->compilePost($postId));
   }
 }

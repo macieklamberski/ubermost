@@ -2,6 +2,7 @@
 
 namespace UbermostCreate\API;
 
+use Timber;
 use Tumblr\API\Client;
 use UbermostCreate\API as AbstractAPI;
 
@@ -122,9 +123,32 @@ class Tumblr extends AbstractAPI
     return json_decode($response)->response->user;
   }
 
-  public function publishPost()
+  public function compilePost($postId)
   {
-    // fsdfsd
-    // fsdfsd
+    $post = get_post($postId);
+
+    return [
+      'type' => 'photo',
+      'format' => 'html',
+      'source' => 'image url',
+      'caption' => Timber::compile('admin/api/tumblr.twig', ['id' => $postId]),
+    ];
+  }
+
+  public function publishPost($postId)
+  {
+    $this->request->setBaseUrl('https://api.tumblr.com/v2');
+
+    $response = $this->request
+      ->request('POST', 'blog/ubermost/post', $this->compilePost($postId))
+      ->body->__toString();
+
+    $response = $this->request
+      ->request('GET', 'blog/ubermost/posts', [
+        'id' => json_decode($response)->response->id,
+      ])
+      ->body->__toString();
+
+    return json_decode($response)->response->posts[0];
   }
 }

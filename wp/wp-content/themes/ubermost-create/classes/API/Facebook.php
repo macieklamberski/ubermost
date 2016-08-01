@@ -2,6 +2,7 @@
 
 namespace UbermostCreate\API;
 
+use Timber;
 use UbermostCreate\API as AbstractAPI;
 
 /**
@@ -106,7 +107,19 @@ class Facebook extends AbstractAPI
       ->getGraphUser();
   }
 
-  public function publishPost()
+  public function compilePost($postId)
+  {
+    $post = get_post($postId);
+
+    return [
+      'name' => $post->post_title,
+      'link' => get_field('blog_link', $post->ID),
+      'caption' => $post->post_content,
+      'message' => Timber::compile('admin/api/facebook.twig', ['id' => $postId]),
+    ];
+  }
+
+  public function publishPost($postId)
   {
     $pageAccessToken = $this->client
       ->get(
@@ -115,16 +128,11 @@ class Facebook extends AbstractAPI
       )
       ->getDecodedBody();
 
-    $data = [
-      'access_token' => $pageAccessToken['access_token'],
-      'name' => 'Sprzedam skarpetki',
-      'link' => 'http://i45.tinypic.com/xfoolt.jpg',
-      'caption' => 'Gratis dorzucam osrane gacie.',
-      'message' => 'Chuj dupa kurwa cipsko!',
-    ];
-
-    $page_post = $this->client
-      ->post('/'.$this->data['page_id'].'/feed', $data)
+    return $this->client
+      ->post('/'.$this->data['page_id'].'/feed', array_merge(
+        $this->compilePost($postId),
+        ['access_token' => $pageAccessToken['access_token']]
+      ))
       ->getGraphObject()
       ->asArray();
   }

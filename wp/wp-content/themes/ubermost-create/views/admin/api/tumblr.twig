@@ -1,0 +1,14 @@
+<blockquote>
+  {%- set post = TimberPost(id) -%}
+  {%- set book = TimberPost(post.book) -%}
+  {{ post.content }}
+  <footer>
+    <cite>
+      {%- if post.source_type == 'book' -%}
+        {{ book.get_field('author') }}, "{{ book.title }}"
+      {%- else -%}
+        <a href="{{ post.article_link }}">{{ post.article_author }}, "{{ post.article_title }}"</a>
+      {%- endif -%}
+    </cite>
+  </footer>
+</blockquote>
