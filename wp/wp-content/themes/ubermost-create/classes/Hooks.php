@@ -3,7 +3,10 @@
 namespace UbermostCreate;
 
 use UbermostCreate\Helper;
+use UbermostCreate\API\Tumblr;
 use UbermostCreate\Wallpapers;
+use UbermostCreate\API\Twitter;
+use UbermostCreate\API\Facebook;
 
 /**
  * Sack for all the custom filters and actions.
@@ -33,6 +36,7 @@ class Hooks
     add_action('admin_menu', [$this, 'remove_menu_pages']);
     add_action('wp_before_admin_bar_render', [$this, 'remove_not_needed_items_from_admin_bar'], 11);
     add_action('admin_head', [$this, 'hide_link_to_mine_posts']);
+    add_action('publish_post', [$this, 'publish_on_social_media']);
 
     // Enable Options page if ACF plugins is enabled.
     if (function_exists('acf_add_options_page')) {
@@ -367,6 +371,42 @@ class Hooks
     if ($_SERVER['HTTP_HOST'] !== $url['host']) {
       wp_redirect(get_site_url(null, $_SERVER['REQUEST_URI']), 301);
       exit;
+    }
+  }
+
+  /**
+   * Publish post on social media while publishing it in generator.
+   */
+  public function publish_on_social_media($postId)
+  {
+    $tumblr = new Tumblr();
+
+    if ( ! $tumblr->isConfigured()) {
+      return;
+    }
+
+    $tumblrPost = $tumblr->publishPost($postId);
+
+    if ( ! $tumblrPost) {
+      return;
+    }
+
+    $blog_image = $tumblrPost->photos[0]->original_size->url;
+    $blog_link = $tumblrPost->post_url;
+    $reblog_link = sprintf('https://www.tumblr.com/reblog/%s/%s', $tumblrPost->id, $tumblrPost->reblog_key);
+
+    update_field('blog_image', $blog_image, $postId);
+    update_field('blog_link', $blog_link, $postId);
+    update_field('reblog_link', $reblog_link, $postId);
+
+    $twitter = new Twitter();
+    if ($twitter->isConfigured()) {
+      $twitter->publishPost($postId);
+    }
+
+    $facebook = new Facebook();
+    if ($facebook->isConfigured()) {
+      $facebook->publishPost($postId);
     }
   }
 }

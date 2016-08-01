@@ -113,7 +113,7 @@ class Facebook extends AbstractAPI
 
     return [
       'name' => $post->post_title,
-      'link' => get_field('blog_link', $post->ID),
+      'link' => 'http://blog.ubermost.com/posts/'.$post->ID,
       'caption' => $post->post_content,
       'message' => Timber::compile('admin/api/facebook.twig', ['id' => $postId]),
     ];

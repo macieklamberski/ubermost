@@ -168,16 +168,22 @@ class Tumblr extends AbstractAPI
   {
     $this->request->setBaseUrl('https://api.tumblr.com/v2');
 
-    $response = $this->request
+    $createdPost = $this->request
       ->request('POST', 'blog/ubermost/post', $this->compilePost($postId))
       ->body->__toString();
 
-    $response = $this->request
+    $createdPost = json_decode($createdPost);
+
+    if ($createdPost->meta->status !== 201) {
+      return false;
+    }
+
+    $latestPost = $this->request
       ->request('GET', 'blog/ubermost/posts', [
-        'id' => json_decode($response)->response->id,
+        'id' => $createdPost->response->id,
       ])
       ->body->__toString();
 
-    return json_decode($response)->response->posts[0];
+    return json_decode($latestPost)->response->posts[0];
   }
 }
