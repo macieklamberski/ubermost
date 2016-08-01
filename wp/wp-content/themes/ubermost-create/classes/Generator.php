@@ -30,8 +30,8 @@ class Generator
   {
     $this->imagine = new Imagine();
     $this->settings = array_merge([
-      'partials_path' => sys_get_temp_dir(),
-      'combined_path' => sys_get_temp_dir(),
+      'partials_path' => WP_CONTENT_DIR.'/cache/',
+      'combined_path' => WP_CONTENT_DIR.'/cache/',
       'quality' => 100,
     ], $settings);
   }
