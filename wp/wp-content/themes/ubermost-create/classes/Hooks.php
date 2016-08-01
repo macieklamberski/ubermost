@@ -5,8 +5,6 @@ namespace UbermostCreate;
 use UbermostCreate\Helper;
 use UbermostCreate\API\Tumblr;
 use UbermostCreate\Wallpapers;
-use UbermostCreate\API\Twitter;
-use UbermostCreate\API\Facebook;
 
 /**
  * Sack for all the custom filters and actions.
@@ -36,7 +34,7 @@ class Hooks
     add_action('admin_menu', [$this, 'remove_menu_pages']);
     add_action('wp_before_admin_bar_render', [$this, 'remove_not_needed_items_from_admin_bar'], 11);
     add_action('admin_head', [$this, 'hide_link_to_mine_posts']);
-    add_action('publish_post', [$this, 'publish_on_social_media']);
+    add_action('post_updated', [$this, 'publish_on_social_media'], 10, 3);
 
     // Enable Options page if ACF plugins is enabled.
     if (function_exists('acf_add_options_page')) {
@@ -377,8 +375,12 @@ class Hooks
   /**
    * Publish post on social media while publishing it in generator.
    */
-  public function publish_on_social_media($postId)
+  public function publish_on_social_media($postId, $postAfter, $postBefore)
   {
+    if ($postAfter->post_status != 'publish' || $postAfter->post_status == 'publish' && $postBefore->post_status == 'publish') {
+      return;
+    }
+
     $tumblr = new Tumblr();
 
     if ( ! $tumblr->isConfigured()) {
@@ -391,22 +393,22 @@ class Hooks
       return;
     }
 
-    $blog_image = $tumblrPost->photos[0]->original_size->url;
-    $blog_link = $tumblrPost->post_url;
-    $reblog_link = sprintf('https://www.tumblr.com/reblog/%s/%s', $tumblrPost->id, $tumblrPost->reblog_key);
+    $blogImage = $tumblrPost->photos[0]->original_size->url;
+    $blogLink = $tumblrPost->post_url;
+    $reblogLink = sprintf('https://www.tumblr.com/reblog/%s/%s', $tumblrPost->id, $tumblrPost->reblog_key);
 
-    update_field('blog_image', $blog_image, $postId);
-    update_field('blog_link', $blog_link, $postId);
-    update_field('reblog_link', $reblog_link, $postId);
+    update_field('blog_image', $blogImage, $postId);
+    update_field('blog_link', $blogLink, $postId);
+    update_field('reblog_link', $reblogLink, $postId);
 
-    $twitter = new Twitter();
-    if ($twitter->isConfigured()) {
-      $twitter->publishPost($postId);
-    }
+    // $twitter = new Twitter();
+    // if ($twitter->isConfigured()) {
+    //   $twitter->publishPost($postId);
+    // }
 
-    $facebook = new Facebook();
-    if ($facebook->isConfigured()) {
-      $facebook->publishPost($postId);
-    }
+    // $facebook = new Facebook();
+    // if ($facebook->isConfigured()) {
+    //   $facebook->publishPost($postId);
+    // }
   }
 }

@@ -158,6 +158,7 @@ class Tumblr extends AbstractAPI
     return [
       'type' => 'photo',
       'format' => 'html',
+      'state' => 'draft',
       'tags' => $tags,
       'source' => Helper::get_file_link('show', $post->ID, $color->ID, $size->ID),
       'caption' => Timber::compile('admin/api/tumblr.twig', ['id' => $postId]),
