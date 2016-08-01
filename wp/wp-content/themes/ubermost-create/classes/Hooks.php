@@ -404,13 +404,13 @@ class Hooks
     update_field('reblog_link', $reblogLink, $postId);
 
     $twitter = new Twitter();
-    // if ($twitter->isConfigured()) {
-    //   $twitter->publishPost($postId);
-    // }
+    if ($twitter->isConfigured()) {
+      $twitter->publishPost($postId);
+    }
 
     $facebook = new Facebook();
-    // if ($facebook->isConfigured()) {
-    //   $facebook->publishPost($postId);
-    // }
+    if ($facebook->isConfigured()) {
+      $facebook->publishPost($postId);
+    }
   }
 }
