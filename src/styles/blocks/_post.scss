@@ -49,8 +49,39 @@
     li {
       display: inline-block;
       list-style: none;
+    }
+
+    &__link {
       width: rem(30px);
       text-align: center;
+
+      &--socials {
+        width: auto;
+        text-align: left;
+        line-height: rem(20px);
+
+        > * {
+          padding-left: rem(5px);
+          position: relative;
+          filter: grayscale(100%);
+          opacity: 0.33;
+          transition: trans(filter, $duration--ease), trans(opacity, $duration--ease);
+
+          &::before {
+            content: '';
+            position: absolute;
+            top: -0.5em;
+            right: -0.5em;
+            bottom: -0.5em;
+            left: -0.5em;
+          }
+
+          &:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+          }
+        }
+      }
     }
 
     a {
