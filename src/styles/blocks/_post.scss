@@ -46,12 +46,9 @@
     margin-top: rem($tick--vertical);
     margin-bottom: 0;
 
-    li {
+    &__link {
       display: inline-block;
       list-style: none;
-    }
-
-    &__link {
       width: rem(30px);
       text-align: center;
 
@@ -124,6 +121,14 @@
       max-width: none;
       padding-left: 0;
       padding-right: 0;
+    }
+
+    &__links {
+      &__link {
+        &--socials {
+          display: none;
+        }
+      }
     }
   }
 }
