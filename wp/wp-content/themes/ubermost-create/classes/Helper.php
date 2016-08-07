@@ -150,7 +150,9 @@ class Helper
         'height' => get_field('height', $size->ID),
         'scale' => get_field('scale', $size->ID),
       ], [
-        $post->ID, $color->ID, $size->ID,
+        'post' => $post->ID,
+        'color' => $color->ID,
+        'size' => $size->ID,
       ]);
   }
 
@@ -163,7 +165,11 @@ class Helper
       return;
     }
 
-    $file = (new Generator())->getCombinedFile([$post->ID, $color->ID, $size->ID]);
+    $file = (new Generator())->getCombinedFile([
+      'post' => $post->ID,
+      'color' => $color->ID,
+      'size' => $size->ID,
+    ]);
 
     if ( ! file_exists($file)) {
       Helper::combine_wallpaper($post, $color, $size);

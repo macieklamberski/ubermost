@@ -58,6 +58,11 @@ class Generator
    */
   public function getCombinedFile(array $ids)
   {
+    if ( ! empty($ids['post'])) {
+      $post = get_post($ids['post']);
+      $ids['timestamp'] = strtotime($post->post_modified);
+    }
+
     return $this->getFileName($this->settings['combined_path'], $ids);
   }
 
@@ -67,6 +72,11 @@ class Generator
   protected function getFileName($path, array $parameters)
   {
     $path = rtrim($path, '/').'/';
+
+    if ( ! empty($parameters['file'])) {
+      $parameters['timestamp'] = filemtime($parameters['file']);
+    }
+
     $file = md5(implode($parameters)).'.jpg';
     return $path.$file;
   }
@@ -98,7 +108,7 @@ class Generator
   {
     return $this->getPartialFile(
       [
-        $parameters['lettering_file'],
+        'file' => $parameters['lettering_file'],
         $parameters['width'],
         $parameters['height'],
         $parameters['scale'],
@@ -131,7 +141,7 @@ class Generator
   {
     return $this->getPartialFile(
       [
-        $parameters['lettering_file'],
+        'file' => $parameters['lettering_file'],
         $parameters['width'],
         $parameters['height'],
       ],
@@ -157,7 +167,7 @@ class Generator
   {
     $foreground = $this->getPartialFile(
       [
-        $parameters['foreground_file'],
+        'file' => $parameters['foreground_file'],
         $parameters['width'],
         $parameters['height'],
       ],
@@ -183,7 +193,7 @@ class Generator
   {
     $image = $this->getPartialFile(
       [
-        $parameters['background_file'],
+        'file' => $parameters['background_file'],
         $parameters['width'],
         $parameters['height'],
       ],
