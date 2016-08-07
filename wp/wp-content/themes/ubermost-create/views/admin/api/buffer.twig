@@ -1,0 +1,5 @@
+{%- set post = TimberPost(id) -%}
+{% include 'admin/api/facebook.twig' with { id: id } %}
+
+
+{% for tag in post.tags %}#{{ tag.slug }} {% endfor %}

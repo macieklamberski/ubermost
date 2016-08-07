@@ -3,6 +3,7 @@
 namespace UbermostCreate;
 
 use UbermostCreate\Helper;
+use UbermostCreate\API\Buffer;
 use UbermostCreate\API\Tumblr;
 use UbermostCreate\Wallpapers;
 use UbermostCreate\API\Twitter;
@@ -411,6 +412,11 @@ class Hooks
     $facebook = new Facebook();
     if ($facebook->isConfigured()) {
       $facebook->publishPost($postId);
+    }
+
+    $buffer = new Buffer();
+    if ($buffer->isConfigured()) {
+      $buffer->publishPost($postId);
     }
   }
 }

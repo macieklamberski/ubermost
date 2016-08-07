@@ -7,6 +7,39 @@
   <hr>
 
   <div>
+    <h2>Buffer</h2>
+    {% if buffer.isConfigured %}
+      <p>
+        <b>Client ID</b>: {{ buffer.getData.client_id }}
+        <br>
+        <b>Client Secret</b>: {{ buffer.getData.client_secret }}
+      </p>
+      {% if buffer.isConnected %}
+        <p>
+          <b>OAuth Token</b>: {{ buffer.getData.oauth_token }}
+        </p>
+        <p>
+          <b>Profiles</b> (IDs):
+          {% for profile in buffer.getProfilesList %}
+            <br><em>{{ profile.formatted_username }}</em>: {{ profile.id }}
+          {% endfor %}
+        </p>
+        <p>
+          <b>Logged in as</b>: {{ buffer.getUserData.name }}
+        </p>
+      {% else %}
+        <p>
+          <a href="{{ buffer.generateConnectURL }}" class="button button-primary">Connect to Buffer</a>
+        </p>
+      {% endif %}
+    {% else %}
+      Buffer API key and secret has not been provided. Please fill proper fields in <a href="<?php echo admin_url('admin.php?page=acf-options'); ?>">Options page</a> (API tab).
+    {% endif %}
+  </div>
+
+  <hr>
+
+  <div>
     <h2>Tumblr</h2>
     {% if tumblr.isConfigured %}
       <p>
