@@ -1,14 +1,17 @@
 {%- set post = TimberPost(id) -%}
 {%- set book = TimberPost(post.book) -%}
+{%- set content = post.post_content | striptags -%}
 
 {%- if post.source_type == 'book' -%}
 
-{{ post.content | striptags }}
+{{ content }}
+
 — {{ book.get_field('author') }}, "{{ book.title }}"
 
 {%- else -%}
 
-{{ post.content | striptags }}
+{{ content }}
+
 — {{ post.article_author }}, "{{ post.article_title }}"
 
 {%- endif -%}
