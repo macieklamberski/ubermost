@@ -11,6 +11,11 @@ use UbermostCreate\API as AbstractAPI;
  */
 class Buffer extends AbstractAPI
 {
+  public function isEnabled()
+  {
+    return (bool) $this->data['enabled'];
+  }
+
   public function isConfigured()
   {
     return (bool) $this->data['client_id'] && $this->data['client_secret'];
@@ -29,6 +34,7 @@ class Buffer extends AbstractAPI
   protected function setup()
   {
     $this->data = [
+      'enabled' => get_field('buffer_enabled', 'option'),
       'client_id' => get_field('buffer_client_id', 'option'),
       'client_secret' => get_field('buffer_client_secret', 'option'),
       'oauth_token' => get_field('buffer_oauth_token', 'option'),

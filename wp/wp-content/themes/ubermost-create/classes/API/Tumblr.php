@@ -42,6 +42,11 @@ class Tumblr extends AbstractAPI
     $_SESSION['tumblr_request_token'] = [];
   }
 
+  public function isEnabled()
+  {
+    return (bool) $this->data['enabled'];
+  }
+
   public function isConfigured()
   {
     return (bool) $this->data['consumer_key'] && $this->data['consumer_secret'];
@@ -64,6 +69,7 @@ class Tumblr extends AbstractAPI
   protected function setup()
   {
     $this->data = [
+      'enabled' => get_field('tumblr_enabled', 'option'),
       'consumer_key' => get_field('tumblr_key', 'option'),
       'consumer_secret' => get_field('tumblr_secret', 'option'),
       'oauth_token' => get_field('tumblr_oauth_token', 'option'),

@@ -37,6 +37,11 @@ class Twitter extends AbstractAPI
     $_SESSION['twitter_request_token'] = [];
   }
 
+  public function isEnabled()
+  {
+    return (bool) $this->data['enabled'];
+  }
+
   public function isConfigured()
   {
     return (bool) $this->data['consumer_key'] && $this->data['consumer_secret'];
@@ -59,6 +64,7 @@ class Twitter extends AbstractAPI
   protected function setup()
   {
     $this->data = [
+      'enabled' => get_field('twitter_enabled', 'option'),
       'consumer_key' => get_field('twitter_consumer_key', 'option'),
       'consumer_secret' => get_field('twitter_consumer_secret', 'option'),
       'oauth_token' => get_field('twitter_oauth_token', 'option'),

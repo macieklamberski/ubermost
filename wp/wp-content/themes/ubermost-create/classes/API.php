@@ -31,6 +31,7 @@ abstract class API
   }
 
   abstract protected function setup();
+  abstract public function isEnabled();
   abstract public function isConfigured();
   abstract public function isConnected();
   abstract public function isAuthorizing();

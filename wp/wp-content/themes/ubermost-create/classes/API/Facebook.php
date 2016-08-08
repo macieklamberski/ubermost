@@ -10,6 +10,11 @@ use UbermostCreate\API as AbstractAPI;
  */
 class Facebook extends AbstractAPI
 {
+  public function isEnabled()
+  {
+    return (bool) $this->data['enabled'];
+  }
+
   public function isConfigured()
   {
     return (bool) $this->data['app_id'] && $this->data['app_secret'] && $this->data['page_id'];
@@ -28,6 +33,7 @@ class Facebook extends AbstractAPI
   protected function setup()
   {
     $this->data = [
+      'enabled' => get_field('facebook_enabled', 'option'),
       'app_id' => get_field('facebook_app_id', 'option'),
       'app_secret' => get_field('facebook_app_secret', 'option'),
       'oauth_token' => get_field('facebook_oauth_token', 'option'),

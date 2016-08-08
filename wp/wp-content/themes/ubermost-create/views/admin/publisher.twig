@@ -7,52 +7,27 @@
   <hr>
 
   <div>
-    <h2>Buffer</h2>
-    {% if buffer.isConfigured %}
-      <p>
-        <b>Client ID</b>: {{ buffer.getData.client_id }}
-        <br>
-        <b>Client Secret</b>: {{ buffer.getData.client_secret }}
-      </p>
-      {% if buffer.isConnected %}
-        <p>
-          <b>OAuth Token</b>: {{ buffer.getData.oauth_token }}
-        </p>
-        <p>
-          <b>Profiles</b> (IDs):
-          {% for profile in buffer.getProfilesList %}
-            <br><em>{{ profile.formatted_username }}</em>: {{ profile.id }}
-          {% endfor %}
-        </p>
-        <p>
-          <b>Logged in as</b>: {{ buffer.getUserData.name }}
-        </p>
+    <h2>
+      Tumblr
+      {% if not tumblr.isEnabled %}
+        <span style="color: #E12F37">Off</span>
       {% else %}
-        <p>
-          <a href="{{ buffer.generateConnectURL }}" class="button button-primary">Connect to Buffer</a>
-        </p>
+        <span style="color: #34B45D">On</span>
       {% endif %}
-    {% else %}
-      Buffer API key and secret has not been provided. Please fill proper fields in <a href="<?php echo admin_url('admin.php?page=acf-options'); ?>">Options page</a> (API tab).
-    {% endif %}
-  </div>
-
-  <hr>
-
-  <div>
-    <h2>Tumblr</h2>
+    </h2>
     {% if tumblr.isConfigured %}
       <p>
         <b>Consumer Key</b>: {{ tumblr.getData.consumer_key }}
         <br>
         <b>Consumer Secret</b>: {{ tumblr.getData.consumer_secret }}
-      </p>
-      {% if tumblr.isConnected %}
-        <p>
+        {% if tumblr.isConnected %}
+          <br>
           <b>OAuth Token</b>: {{ tumblr.getData.oauth_token }}
           <br>
           <b>OAuth Token Secret</b>: {{ tumblr.getData.oauth_token_secret }}
-        </p>
+        {% endif %}
+      </p>
+      {% if tumblr.isConnected %}
         <p>
           <b>Logged in as</b>: {{ tumblr.getUserData.name }}
         </p>
@@ -69,19 +44,27 @@
   <hr>
 
   <div>
-    <h2>Twitter</h2>
+    <h2>
+      Twitter
+      {% if not twitter.isEnabled %}
+        <span style="color: #E12F37">Off</span>
+      {% else %}
+        <span style="color: #34B45D">On</span>
+      {% endif %}
+    </h2>
     {% if twitter.isConfigured %}
       <p>
         <b>Consumer Key</b>: {{ twitter.getData.consumer_key }}
         <br>
         <b>Consumer Secret</b>: {{ twitter.getData.consumer_secret }}
-      </p>
-      {% if twitter.isConnected %}
-        <p>
+        {% if twitter.isConnected %}
+          <br>
           <b>OAuth Token</b>: {{ twitter.getData.oauth_token }}
           <br>
           <b>OAuth Token Secret</b>: {{ twitter.getData.oauth_token_secret }}
-        </p>
+        {% endif %}
+      </p>
+      {% if twitter.isConnected %}
         <p>
           <b>Logged in as</b>: {{ twitter.getUserData.name }}
         </p>
@@ -98,17 +81,26 @@
   <hr>
 
   <div>
-    <h2>Facebook</h2>
+    <h2>
+      Facebook
+      {% if not facebook.isEnabled %}
+        <span style="color: #E12F37">Off</span>
+      {% else %}
+        <span style="color: #34B45D">On</span>
+      {% endif %}
+    </h2>
     {% if facebook.isConfigured %}
       <p>
         <b>App ID</b>: {{ facebook.getData.app_id }}
         <br>
         <b>App Secret</b>: {{ facebook.getData.app_secret }}
+        {% if facebook.isConnected %}
+          <b>OAuth Token</b>: {{ facebook.getData.oauth_token | slice(0, 16) }}&hellip;
+          <br>
+          <b>Current Page</b>: {{ facebook.getData.page_id }}
+        {% endif %}
       </p>
       {% if facebook.isConnected %}
-        <p>
-          <b>OAuth Token</b>: {{ facebook.getData.oauth_token | slice(0, 16) }}&hellip;
-        </p>
         <p>
           <b>Pages</b> (IDs):
           {% for page in facebook.getPagesList %}
@@ -125,6 +117,49 @@
       {% endif %}
     {% else %}
       Facebook API ID and secret has not been provided. Please fill proper fields in <a href="<?php echo admin_url('admin.php?page=acf-options'); ?>">Options page</a> (API tab).
+    {% endif %}
+  </div>
+
+  <hr>
+
+  <div>
+    <h2>
+      Buffer
+      {% if not buffer.isEnabled %}
+        <span style="color: #E12F37">Off</span>
+      {% else %}
+        <span style="color: #34B45D">On</span>
+      {% endif %}
+    </h2>
+    {% if buffer.isConfigured %}
+      <p>
+        <b>Client ID</b>: {{ buffer.getData.client_id }}
+        <br>
+        <b>Client Secret</b>: {{ buffer.getData.client_secret }}
+        {% if buffer.isConnected %}
+          <br>
+          <b>OAuth Token</b>: {{ buffer.getData.oauth_token }}
+          <br>
+          <b>Current Profile</b>: {{ buffer.getData.profile_id }}
+        {% endif %}
+      </p>
+      {% if buffer.isConnected %}
+        <p>
+          <b>Profiles</b> (IDs):
+          {% for profile in buffer.getProfilesList %}
+            <br><em>{{ profile.formatted_username }}</em>: {{ profile.id }}
+          {% endfor %}
+        </p>
+        <p>
+          <b>Logged in as</b>: {{ buffer.getUserData.name }}
+        </p>
+      {% else %}
+        <p>
+          <a href="{{ buffer.generateConnectURL }}" class="button button-primary">Connect to Buffer</a>
+        </p>
+      {% endif %}
+    {% else %}
+      Buffer API key and secret has not been provided. Please fill proper fields in <a href="<?php echo admin_url('admin.php?page=acf-options'); ?>">Options page</a> (API tab).
     {% endif %}
   </div>
 </div>
