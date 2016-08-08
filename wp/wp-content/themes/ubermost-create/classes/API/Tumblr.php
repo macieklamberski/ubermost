@@ -159,7 +159,11 @@ class Tumblr extends AbstractAPI
       }
     }
 
-    $tags = implode(',', $tags);
+    if (is_array($tags)) {
+      $tags = implode(',', $tags);
+    } else {
+      $tags = '';
+    }
 
     return [
       'type' => 'photo',
