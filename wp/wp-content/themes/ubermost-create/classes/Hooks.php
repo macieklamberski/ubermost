@@ -386,7 +386,7 @@ class Hooks
 
     $tumblr = new Tumblr();
 
-    if ( ! $tumblr->isConfigured()) {
+    if ( ! $tumblr->isConfigured() || ! $tumblr->isEnabled()) {
       return;
     }
 
@@ -405,17 +405,17 @@ class Hooks
     update_field('reblog_link', $reblogLink, $postId);
 
     $twitter = new Twitter();
-    if ($twitter->isConfigured()) {
+    if ($twitter->isConfigured() && $twitter->isEnabled()) {
       $twitter->publishPost($postId);
     }
 
     $facebook = new Facebook();
-    if ($facebook->isConfigured()) {
+    if ($facebook->isConfigured() && $facebook->isEnabled()) {
       $facebook->publishPost($postId);
     }
 
     $buffer = new Buffer();
-    if ($buffer->isConfigured()) {
+    if ($buffer->isConfigured() && $buffer->isEnabled()) {
       $buffer->publishPost($postId);
     }
   }
