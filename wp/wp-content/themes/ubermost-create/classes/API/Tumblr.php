@@ -144,7 +144,12 @@ class Tumblr extends AbstractAPI
       return [];
     }
 
+    $imageUrl = Helper::get_file_link('show', $post->ID, $color->ID, $size->ID);
     $tags = get_the_tags($post->ID);
+
+    if ($imageUrl) {
+      file_get_contents($imageUrl);
+    }
 
     if ($tags) {
       $tags = array_map(function ($tag) {return $tag->slug;}, $tags);
@@ -169,7 +174,7 @@ class Tumblr extends AbstractAPI
       'type' => 'photo',
       'format' => 'html',
       'tags' => $tags,
-      'source' => Helper::get_file_link('show', $post->ID, $color->ID, $size->ID),
+      'source' => $imageUrl,
       'caption' => Timber::compile('admin/api/tumblr.twig', ['id' => $postId]),
     ];
   }
