@@ -29,6 +29,10 @@
   &__image {
     @extend %container;
     @extend %text;
+
+    &::after {
+      display: none;
+    }
   }
 
   &__text {
