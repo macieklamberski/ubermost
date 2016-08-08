@@ -118,10 +118,8 @@ class Facebook extends AbstractAPI
     $post = get_post($postId);
 
     return [
-      'name' => $post->post_title,
-      'link' => 'http://blog.ubermost.com/posts/'.$post->ID,
-      'caption' => $post->post_content,
-      'message' => Timber::compile('admin/api/facebook.twig', ['id' => $postId]),
+      'url' => get_field('blog_image', $post->ID),
+      'caption' => Timber::compile('admin/api/facebook.twig', ['id' => $postId]),
     ];
   }
 
@@ -135,7 +133,7 @@ class Facebook extends AbstractAPI
       ->getDecodedBody();
 
     return $this->client
-      ->post('/'.$this->data['page_id'].'/feed', array_merge(
+      ->post('/'.$this->data['page_id'].'/photos', array_merge(
         $this->compilePost($postId),
         ['access_token' => $pageAccessToken['access_token']]
       ))
