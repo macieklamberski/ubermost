@@ -1,2 +1,2 @@
 {%- set post = TimberPost(id) -%}
-{{ post.title | slice(0, 50) }}. http://blog.ubermost.com/posts/{{ post.id }}
+{{ post.title | slice(0, 50) }}. {{ post.get_field('blog_link') }}
