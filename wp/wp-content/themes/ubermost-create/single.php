@@ -18,7 +18,8 @@ if ( ! $post || ! $color || ! $size) {
 if (
   strpos($_SERVER['HTTP_USER_AGENT'], 'facebookexternalhit/') !== false ||
   strpos($_SERVER['HTTP_USER_AGENT'], 'Facebot') !== false ||
-  strpos($_SERVER['HTTP_USER_AGENT'], 'Twitterbot') !== false
+  strpos($_SERVER['HTTP_USER_AGENT'], 'Twitterbot') !== false ||
+  $_GET['preview'] === 'true'
 ) {
   $image = Helper::get_file_link('show', $post->ID, $color->ID, $size->ID);
 
