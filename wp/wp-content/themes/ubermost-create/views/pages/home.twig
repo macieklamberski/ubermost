@@ -18,7 +18,7 @@
           {% for color in public_colors %}
             {% set color = TimberPost(color.ID) %}
             <li>
-              <label class="color" style="color: {{ color.get_field('bg_color') }}">
+              <label class="color" style="color: {{ color.get_field('bg_color') }}" title="{{ color.title }}">
                 <input
                   type="radio"
                   name="color_id"
