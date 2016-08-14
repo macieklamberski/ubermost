@@ -38,6 +38,7 @@ class Hooks
     add_action('wp_before_admin_bar_render', [$this, 'remove_not_needed_items_from_admin_bar'], 11);
     add_action('admin_head', [$this, 'hide_link_to_mine_posts']);
     add_action('save_post', [$this, 'publish_on_social_media']);
+    add_action('publish_future_post', [$this, 'publish_on_social_media']);
 
     // Enable Options page if ACF plugins is enabled.
     if (function_exists('acf_add_options_page')) {
@@ -380,7 +381,12 @@ class Hooks
    */
   public function publish_on_social_media($postId)
   {
-    if ($_POST['post_status'] != 'publish' || $_POST['post_status'] == 'publish' && $_POST['original_post_status'] == 'publish') {
+    $beingPublished =
+      $_POST['post_status'] === 'publish' &&
+      $_POST['original_post_status'] !== 'publish';
+
+    // Do nothing if post is not published or scheduled for future.
+    if (($_POST && ! $beingPublished) || get_post_status($postId) === 'future') {
       return;
     }
 
