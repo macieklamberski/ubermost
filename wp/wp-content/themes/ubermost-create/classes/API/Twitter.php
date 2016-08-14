@@ -121,6 +121,15 @@ class Twitter extends AbstractAPI
 
   public function publishPost($postId)
   {
-    return $this->client->post('statuses/update', $this->compilePost($postId));
+    $photo = $this->client->upload('media/upload', [
+      'media' => get_field('blog_image', $postId),
+    ]);
+
+    $result = $this->client->post('statuses/update', [
+      'status' => $this->compilePost($postId),
+      'media_ids' => $photo->media_id_string,
+    ]);
+
+    return $result;
   }
 }
