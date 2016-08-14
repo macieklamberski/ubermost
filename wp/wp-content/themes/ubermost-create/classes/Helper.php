@@ -13,7 +13,7 @@ class Helper
    * Load post given in parameter or load default one if given does not
    * meet requirements of being selected or it does not exist.
    */
-  public static function load_selected_post($post_id)
+  public static function load_selected_post($post_id, $allStatuses = true)
   {
     if ($post_id) {
       $post = get_post($post_id);
@@ -22,6 +22,7 @@ class Helper
     if ( ! $post || $post->post_status != 'publish' || $post->post_type != 'post') {
       $posts = wp_get_recent_posts([
         'post_type' => 'post',
+        'post_status' => $allStatuses ? get_post_stati() : 'publish',
         'posts_per_page' => 1,
       ], OBJECT);
 
