@@ -22,7 +22,6 @@ class Helper
     if ( ! $post || $post->post_status != 'publish' || $post->post_type != 'post') {
       $posts = wp_get_recent_posts([
         'post_type' => 'post',
-        'post_status' => 'publish',
         'posts_per_page' => 1,
       ], OBJECT);
 
