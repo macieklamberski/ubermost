@@ -22,7 +22,7 @@ class Helper
     if ( ! $post || $post->post_status != 'publish' || $post->post_type != 'post') {
       $posts = wp_get_recent_posts([
         'post_type' => 'post',
-        'post_status' => $allStatuses ? get_post_stati() : 'publish',
+        'post_status' => $allStatuses ? ['publish', 'draft', 'future'] : 'publish',
         'posts_per_page' => 1,
       ], OBJECT);
 
