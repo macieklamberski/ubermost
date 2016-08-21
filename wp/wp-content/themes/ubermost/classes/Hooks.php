@@ -7,8 +7,8 @@ namespace Ubermost;
  */
 abstract class Hooks
 {
-  /**
-   * Register every hook.
-   */
-  abstract public function register();
+    /**
+     * Register every hook.
+     */
+    abstract public function register();
 }

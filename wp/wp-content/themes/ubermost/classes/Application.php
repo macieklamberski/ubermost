@@ -7,15 +7,15 @@ namespace Ubermost;
  */
 class Application
 {
-  /**
-   * Setup all the hooks.
-   */
-  public function setup(array $hooks)
-  {
-    session_start();
+    /**
+     * Setup all the hooks.
+     */
+    public function setup(array $hooks)
+    {
+        session_start();
 
-    foreach ($hooks as $hook) {
-      $hook->register();
+        foreach ($hooks as $hook) {
+            $hook->register();
+        }
     }
-  }
 }

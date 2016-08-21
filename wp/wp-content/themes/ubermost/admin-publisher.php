@@ -6,19 +6,19 @@ $facebook = new Ubermost\API\Facebook();
 $buffer = new Ubermost\API\Buffer();
 
 if ($buffer->isAuthorizing()) {
-  $buffer->authorize();
+    $buffer->authorize();
 }
 
 if ($tumblr->isAuthorizing()) {
-  $tumblr->authorize();
+    $tumblr->authorize();
 }
 
 if ($twitter->isAuthorizing()) {
-  $twitter->authorize();
+    $twitter->authorize();
 }
 
 if ($facebook->isAuthorizing()) {
-  $facebook->authorize();
+    $facebook->authorize();
 }
 
 $context = Timber::get_context();
