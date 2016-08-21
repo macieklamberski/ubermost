@@ -1,7 +1,7 @@
 <?php
 
 use Timber\Post;
-use UbermostCreate\Helper;
+use Ubermost\Helper;
 
 $current_post = Helper::load_selected_post($_GET['post_id'], current_user_can('administrator'));
 $current_color = Helper::load_selected_color($_GET['color_id']);

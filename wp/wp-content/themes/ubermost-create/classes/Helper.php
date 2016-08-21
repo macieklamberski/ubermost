@@ -1,6 +1,6 @@
 <?php
 
-namespace UbermostCreate;
+namespace Ubermost;
 
 use WP_Post;
 

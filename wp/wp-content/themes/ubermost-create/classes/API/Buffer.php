@@ -1,10 +1,10 @@
 <?php
 
-namespace UbermostCreate\API;
+namespace Ubermost\API;
 
 use Timber;
 use Buffer\App\BufferApp;
-use UbermostCreate\API as AbstractAPI;
+use Ubermost\API as AbstractAPI;
 
 /**
  * Class for setting up Buffer connection.

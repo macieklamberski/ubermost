@@ -1,6 +1,6 @@
 <?php
 
-use UbermostCreate\Helper;
+use Ubermost\Helper;
 
 if ($_GET['ids']) {
   $posts = explode(',', $_GET['ids']);

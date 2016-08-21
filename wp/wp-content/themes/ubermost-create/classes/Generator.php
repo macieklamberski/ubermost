@@ -1,6 +1,6 @@
 <?php
 
-namespace UbermostCreate;
+namespace Ubermost;
 
 use Imagine\Image\Box;
 use Imagine\Image\Point;

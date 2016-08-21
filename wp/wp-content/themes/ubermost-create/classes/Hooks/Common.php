@@ -1,9 +1,9 @@
 <?php
 
-namespace UbermostCreate\Hooks;
+namespace Ubermost\Hooks;
 
-use UbermostCreate\Hooks;
-use UbermostCreate\Wallpapers;
+use Ubermost\Hooks;
+use Ubermost\Wallpapers;
 
 /**
  * Sack for all the custom filters and actions.

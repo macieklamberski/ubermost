@@ -1,11 +1,11 @@
 <?php
 
-namespace UbermostCreate\API;
+namespace Ubermost\API;
 
 use Timber;
+use Ubermost\Helper;
 use Tumblr\API\Client;
-use UbermostCreate\Helper;
-use UbermostCreate\API as AbstractAPI;
+use Ubermost\API as AbstractAPI;
 
 /**
  * Class for setting up Tumblr connection.

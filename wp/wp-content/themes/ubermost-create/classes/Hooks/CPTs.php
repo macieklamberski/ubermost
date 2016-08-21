@@ -1,12 +1,12 @@
 <?php
 
-namespace UbermostCreate\Hooks;
+namespace Ubermost\Hooks;
 
-use UbermostCreate\Hooks;
-use UbermostCreate\API\Buffer;
-use UbermostCreate\API\Tumblr;
-use UbermostCreate\API\Twitter;
-use UbermostCreate\API\Facebook;
+use Ubermost\Hooks;
+use Ubermost\API\Buffer;
+use Ubermost\API\Tumblr;
+use Ubermost\API\Twitter;
+use Ubermost\API\Facebook;
 
 /**
  * Sack for all the custom filters and actions.

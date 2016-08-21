@@ -1,9 +1,9 @@
 <?php
 
-namespace UbermostCreate\Hooks;
+namespace Ubermost\Hooks;
 
-use UbermostCreate\Hooks;
-use UbermostCreate\Helper;
+use Ubermost\Hooks;
+use Ubermost\Helper;
 
 /**
  * Sack for all the custom filters and actions.

@@ -1,7 +1,7 @@
 <?php
 
 use Timber\Post;
-use UbermostCreate\Helper;
+use Ubermost\Helper;
 
 $post = get_post(get_the_ID());
 

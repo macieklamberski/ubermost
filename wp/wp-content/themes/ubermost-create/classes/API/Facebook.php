@@ -1,9 +1,9 @@
 <?php
 
-namespace UbermostCreate\API;
+namespace Ubermost\API;
 
 use Timber;
-use UbermostCreate\API as AbstractAPI;
+use Ubermost\API as AbstractAPI;
 
 /**
  * Class for setting up Facebook connection.

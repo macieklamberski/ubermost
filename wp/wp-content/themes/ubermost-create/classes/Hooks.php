@@ -1,6 +1,6 @@
 <?php
 
-namespace UbermostCreate;
+namespace Ubermost;
 
 /**
  * Sack for all the custom filters and actions.

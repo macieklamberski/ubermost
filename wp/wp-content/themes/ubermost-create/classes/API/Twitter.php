@@ -1,10 +1,10 @@
 <?php
 
-namespace UbermostCreate\API;
+namespace Ubermost\API;
 
 use Timber;
+use Ubermost\API as AbstractAPI;
 use Abraham\TwitterOAuth\TwitterOAuth;
-use UbermostCreate\API as AbstractAPI;
 
 /**
  * Class for setting up Twitter connection.

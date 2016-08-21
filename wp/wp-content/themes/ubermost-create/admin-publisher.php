@@ -1,9 +1,9 @@
 <?php
 
-$tumblr = new UbermostCreate\API\Tumblr();
-$twitter = new UbermostCreate\API\Twitter();
-$facebook = new UbermostCreate\API\Facebook();
-$buffer = new UbermostCreate\API\Buffer();
+$tumblr = new Ubermost\API\Tumblr();
+$twitter = new Ubermost\API\Twitter();
+$facebook = new Ubermost\API\Facebook();
+$buffer = new Ubermost\API\Buffer();
 
 if ($buffer->isAuthorizing()) {
   $buffer->authorize();

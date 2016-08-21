@@ -7,8 +7,8 @@ require_once dirname(__FILE__).'/vendor/autoload.php';
 /**
  * Register all declared custom actions and filters.
  */
-(new UbermostCreate\Application())->setup([
-  new UbermostCreate\Hooks\Common(),
-  new UbermostCreate\Hooks\CPTs(),
-  new UbermostCreate\Hooks\AJAX(),
+(new Ubermost\Application())->setup([
+  new Ubermost\Hooks\Common(),
+  new Ubermost\Hooks\CPTs(),
+  new Ubermost\Hooks\AJAX(),
 ]);

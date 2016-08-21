@@ -1,6 +1,6 @@
 <?php
 
-namespace UbermostCreate;
+namespace Ubermost;
 
 /**
  * Base class for APIs.
