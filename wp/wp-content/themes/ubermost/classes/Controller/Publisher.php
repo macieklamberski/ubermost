@@ -2,7 +2,11 @@
 
 namespace Ubermost\Controller;
 
+use Ubermost\API\Buffer;
+use Ubermost\API\Tumblr;
 use Ubermost\Controller;
+use Ubermost\API\Twitter;
+use Ubermost\API\Facebook;
 
 class Publisher extends Controller
 {
@@ -12,10 +16,10 @@ class Publisher extends Controller
     public function run()
     {
         $APIs = [
-            'tumblr' => new Ubermost\API\Tumblr(),
-            'twitter' => new Ubermost\API\Twitter(),
-            'facebook' => new Ubermost\API\Facebook(),
-            'buffer' => new Ubermost\API\Buffer(),
+            'tumblr' => new Tumblr(),
+            'twitter' => new Twitter(),
+            'facebook' => new Facebook(),
+            'buffer' => new Buffer(),
         ];
 
         foreach ($APIs as $api) {
