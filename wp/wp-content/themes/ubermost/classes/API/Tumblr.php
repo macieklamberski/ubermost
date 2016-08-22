@@ -148,7 +148,8 @@ class Tumblr extends AbstractAPI
         $tags = get_the_tags($post->ID);
 
         if ($imageUrl) {
-            file_get_contents($imageUrl);
+            $imageSource = file_get_contents($imageUrl);
+            $imageSource = base64_encode($imageSource);
         }
 
         if ($tags) {
@@ -174,7 +175,7 @@ class Tumblr extends AbstractAPI
             'type' => 'photo',
             'format' => 'html',
             'tags' => $tags,
-            'source' => $imageUrl,
+            'data64' => $imageSource,
             'caption' => Timber::compile('admin/api/tumblr.twig', ['id' => $postId]),
         ];
     }
