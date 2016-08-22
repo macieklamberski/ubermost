@@ -20,8 +20,10 @@ class CPTs extends Hooks
     {
         add_action('init', [$this, 'register_posts']);
         add_action('init', [$this, 'register_groups_taxonomy']);
-        add_action('save_post', [$this, 'publish_on_social_media']);
-        add_action('publish_future_post', [$this, 'publish_on_social_media']);
+        add_action('new_to_publish', [$this, 'publish_on_social_media']);
+        add_action('auto-draft_to_publish', [$this, 'publish_on_social_media']);
+        add_action('draft_to_publish', [$this, 'publish_on_social_media']);
+        add_action('future_to_publish', [$this, 'publish_on_social_media']);
     }
 
     /**
@@ -122,15 +124,6 @@ class CPTs extends Hooks
      */
     public function publish_on_social_media($postId)
     {
-        $beingPublished =
-            $_POST['post_status'] === 'publish' &&
-            $_POST['original_post_status'] !== 'publish';
-
-        // Do nothing if post is not published or scheduled for future.
-        if (($_POST && ! $beingPublished) || get_post_status($postId) === 'future') {
-            return;
-        }
-
         $tumblr = new Tumblr();
 
         if ( ! $tumblr->isConfigured() || ! $tumblr->isEnabled()) {
