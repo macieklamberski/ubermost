@@ -71,7 +71,9 @@ class Buffer extends AbstractAPI
 
         return [
             'photo' => get_field('blog_image', $post->ID),
-            'content' => Timber::compile('admin/api/buffer.twig', ['id' => $postId]),
+            'content' => html_entity_decode(
+                Timber::compile('admin/api/buffer.twig', ['id' => $postId])
+            ),
         ];
     }
 

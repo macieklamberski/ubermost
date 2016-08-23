@@ -119,7 +119,9 @@ class Facebook extends AbstractAPI
 
         return [
             'url' => get_field('blog_image', $post->ID),
-            'caption' => Timber::compile('admin/api/facebook.twig', ['id' => $postId]),
+            'caption' => html_entity_decode(
+                Timber::compile('admin/api/facebook.twig', ['id' => $postId])
+            ),
         ];
     }
 

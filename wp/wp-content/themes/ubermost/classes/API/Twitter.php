@@ -115,7 +115,9 @@ class Twitter extends AbstractAPI
     public function compilePost($postId)
     {
         return [
-            'status' => Timber::compile('admin/api/twitter.twig', ['id' => $postId]),
+            'status' => html_entity_decode(
+                Timber::compile('admin/api/twitter.twig', ['id' => $postId])
+            ),
         ];
     }
 
