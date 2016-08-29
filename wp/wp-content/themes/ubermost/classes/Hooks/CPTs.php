@@ -124,6 +124,10 @@ class CPTs extends Hooks
      */
     public function publish_on_social_media($postId)
     {
+        if (get_post_type($postId) !== 'post') {
+            return;
+        }
+
         $tumblr = new Tumblr();
 
         if ( ! $tumblr->isConfigured() || ! $tumblr->isEnabled()) {
