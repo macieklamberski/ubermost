@@ -1,14 +1,14 @@
 .pagination {
-  @extend %block;
-  text-align: center;
+    @extend %block;
+    text-align: center;
 
-  a {
-    margin: rem(-$tick--vertical) 0;
-    padding: rem($tick--vertical);
-    color: $color--minor;
+    a {
+        margin: rem(-$tick--vertical) 0;
+        padding: rem($tick--vertical);
+        color: $color--minor;
 
-    &:hover {
-      color: $color--accent;
+        &:hover {
+            color: $color--accent;
+        }
     }
-  }
 }

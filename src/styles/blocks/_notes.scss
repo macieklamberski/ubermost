@@ -1,29 +1,29 @@
 .notes {
-  @extend %block;
-  @extend %minor;
-  padding-left: 0;
+    @extend %block;
+    @extend %minor;
+    padding-left: 0;
 
-  img {
-    display: none;
-  }
-
-  li {
-    @extend %container;
-  }
-
-  .more_notes_link_container {
-    margin-top: rem($tick--vertical);
-
-    a {
-      color: $color--minor;
-
-      &:hover {
-        color: $color--accent;
-      }
+    img {
+        display: none;
     }
-  }
 
-  @include breakpoint(phablet) {
-    font-size: 0.9rem;
-  }
+    li {
+        @extend %container;
+    }
+
+    .more_notes_link_container {
+        margin-top: rem($tick--vertical);
+
+        a {
+            color: $color--minor;
+
+            &:hover {
+                color: $color--accent;
+            }
+        }
+    }
+
+    @include breakpoint(phablet) {
+        font-size: 0.9rem;
+    }
 }

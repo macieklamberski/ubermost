@@ -1,92 +1,92 @@
 .preview {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  padding-top: 100%;
-  background: $color--faint no-repeat top;
-  background-size: contain;
-
-  &__image {
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: relative;
+    overflow: hidden;
     width: 100%;
-  }
+    padding-top: 100%;
+    background: $color--faint no-repeat top;
+    background-size: contain;
 
-  &__details {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    opacity: 0;
-    background: rgba(#000, .75);
-    transition: trans(opacity);
-
-    &__body {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      color: $color--minor;
-
-      &__change, &__or {
-        transition: trans(transform), trans(opacity);
-        opacity: 0;
-      }
-
-      &__change {
-        transform: translateY(rem(5px));
-      }
-
-      &__or {
-        transform: translateY(rem(-5px));
-
-        a {
-          text-decoration: underline;
-          display: inline-block;
-          padding: rem(10px);
-          margin: rem(-10px);
-        }
-      }
+    &__image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
     }
-  }
-
-  .loading--done &:hover &__details {
-    opacity: 1;
-  }
-
-  .loading--done &:hover &__details__body__change,
-  .loading--done &:hover &__details__body__or {
-    transform: translateY(0);
-    opacity: 1;
-  }
-
-  @include breakpoint(tablet) {
-    padding-bottom: rem($tick--vertical * 2.5);
 
     &__details {
-      opacity: 1;
-      top: auto;
-      padding: rem($tick--vertical / 2) 0;
-      background: $color--base;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        opacity: 0;
+        background: rgba(#000, .75);
+        transition: trans(opacity);
 
-      &__body {
-        position: static;
-        transform: translate(0);
+        &__body {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: $color--minor;
 
-        &__change, &__or {
-          margin: 0;
-          transform: none;
-          opacity: 1;
-          display: inline-block;
+            &__change, &__or {
+                transition: trans(transform), trans(opacity);
+                opacity: 0;
+            }
+
+            &__change {
+                transform: translateY(rem(5px));
+            }
+
+            &__or {
+                transform: translateY(rem(-5px));
+
+                a {
+                    text-decoration: underline;
+                    display: inline-block;
+                    padding: rem(10px);
+                    margin: rem(-10px);
+                }
+            }
         }
-
-        &__or span {
-          margin: 0 rem($tick--vertical / 8) 0 rem($tick--vertical / 4);
-        }
-      }
     }
-  }
+
+    .loading--done &:hover &__details {
+        opacity: 1;
+    }
+
+    .loading--done &:hover &__details__body__change,
+    .loading--done &:hover &__details__body__or {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    @include breakpoint(tablet) {
+        padding-bottom: rem($tick--vertical * 2.5);
+
+        &__details {
+            opacity: 1;
+            top: auto;
+            padding: rem($tick--vertical / 2) 0;
+            background: $color--base;
+
+            &__body {
+                position: static;
+                transform: translate(0);
+
+                &__change, &__or {
+                    margin: 0;
+                    transform: none;
+                    opacity: 1;
+                    display: inline-block;
+                }
+
+                &__or span {
+                    margin: 0 rem($tick--vertical / 8) 0 rem($tick--vertical / 4);
+                }
+            }
+        }
+    }
 }

@@ -1,52 +1,51 @@
 .button {
-  border: 0;
-  margin: 0;
-  display: block;
-  text-transform: uppercase;
-  text-align: center;
-  color: #fff;
-  height: rem($tick--vertical * 2);
-  line-height: rem($tick--vertical * 2);
-  padding: 0 rem($tick--vertical * 2);
-  transition: trans(background), trans(color);
+    border: 0;
+    margin: 0;
+    display: block;
+    text-transform: uppercase;
+    text-align: center;
+    color: #fff;
+    height: rem($tick--vertical * 2);
+    line-height: rem($tick--vertical * 2);
+    padding: 0 rem($tick--vertical * 2);
+    transition: trans(background), trans(color);
 
-  &--download, &--change {
-    background: $color--base;
+    &--download, &--change {
+        background: $color--base;
 
-    &:hover {
-      color: #fff;
-      background: #000;
+        &:hover {
+            color: #fff;
+            background: #000;
+        }
     }
-  }
 
-  &--download {
-    width: 100%;
+    &--download {
+        width: 100%;
 
-    &:disabled {
-      background: $color--base;
-      cursor: progress;
+        &:disabled {
+            background: $color--base;
+            cursor: progress;
+        }
     }
-  }
 
-  &--change {
-    background: #000;
-    // font-weight: 600;
-
-    &:hover {
-      color: #000;
-      background: $color--accent;
-    }
-  }
-
-  @include breakpoint(tablet) {
     &--change {
-      text-transform: none;
-      line-height: rem($tick--vertical * 1.5);
-      height: rem($tick--vertical * 1.5);
-      margin: rem($tick--vertical / 4) 0;
-      padding: 0 rem($tick--vertical);
-      color: #000;
-      background: $color--accent;
+        background: #000;
+
+        &:hover {
+            color: #000;
+            background: $color--accent;
+        }
     }
-  }
+
+    @include breakpoint(tablet) {
+        &--change {
+            text-transform: none;
+            line-height: rem($tick--vertical * 1.5);
+            height: rem($tick--vertical * 1.5);
+            margin: rem($tick--vertical / 4) 0;
+            padding: 0 rem($tick--vertical);
+            color: #000;
+            background: $color--accent;
+        }
+    }
 }

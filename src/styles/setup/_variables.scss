@@ -1,9 +1,9 @@
 $breakpoints       : (
-  'laptop'         : '(max-width: 1439px)',
-  'tablet'         : '(max-width: 1023px)',
-  'phablet'        : '(max-width: 735px)',
-  'phone'          : '(max-width: 635px)',
-  'mobile'         : '(max-width: 500px)',
+    'laptop'       : '(max-width: 1439px)',
+    'tablet'       : '(max-width: 1023px)',
+    'phablet'      : '(max-width: 735px)',
+    'phone'        : '(max-width: 635px)',
+    'mobile'       : '(max-width: 500px)',
 );
 
 $tick--vertical    : 30px;

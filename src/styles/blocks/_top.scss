@@ -1,49 +1,49 @@
 .top {
-  @extend %container;
-  color: $color--minor;
-  padding-top: rem($tick--vertical * 2);
-  padding-bottom: rem($tick--vertical * 2);
-
-  &__logo {
-    margin: 0 0 rem($tick--vertical * 2) 0;
-
-    a {
-      display: inline-block;
-    }
-
-    svg {
-      height: rem($tick--vertical * 1.5);
-      margin: rem($tick--vertical * .25) 0;
-    }
-  }
-
-  &__about {
-    margin: 0;
-
-    a {
-      @extend %underlined-anchor;
-    }
-  }
-
-  .fa {
-    display: inline-block;
-    margin: -0.5em -0.25em;
-    padding: 0.5em;
-  }
-
-  @include breakpoint(phablet) {
-    &__logo svg {
-      height: rem($tick--vertical);
-      margin: 0;
-    }
-  }
-
-  @include breakpoint(phone) {
-    padding-top: rem($tick--vertical);
-    padding-bottom: rem($tick--vertical);
+    @extend %container;
+    color: $color--minor;
+    padding-top: rem($tick--vertical * 2);
+    padding-bottom: rem($tick--vertical * 2);
 
     &__logo {
-      margin-bottom: rem($tick--vertical);
+        margin: 0 0 rem($tick--vertical * 2) 0;
+
+        a {
+            display: inline-block;
+        }
+
+        svg {
+            height: rem($tick--vertical * 1.5);
+            margin: rem($tick--vertical * .25) 0;
+        }
     }
-  }
+
+    &__about {
+        margin: 0;
+
+        a {
+            @extend %underlined-anchor;
+        }
+    }
+
+    .fa {
+        display: inline-block;
+        margin: -0.5em -0.25em;
+        padding: 0.5em;
+    }
+
+    @include breakpoint(phablet) {
+        &__logo svg {
+            height: rem($tick--vertical);
+            margin: 0;
+        }
+    }
+
+    @include breakpoint(phone) {
+        padding-top: rem($tick--vertical);
+        padding-bottom: rem($tick--vertical);
+
+        &__logo {
+            margin-bottom: rem($tick--vertical);
+        }
+    }
 }

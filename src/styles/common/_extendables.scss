@@ -1,114 +1,108 @@
 %container {
-  display: block;
-  max-width: rem($width--wrapper);
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: rem($tick--vertical);
-  padding-right: rem($tick--vertical);
+    display: block;
+    max-width: rem($width--wrapper);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: rem($tick--vertical);
+    padding-right: rem($tick--vertical);
 
-  @include breakpoint(phablet) {
-    padding-left: rem($width--margin);
-    padding-right: rem($width--margin);
-  }
+    @include breakpoint(phablet) {
+        padding-left: rem($width--margin);
+        padding-right: rem($width--margin);
+    }
 }
 
 %container--generator {
-  max-width: rem($width--generator);
+    max-width: rem($width--generator);
 }
 
 %block {
-  position: relative;
-  padding-top: rem($tick--vertical * 2);
-  padding-bottom: rem($tick--vertical * 2);
-  margin: 0;
+    position: relative;
+    padding-top: rem($tick--vertical * 2);
+    padding-bottom: rem($tick--vertical * 2);
+    margin: 0;
 
-  &:not(:first-child)::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    height: 1px;
-    background-color: $color--border;
-  }
+    &:not(:first-child)::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        height: 1px;
+        background-color: $color--border;
+    }
 
-  @include breakpoint(phone) {
-    padding-top: rem($tick--vertical);
-    padding-bottom: rem($tick--vertical);
-  }
+    @include breakpoint(phone) {
+        padding-top: rem($tick--vertical);
+        padding-bottom: rem($tick--vertical);
+    }
 }
 
 %text {
-  blockquote > *,
-  & > * {
-    margin-top: rem($tick--vertical);
-    margin-bottom: 0;
-  }
+    blockquote > *,
+    & > * {
+        margin-top: rem($tick--vertical);
+        margin-bottom: 0;
+    }
 
-  blockquote > :first-child,
-  & > :first-child {
-    margin-top: 0;
-  }
+    blockquote > :first-child,
+    & > :first-child {
+        margin-top: 0;
+    }
 
-  blockquote {
-    position: relative;
-    margin-left: 0;
-    margin-right: 0;
-  }
+    blockquote {
+        position: relative;
+        margin-left: 0;
+        margin-right: 0;
+    }
 
-  li {
-    padding-left: 7px;
-    margin-left: -7px;
-  }
+    li {
+        padding-left: 7px;
+        margin-left: -7px;
+    }
 
-  ul li {
-    list-style-type: disc;
-  }
+    ul li {
+        list-style-type: disc;
+    }
 
-  ol li {
-    list-style-type: decimal;
-  }
+    ol li {
+        list-style-type: decimal;
+    }
 
-  strong {
-    font-weight: bold;
-  }
+    strong {
+        font-weight: bold;
+    }
 
-  em {
-    font-style: italic;
-  }
+    em {
+        font-style: italic;
+    }
 
-  del {
-    text-decoration: line-through;
-  }
+    del {
+        text-decoration: line-through;
+    }
 }
 
 %heading {
-  font-family: $font--sans;
-  color: $color--minor;
-  font-size: rem($size--minor);
-  text-transform: uppercase;
-  font-weight: 400;
+    font-family: $font--sans;
+    color: $color--minor;
+    font-size: rem($size--minor);
+    text-transform: uppercase;
+    font-weight: 400;
 }
 
 %minor {
-  color: $color--minor;
-  font-size: 0.83rem;
+    color: $color--minor;
+    font-size: 0.83rem;
 
-  a {
-    color: $color--base;
+    a {
+        color: $color--base;
 
-    &:hover {
-      color: $color--accent;
+        &:hover {
+            color: $color--accent;
+        }
     }
-  }
 
-  @include breakpoint(phablet) {
-    font-size: 0.72rem;
-  }
-}
-
-%overlay {
-}
-
-%overlay-close {
+    @include breakpoint(phablet) {
+        font-size: 0.72rem;
+    }
 }

@@ -1,9 +1,9 @@
 .error {
-  @extend %container;
-  @extend %container--generator;
-  align-self: center;
+    @extend %container;
+    @extend %container--generator;
+    align-self: center;
 
-  svg {
-    fill: $color--border;
-  }
+    svg {
+        fill: $color--border;
+    }
 }
