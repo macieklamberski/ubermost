@@ -17,12 +17,13 @@
 
     li {
         list-style: none;
-        display: inline-block;
+        float: left;
     }
 
     li + li {
         &::before {
-            content: '· ';
+            content: '·';
+            margin: 0 0.125em;
         }
     }
 
