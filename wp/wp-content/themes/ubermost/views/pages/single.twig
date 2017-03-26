@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Ubermost</title>
-    <meta property="og:site_name" content="Ubermost">
-    <meta property="og:title" content="{{ post.title }}">
-    <meta property="og:image" content="{{ image }}">
-    <meta property="og:description" content="{{ post.content | striptags }}">
-    <meta property="og:url" content="{{ post.link | replace({ 'create': 'blog' }) }}">
-    <meta property="og:type" content="article">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@ubermost">
-    <meta name="twitter:creator" content="@lamberski">
-    <meta name="twitter:title" content="{{ post.title }}">
-    <meta name="twitter:description" content="{{ post.content | striptags }}">
-    <meta name="twitter:image" content="{{ image }}">
-    <meta name="twitter:url" content="{{ post.link | replace({ 'create': 'blog' }) }}">
-  </head>
-  <body>
-    <img src="{{ image }}" alt="">
-  </body>
+    <head>
+        <meta charset="utf-8">
+        <title>Ubermost</title>
+        <meta property="og:site_name" content="Ubermost">
+        <meta property="og:title" content="{{ post.title }}">
+        <meta property="og:image" content="{{ image }}">
+        <meta property="og:description" content="{{ post.content | striptags }}">
+        <meta property="og:url" content="{{ post.link | replace({ 'create': 'blog' }) }}">
+        <meta property="og:type" content="article">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@ubermost">
+        <meta name="twitter:creator" content="@lamberski">
+        <meta name="twitter:title" content="{{ post.title }}">
+        <meta name="twitter:description" content="{{ post.content | striptags }}">
+        <meta name="twitter:image" content="{{ image }}">
+        <meta name="twitter:url" content="{{ post.link | replace({ 'create': 'blog' }) }}">
+    </head>
+    <body>
+        <img src="{{ image }}" alt="">
+    </body>
 </html>
