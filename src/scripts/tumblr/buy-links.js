@@ -10,9 +10,8 @@ const BuyLinks = {
     getISBNMap() {
         const ISBNs = []
 
-        BuyLinks.$quotes.each(() => {
-            const $self = $(this)
-
+        BuyLinks.$quotes.each((index, value) => {
+            const $self = $(value)
             const tags = $self.data('tags').split(' ')
             const isbn = tags.filter((item) => /^isbn/.test(item))
 
@@ -26,8 +25,8 @@ const BuyLinks = {
     },
 
     insertCTAs(links) {
-        BuyLinks.$quotes.each(() => {
-            const $self = $(this)
+        BuyLinks.$quotes.each((index, value) => {
+            const $self = $(value)
             const link = links[$self.data('isbn')]
 
             if (link) {
@@ -50,11 +49,11 @@ const BuyLinks = {
             },
             dataType: 'json'
         })
-            .done((result) => {
-                links = result.data.links
-                BuyLinks.insertCTAs(links)
-                ExternalLinks.init()
-            })
+        .done((result) => {
+            links = result.data.links
+            BuyLinks.insertCTAs(links)
+            ExternalLinks.init()
+        })
     }
 }
 

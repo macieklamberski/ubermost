@@ -41,16 +41,16 @@ const Sizes = {
         let $matched = null
 
         // Check if there's option with exact size.
-        $(`label[data-width="${screenX}"][data-height="${screenY}"]`).each(() => {
-            $matched = $(this)
+        $(`label[data-width="${screenX}"][data-height="${screenY}"]`).each((index, value) => {
+            $matched = $(value)
         })
 
         // Check if there's option with the same ratio.
         if (!$matched) {
             const $sizes = $(`label[data-ratio="${(screenX / screenY).toFixed(1)}"]`)
 
-            $sizes.each(() => {
-                const $self = $(this)
+            $sizes.each((index, value) => {
+                const $self = $(value)
                 if ($self.data('width') > screenX && $self.data('height') > screenY) {
                     if (!$matched || $self.data('width') < $matched.data('width') && $self.data('height') < $matched.data('height')) {
                         $matched = $self;
@@ -63,8 +63,8 @@ const Sizes = {
         if (!$matched) {
             const $sizes = $('label[data-ratio]')
 
-            $sizes.each(() => {
-                var $self = $(this)
+            $sizes.each((index, value) => {
+                var $self = $(value)
                 if ($self.data('width') > screenX && $self.data('height') > screenY) {
                     if (!$matched || $self.data('width') < $matched.data('width') && $self.data('height') < $matched.data('height')) {
                         $matched = $self;

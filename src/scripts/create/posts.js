@@ -7,7 +7,7 @@ const Posts = {
     $endpoint: $('.posts').data('endpoint'),
     $action: $('.posts').data('action'),
     $overlay: $('#posts-overlay'),
-    $loading: $('#posts-overlay'),
+    $images: $('#posts-overlay li'),
 
     init() {
         Posts.bindOpenOverlay()
@@ -15,14 +15,14 @@ const Posts = {
     },
 
     bindOpenOverlay() {
-        Application.$BODY.on('click', '.button--change', function(event) {
+        Application.$BODY.on('click', '.button--change', (event) => {
             Helper.openOverlay(Posts.$overlay, Posts.load)
             event.preventDefault()
         })
     },
 
     bindSelectPost() {
-        Posts.$container.on('click', 'a', function(event) {
+        Posts.$container.on('click', 'a', (event) => {
             Preview.load(
                 $(this).data('post-id'),
                 Colors.getCurrentColorId()
@@ -42,26 +42,28 @@ const Posts = {
             action: Posts.$action
         }, (result) => {
             if (result.data) {
-                var data = result.data
+                const data = result.data
             } else {
                 return
             }
 
-            var html = Helper.compileTemplate('posts', data)
+            const html = Helper.compileTemplate('posts', data)
             Posts.$container.html(html)
             Posts.$container.find('img').css('opacity', 0)
-            ImagesLoaded(Posts.$container.get(0), () => {
-                Helper.stopLoading(Posts.$loading)
-                Posts.fadeInElements()
+
+            Posts.$images.each(($item) => {
+                ImagesLoaded($item.get(0), () => {
+                    Posts.fadeInElement($item)
+                })
             })
         }, 'json')
     },
 
-    fadeInElements() {
-        var images = Posts.$container.find('img')
-        images.css('opacity', 0)
+    fadeInElement($item) {
+        const image = Posts.$container.find('img')
+        image.css('opacity', 0)
 
-        Velocity(images.get(), 'fadeIn', {
+        Velocity(image.get(), 'fadeIn', {
             duration: 500,
             stagger: 12.5
         })
