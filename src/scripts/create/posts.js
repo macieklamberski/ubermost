@@ -4,6 +4,7 @@ import ImagesLoaded from 'imagesloaded'
 import Helper from './helper'
 import Application from './application'
 import Preview from './preview'
+import Colors from './colors'
 
 const Posts = {
     $container: $('.posts'),
