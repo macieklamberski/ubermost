@@ -1,7 +1,7 @@
-var $ = require('jquery')
-var Velocity = require('velocity-animate')
-var ImagesLoaded = require('imagesloaded')
-var Handlebars = require('handlebars')
+import $ from 'jquery'
+import Velocity from 'velocity-animate'
+import ImagesLoaded from 'imagesloaded'
+import Handlebars from 'handlebars'
 
 const Sizes = {
     $trigger: $('.dropdown'),
@@ -19,15 +19,15 @@ const Sizes = {
     },
 
     bindOpenOverlay() {
-        Sizes.$trigger.on('click', function (event) {
+        Sizes.$trigger.on('click', (event) => {
             Helper.openOverlay(Sizes.$overlay)
             event.preventDefault()
         })
     },
 
     bindSelectSize() {
-        Sizes.$overlay.find('label').on('click', function (event) {
-            var $self = $(this)
+        Sizes.$overlay.find('label').on('click', (event) => {
+            const $self = $(this)
             Sizes.$input.val($('input', $self).val())
             Sizes.$selected.html($('span', $self).html())
             Helper.closeOverlay(Sizes.$overlay)
@@ -36,21 +36,21 @@ const Sizes = {
     },
 
     detectInitialResolution() {
-        var screenX = screen.width
-        var screenY = screen.height
-        var $matched = null;
+        const screenX = screen.width
+        const screenY = screen.height
+        let $matched = null
 
         // Check if there's option with exact size.
-        $('label[data-width="' + screenX + '"][data-height="' + screenY + '"]').each(function () {
+        $(`label[data-width="${screenX}"][data-height="${screenY}"]`).each(() => {
             $matched = $(this)
         })
 
         // Check if there's option with the same ratio.
         if (!$matched) {
-            var $sizes = $('label[data-ratio="' + (screenX / screenY).toFixed(1) + '"]')
+            const $sizes = $(`label[data-ratio="${(screenX / screenY).toFixed(1)}"]`)
 
-            $sizes.each(function () {
-                var $self = $(this)
+            $sizes.each(() => {
+                const $self = $(this)
                 if ($self.data('width') > screenX && $self.data('height') > screenY) {
                     if (!$matched || $self.data('width') < $matched.data('width') && $self.data('height') < $matched.data('height')) {
                         $matched = $self;
@@ -61,9 +61,9 @@ const Sizes = {
 
         // Match any resolution that is bigger.
         if (!$matched) {
-            var $sizes = $('label[data-ratio]')
+            const $sizes = $('label[data-ratio]')
 
-            $sizes.each(function () {
+            $sizes.each(() => {
                 var $self = $(this)
                 if ($self.data('width') > screenX && $self.data('height') > screenY) {
                     if (!$matched || $self.data('width') < $matched.data('width') && $self.data('height') < $matched.data('height')) {

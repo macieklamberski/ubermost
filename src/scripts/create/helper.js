@@ -11,7 +11,7 @@ const Helper = {
     openOverlay($overlay, callback) {
         Application.$BODY.css('overflow', 'hidden')
         $overlay.addClass('overlay--open')
-        $overlay.find('.overlay__close').on('click', function (event) {
+        $overlay.find('.overlay__close').on('click', (event) => {
             Helper.closeOverlay($overlay)
             event.preventDefault()
         })
@@ -23,7 +23,7 @@ const Helper = {
 
     closeOverlay($overlay) {
         if (!$overlay.length) {
-            return;
+            return
         }
 
         Application.$BODY.css('overflow', 'auto')

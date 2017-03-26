@@ -15,14 +15,14 @@ const Posts = {
     },
 
     bindOpenOverlay() {
-        Application.$BODY.on('click', '.button--change', function (event) {
+        Application.$BODY.on('click', '.button--change', function(event) {
             Helper.openOverlay(Posts.$overlay, Posts.load)
             event.preventDefault()
         })
     },
 
     bindSelectPost() {
-        Posts.$container.on('click', 'a', function (event) {
+        Posts.$container.on('click', 'a', function(event) {
             Preview.load(
                 $(this).data('post-id'),
                 Colors.getCurrentColorId()
@@ -38,7 +38,9 @@ const Posts = {
             return;
         }
 
-        $.get(Posts.$endpoint, {action: Posts.$action}, (result) => {
+        $.get(Posts.$endpoint, {
+            action: Posts.$action
+        }, (result) => {
             if (result.data) {
                 var data = result.data
             } else {

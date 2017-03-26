@@ -10,7 +10,7 @@ const Download = {
 
     bindDownloadWallpaper() {
         Download.$form.on('submit', (event) => {
-            var self = this;
+            const self = this
             event.preventDefault()
             setTimeout(() => self.submit(), 1)
         })

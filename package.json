@@ -1,13 +1,14 @@
 {
-    "dependencies": {
-        "handlebars": "^4.0.5",
-        "imagesloaded": "^4.1.0",
-        "jquery": "^2.2.4",
-        "normalize.css": "^4.1",
-        "velocity-animate": "^1.2.3"
-    },
-    "devDependencies": {
-        "frontkit": "~4.0",
-        "gulp": "^3.9"
-    }
+  "dependencies": {
+    "handlebars": "^4.0.5",
+    "imagesloaded": "^4.1.0",
+    "jquery": "^2.2.4",
+    "normalize.css": "^4.1",
+    "velocity-animate": "^1.2.3"
+  },
+  "devDependencies": {
+    "eslint-plugin-html": "^2.0.1",
+    "frontkit": "~4.0",
+    "gulp": "^3.9"
+  }
 }

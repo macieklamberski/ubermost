@@ -53,7 +53,7 @@ const Preview = {
                 Velocity(Preview.$container.find('img').get(), 'fadeIn', {
                     duration: 400,
                     complete() {
-                        Preview.$container.css('background-image', 'url(' + data.image + ')')
+                        Preview.$container.css('background-image', `url(${data.image})`)
                     }
                 })
             })

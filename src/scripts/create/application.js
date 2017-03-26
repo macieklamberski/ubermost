@@ -11,7 +11,7 @@ const Application = {
     $DOCUMENT: $(document),
     $BODY: $('body'),
 
-    init: function () {
+    init() {
         Sizes.init()
         Colors.init()
         Posts.init()

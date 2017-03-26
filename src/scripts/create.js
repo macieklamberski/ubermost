@@ -1,6 +1,4 @@
 import $ from 'jquery'
-import Application from './modules/application'
+import Application from './create/application'
 
-$(() => {
-    Application.init()
-})
+$(() => Application.init())
