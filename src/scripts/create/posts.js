@@ -1,5 +1,6 @@
 import $ from 'jquery'
 import Velocity from 'velocity-animate'
+import ImagesLoaded from 'imagesloaded'
 import Helper from './helper'
 import Application from './application'
 
@@ -8,7 +9,7 @@ const Posts = {
     $endpoint: $('.posts').data('endpoint'),
     $action: $('.posts').data('action'),
     $overlay: $('#posts-overlay'),
-    $images: $('#posts-overlay li'),
+    $images: function () { return $('#posts-overlay li') },
 
     init() {
         Posts.bindOpenOverlay()
@@ -51,16 +52,16 @@ const Posts = {
             Posts.$container.html(html)
             Posts.$container.find('img').css('opacity', 0)
 
-            Posts.$images.each(($item) => {
-                ImagesLoaded($item.get(0), () => {
-                    Posts.fadeInElement($item)
+            Posts.$images().each((index, value) => {
+                ImagesLoaded(value, () => {
+                    Posts.fadeInElement(value)
                 })
             })
         }, 'json')
     },
 
-    fadeInElement($item) {
-        const image = Posts.$container.find('img')
+    fadeInElement(element) {
+        const image = $(element).find('img')
         image.css('opacity', 0)
 
         Velocity(image.get(), 'fadeIn', {
