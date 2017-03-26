@@ -9,7 +9,7 @@ const Posts = {
     $endpoint: $('.posts').data('endpoint'),
     $action: $('.posts').data('action'),
     $overlay: $('#posts-overlay'),
-    $images: function () { return $('#posts-overlay li') },
+    $images: function () { return $('#posts-overlay a') },
 
     init() {
         Posts.bindOpenOverlay()
@@ -53,9 +53,7 @@ const Posts = {
             Posts.$container.find('img').css('opacity', 0)
 
             Posts.$images().each((index, value) => {
-                ImagesLoaded(value, () => {
-                    Posts.fadeInElement(value)
-                })
+                ImagesLoaded(value, () => Posts.fadeInElement(value))
             })
         }, 'json')
     },
@@ -64,9 +62,10 @@ const Posts = {
         const image = $(element).find('img')
         image.css('opacity', 0)
 
+        element.attr('data-loaded', true)
+
         Velocity(image.get(), 'fadeIn', {
-            duration: 500,
-            stagger: 12.5
+            duration: 500
         })
     }
 }
