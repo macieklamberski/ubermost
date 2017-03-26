@@ -4,6 +4,7 @@ import ImagesLoaded from 'imagesloaded'
 import Application from './application'
 import Colors from './colors'
 import Download from './download'
+import Helper from './helper'
 
 const Preview = {
     $container: $('.preview'),

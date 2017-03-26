@@ -2,6 +2,7 @@ import $ from 'jquery'
 import Velocity from 'velocity-animate'
 import ImagesLoaded from 'imagesloaded'
 import Handlebars from 'handlebars'
+import Helper from './helper'
 
 const Sizes = {
     $trigger: $('.dropdown'),
@@ -26,7 +27,7 @@ const Sizes = {
     },
 
     bindSelectSize() {
-        Sizes.$overlay.find('label').on('click', (event) => {
+        Sizes.$overlay.find('label').on('click', function (event) {
             const $self = $(this)
             Sizes.$input.val($('input', $self).val())
             Sizes.$selected.html($('span', $self).html())

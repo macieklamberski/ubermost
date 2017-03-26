@@ -5,10 +5,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
         <title>Ubermost&mdash;Create</title>
         <link href="http://feeds.feedburner.com/ubermost" rel="alternate" type="application/rss+xml">
-        <link href="//assets.ubermost.com/images/favicon.png" rel="shortcut icon">
         <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro|Source+Serif+Pro:400,600" rel="stylesheet">
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
-        <link href="//assets.ubermost.com/styles/main.min.css" rel="stylesheet">
+        {% if false %}
+            <link href="//assets.ubermost.com/styles/main.min.css" rel="stylesheet">
+            <link href="//assets.ubermost.com/images/favicon.png" rel="shortcut icon">
+        {% else %}
+            <link href="http://ubermost.dev/dist/styles/main.min.css" rel="stylesheet">
+            <link href="http://ubermost.dev/dist/images/favicon.png" rel="shortcut icon">
+        {% endif %}
     </head>
     <body>
         {% include 'partials/header.twig' %}
@@ -21,7 +26,11 @@
         {% include 'partials/overlays.twig' %}
         {% include 'partials/templates.twig' %}
 
-        <script src="//assets.ubermost.com/scripts/create.min.js"></script>
+        {% if false %}
+            <script src="//assets.ubermost.com/scripts/create.min.js"></script>
+        {% else %}
+            <script src="http://ubermost.dev/dist/scripts/create.min.js"></script>
+        {% endif %}
         <script>
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

@@ -1,6 +1,7 @@
 import $ from 'jquery'
 import Velocity from 'velocity-animate'
 import Helper from './helper'
+import Application from './application'
 
 const Posts = {
     $container: $('.posts'),
