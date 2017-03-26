@@ -1,4 +1,5 @@
 import $ from 'jquery'
+import ExternalLinks from './external-links'
 
 const BuyLinks = {
     $quotes: $('[data-tags*="isbn"]'),
