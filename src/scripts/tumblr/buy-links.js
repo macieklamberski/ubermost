@@ -17,7 +17,7 @@ const BuyLinks = {
             const isbn = tags.filter((item) => /^isbn/.test(item))
 
             if (isbn.length > 0) {
-                $self.attr('data-isbn', isbn[0]);
+                $self.attr('data-isbn', isbn[0])
                 ISBNs.push(isbn[0])
             }
         })

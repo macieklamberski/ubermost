@@ -34,9 +34,9 @@ const Preview = {
 
         $.get(Preview.$endpoint, {action: Preview.$action, post_id: postId, color_id: colorId}, function (result) {
             if (result.data) {
-                var data = result.data;
+                var data = result.data
             } else {
-                return;
+                return
             }
 
             Preview.$share.html(Helper.compileTemplate('share', data))

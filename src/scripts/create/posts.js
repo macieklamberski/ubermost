@@ -23,7 +23,7 @@ const Posts = {
     },
 
     bindSelectPost() {
-        Posts.$container.on('click', 'a', (event) => {
+        Posts.$container.on('click', 'a', function (event) {
             Preview.load(
                 $(this).data('post-id'),
                 Colors.getCurrentColorId()
@@ -36,19 +36,18 @@ const Posts = {
     load($overlay) {
         if (Posts.$container.children().length) {
             Posts.fadeInElements()
-            return;
+            return
         }
 
         $.get(Posts.$endpoint, {
             action: Posts.$action
         }, (result) => {
-            if (result.data) {
-                const data = result.data
-            } else {
+            if (!result.data) {
                 return
             }
 
-            const html = Helper.compileTemplate('posts', data)
+            const html = Helper.compileTemplate('posts', result.data)
+
             Posts.$container.html(html)
             Posts.$container.find('img').css('opacity', 0)
 

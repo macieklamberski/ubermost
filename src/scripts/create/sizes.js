@@ -54,7 +54,7 @@ const Sizes = {
                 const $self = $(value)
                 if ($self.data('width') > screenX && $self.data('height') > screenY) {
                     if (!$matched || $self.data('width') < $matched.data('width') && $self.data('height') < $matched.data('height')) {
-                        $matched = $self;
+                        $matched = $self
                     }
                 }
             })
@@ -68,7 +68,7 @@ const Sizes = {
                 var $self = $(value)
                 if ($self.data('width') > screenX && $self.data('height') > screenY) {
                     if (!$matched || $self.data('width') < $matched.data('width') && $self.data('height') < $matched.data('height')) {
-                        $matched = $self;
+                        $matched = $self
                     }
                 }
             })
