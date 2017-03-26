@@ -3,6 +3,7 @@ import Velocity from 'velocity-animate'
 import ImagesLoaded from 'imagesloaded'
 import Helper from './helper'
 import Application from './application'
+import Preview from './preview'
 
 const Posts = {
     $container: $('.posts'),
