@@ -59,9 +59,10 @@ const Posts = {
     },
 
     fadeInElement(element) {
-        const image = $(element).find('img')
-        image.css('opacity', 0)
+        element = $(element)
 
+        const image = element.find('img')
+        image.css('opacity', 0)
         element.attr('data-loaded', true)
 
         Velocity(image.get(), 'fadeIn', {
