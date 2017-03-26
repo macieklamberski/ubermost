@@ -1,0 +1,8 @@
+{
+    "indent": {
+        "value": "    ",
+    },
+    "whiteSpace": {
+        "removeTrailing": 1,
+    },
+}
