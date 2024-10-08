@@ -4,7 +4,7 @@ This is repository with source of [Ubermost](http://ubermost.com)—website with
 
 ## Development
 
-Project is using [Mikrob, a simple website engine](https://github.com/lamberski/mikrob) to render the pages.
+Project is using [Mikrob, a simple website engine](https://github.com/macieklamberski/mikrob) to render the pages.
 
 It requires `php` and `composer` to be installed in the system.
 
