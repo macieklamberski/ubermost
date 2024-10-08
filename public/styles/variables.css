@@ -15,11 +15,3 @@
     --width--margin: calc(var(--tick) / 2);
     --duration--base: 0.2s;
 }
-
-// $breakpoints: (
-//     'laptop': '(max-width: 1439px)',
-//     'tablet': '(max-width: 1023px)',
-//     'phablet': '(max-width: 735px)',
-//     'phone': '(max-width: 635px)',
-//     'mobile': '(max-width: 500px)',
-// );
