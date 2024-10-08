@@ -1,9 +1,0 @@
-.error {
-    @extend %container;
-    @extend %container--generator;
-    align-self: center;
-
-    svg {
-        fill: $color--border;
-    }
-}

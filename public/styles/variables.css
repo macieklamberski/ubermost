@@ -1,0 +1,25 @@
+:root {
+    --font--sans: 'Source Sans Pro', Arial, sans-serif;
+    --font--serif: 'Source Serif Pro', Georgia, serif;
+    --size--base: 18rem;
+    --size--minor: 15rem;
+    --color--accent: #ffcd44;
+    --color--dark: #000;
+    --color--base: #313130;
+    --color--minor: #888886;
+    --color--faint: #bbbbb8;
+    --color--border: #f0f0eb;
+    --color--background: #e6e6e4;
+    --tick: 30rem;
+    --width--container: calc(var(--tick) * 20);
+    --width--margin: calc(var(--tick) / 2);
+    --duration--base: 0.2s;
+}
+
+// $breakpoints: (
+//     'laptop': '(max-width: 1439px)',
+//     'tablet': '(max-width: 1023px)',
+//     'phablet': '(max-width: 735px)',
+//     'phone': '(max-width: 635px)',
+//     'mobile': '(max-width: 500px)',
+// );

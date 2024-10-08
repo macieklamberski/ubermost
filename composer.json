@@ -1,0 +1,12 @@
+{
+    "require": {
+        "lamberski/mikrob": "^1.4"
+    },
+    "scripts": {
+        "dev": [
+            "Composer\\Config::disableProcessTimeout",
+            "(cd public && php -S localhost:3000 index.php)"
+        ],
+        "deploy": "bash deploy.sh"
+    }
+}
