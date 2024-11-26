@@ -1,0 +1,43 @@
+.copy {
+  blockquote > *,
+  & > * {
+    margin-top: var(--tick);
+    margin-bottom: 0;
+  }
+
+  blockquote > :first-child,
+  & > :first-child {
+    margin-top: 0;
+  }
+
+  blockquote {
+    position: relative;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  li {
+    padding-left: 7rem;
+    margin-left: -7rem;
+  }
+
+  ul li {
+    list-style-type: disc;
+  }
+
+  ol li {
+    list-style-type: decimal;
+  }
+
+  strong {
+    font-weight: bold;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  del {
+    text-decoration: line-through;
+  }
+}

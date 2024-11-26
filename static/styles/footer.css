@@ -1,0 +1,19 @@
+.footer {
+  padding: calc(var(--tick) * 2) 0;
+  background: var(--color--border);
+  font-size: var(--size--minor);
+  color: var(--color--faint);
+
+  @media (max-width: 500px) {
+    padding: var(--tick) 0;
+  }
+}
+
+.footer__links {
+  display: flex;
+
+  li:not(:first-child)::before {
+    content: "·";
+    margin: 0 0.5em;
+  }
+}
