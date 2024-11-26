@@ -1,0 +1,4 @@
+{
+  "view": "templates/Post.tsx",
+  "path": "/post/:path{.+}"
+}
