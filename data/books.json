@@ -1,146 +1,146 @@
 {
-    "548": {
-        "title": "The Little Book of Contentment",
-        "author": "Leo Babauta",
-        "isbn_10": "1434103994",
-        "isbn_13": "978-1434103994"
-    },
-    "549": {
-        "title": "Rework",
-        "author": "Jason Fried, David Heinemeier Hansson",
-        "isbn_10": "0091929784",
-        "isbn_13": "978-0091929787"
-    },
-    "550": {
-        "title": "The One Skill",
-        "author": "Leo Babauta",
-        "isbn_10": null,
-        "isbn_13": null
-    },
-    "551": {
-        "title": "Creativity, Inc.",
-        "author": "Ed Catmull",
-        "isbn_10": "0812993012",
-        "isbn_13": "978-0812993011"
-    },
-    "553": {
-        "title": "Mastery",
-        "author": "Robert Greene",
-        "isbn_10": "014312417X",
-        "isbn_13": "978-0143124177"
-    },
-    "554": {
-        "title": "Art Of Money Getting",
-        "author": "P.T Barnum",
-        "isbn_10": "1535153644",
-        "isbn_13": "978-1535153645"
-    },
-    "555": {
-        "title": "Egonomics",
-        "author": "David Marcum, Steven B. Smith",
-        "isbn_10": "1416533273",
-        "isbn_13": "978-1416533276"
-    },
-    "556": {
-        "title": "The Way of the Superior Man",
-        "author": "David Deida",
-        "isbn_10": "1591792576",
-        "isbn_13": "978-1591792574"
-    },
-    "557": {
-        "title": "Mud, Sweat and Tears",
-        "author": "Bear Grylls",
-        "isbn_10": "0062124137",
-        "isbn_13": "978-0062124135"
-    },
-    "558": {
-        "title": "Steal Like an Artist",
-        "author": "Austin Kleon",
-        "isbn_10": "0761169253",
-        "isbn_13": "978-0761169253"
-    },
-    "559": {
-        "title": "Show Your Work",
-        "author": "Austin Kleon",
-        "isbn_10": "076117897X",
-        "isbn_13": "978-0761178972"
-    },
-    "560": {
-        "title": "How to Win Friends and Influence People",
-        "author": "Dale Carnegie",
-        "isbn_10": "0671027034",
-        "isbn_13": "978-0671027032"
-    },
-    "561": {
-        "title": "The Science of Getting Rich",
-        "author": "Wallace D. Wattles",
-        "isbn_10": "1604598875",
-        "isbn_13": "978-1604598872"
-    },
-    "562": {
-        "title": "The Science of Being Great",
-        "author": "Wallace D. Wattles",
-        "isbn_10": "1535238712",
-        "isbn_13": "978-1535238717"
-    },
-    "563": {
-        "title": "Bird by Bird",
-        "author": "Anne Lamott",
-        "isbn_10": "0385480016",
-        "isbn_13": "978-0385480017"
-    },
-    "564": {
-        "title": "The Creative Habit",
-        "author": "Twyla Tharp",
-        "isbn_10": "0743235274",
-        "isbn_13": "978-0743235273"
-    },
-    "565": {
-        "title": "The Way to Wealth",
-        "author": "Benjamin Franklin",
-        "isbn_10": "1481223399",
-        "isbn_13": "978-1481223393"
-    },
-    "566": {
-        "title": "7 Day Startup",
-        "author": "Dan Norris",
-        "isbn_10": "1502472392",
-        "isbn_13": "978-1502472397"
-    },
-    "567": {
-        "title": "Contagious: Why Things Catch On",
-        "author": "Jonah Berger",
-        "isbn_10": "1451686587",
-        "isbn_13": "978-1451686586"
-    },
-    "571": {
-        "title": "The Rational Male",
-        "author": "Rollo Tomassi",
-        "isbn_10": "1492777862",
-        "isbn_13": "978-1492777861"
-    },
-    "572": {
-        "title": "On Shortness of Life",
-        "author": "Seneca",
-        "isbn_10": "0143036327",
-        "isbn_13": "978-0143036326"
-    },
-    "573": {
-        "title": "The War of Art",
-        "author": "Steven Pressfield",
-        "isbn_10": "1936891026",
-        "isbn_13": "978-1936891023"
-    },
-    "620": {
-        "title": "An Astronaut's Guide to Life on Earth",
-        "author": "Chris Hadfield",
-        "isbn_10": "0316253030",
-        "isbn_13": "978-0316253031"
-    },
-    "642": {
-        "title": "The Obstacle Is the Way",
-        "author": "Ryan Holiday",
-        "isbn_10": "1591846358",
-        "isbn_13": "978-1591846352"
-    }
+  "548": {
+    "title": "The Little Book of Contentment",
+    "author": "Leo Babauta",
+    "isbn_10": "1434103994",
+    "isbn_13": "978-1434103994"
+  },
+  "549": {
+    "title": "Rework",
+    "author": "Jason Fried, David Heinemeier Hansson",
+    "isbn_10": "0091929784",
+    "isbn_13": "978-0091929787"
+  },
+  "550": {
+    "title": "The One Skill",
+    "author": "Leo Babauta",
+    "isbn_10": null,
+    "isbn_13": null
+  },
+  "551": {
+    "title": "Creativity, Inc.",
+    "author": "Ed Catmull",
+    "isbn_10": "0812993012",
+    "isbn_13": "978-0812993011"
+  },
+  "553": {
+    "title": "Mastery",
+    "author": "Robert Greene",
+    "isbn_10": "014312417X",
+    "isbn_13": "978-0143124177"
+  },
+  "554": {
+    "title": "Art Of Money Getting",
+    "author": "P.T Barnum",
+    "isbn_10": "1535153644",
+    "isbn_13": "978-1535153645"
+  },
+  "555": {
+    "title": "Egonomics",
+    "author": "David Marcum, Steven B. Smith",
+    "isbn_10": "1416533273",
+    "isbn_13": "978-1416533276"
+  },
+  "556": {
+    "title": "The Way of the Superior Man",
+    "author": "David Deida",
+    "isbn_10": "1591792576",
+    "isbn_13": "978-1591792574"
+  },
+  "557": {
+    "title": "Mud, Sweat and Tears",
+    "author": "Bear Grylls",
+    "isbn_10": "0062124137",
+    "isbn_13": "978-0062124135"
+  },
+  "558": {
+    "title": "Steal Like an Artist",
+    "author": "Austin Kleon",
+    "isbn_10": "0761169253",
+    "isbn_13": "978-0761169253"
+  },
+  "559": {
+    "title": "Show Your Work",
+    "author": "Austin Kleon",
+    "isbn_10": "076117897X",
+    "isbn_13": "978-0761178972"
+  },
+  "560": {
+    "title": "How to Win Friends and Influence People",
+    "author": "Dale Carnegie",
+    "isbn_10": "0671027034",
+    "isbn_13": "978-0671027032"
+  },
+  "561": {
+    "title": "The Science of Getting Rich",
+    "author": "Wallace D. Wattles",
+    "isbn_10": "1604598875",
+    "isbn_13": "978-1604598872"
+  },
+  "562": {
+    "title": "The Science of Being Great",
+    "author": "Wallace D. Wattles",
+    "isbn_10": "1535238712",
+    "isbn_13": "978-1535238717"
+  },
+  "563": {
+    "title": "Bird by Bird",
+    "author": "Anne Lamott",
+    "isbn_10": "0385480016",
+    "isbn_13": "978-0385480017"
+  },
+  "564": {
+    "title": "The Creative Habit",
+    "author": "Twyla Tharp",
+    "isbn_10": "0743235274",
+    "isbn_13": "978-0743235273"
+  },
+  "565": {
+    "title": "The Way to Wealth",
+    "author": "Benjamin Franklin",
+    "isbn_10": "1481223399",
+    "isbn_13": "978-1481223393"
+  },
+  "566": {
+    "title": "7 Day Startup",
+    "author": "Dan Norris",
+    "isbn_10": "1502472392",
+    "isbn_13": "978-1502472397"
+  },
+  "567": {
+    "title": "Contagious: Why Things Catch On",
+    "author": "Jonah Berger",
+    "isbn_10": "1451686587",
+    "isbn_13": "978-1451686586"
+  },
+  "571": {
+    "title": "The Rational Male",
+    "author": "Rollo Tomassi",
+    "isbn_10": "1492777862",
+    "isbn_13": "978-1492777861"
+  },
+  "572": {
+    "title": "On Shortness of Life",
+    "author": "Seneca",
+    "isbn_10": "0143036327",
+    "isbn_13": "978-0143036326"
+  },
+  "573": {
+    "title": "The War of Art",
+    "author": "Steven Pressfield",
+    "isbn_10": "1936891026",
+    "isbn_13": "978-1936891023"
+  },
+  "620": {
+    "title": "An Astronaut's Guide to Life on Earth",
+    "author": "Chris Hadfield",
+    "isbn_10": "0316253030",
+    "isbn_13": "978-0316253031"
+  },
+  "642": {
+    "title": "The Obstacle Is the Way",
+    "author": "Ryan Holiday",
+    "isbn_10": "1591846358",
+    "isbn_13": "978-1591846352"
+  }
 }
