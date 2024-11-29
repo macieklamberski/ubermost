@@ -1,0 +1,4 @@
+services:
+  ubermost:
+    build: .
+    restart: always
