@@ -20,6 +20,7 @@
     height: calc(var(--tick) * 1.5);
     margin: calc(var(--tick) * 0.25) 0;
     color: var(--color--dark);
+    width: auto;
   }
 
   @media (max-width: 735px) {
